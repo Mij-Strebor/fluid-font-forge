@@ -1,5 +1,5 @@
 # Fluid Font Forge
-![Fluid Font Forge banner](![Banner](https://raw.githubusercontent.com/Mij-Strebor/fluid-font-forge/main/docs/banner-772x250.png)
+![Banner](./docs/banner-772x250.png)
 
 A WordPress plugin for creating responsive typography with CSS clamp() functions. Generate fluid font scaling that adapts smoothly across all viewport sizes.
 
