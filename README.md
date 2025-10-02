@@ -1,5 +1,5 @@
 # Fluid Font Forge
-![Fluid Font Forge banner](docs/screenshots/banner.png)
+![Fluid Font Forge banner](/fluid-font-forge/docs/banner.png)
 
 A WordPress plugin for creating responsive typography with CSS clamp() functions. Generate fluid font scaling that adapts smoothly across all viewport sizes.
 
@@ -8,7 +8,6 @@ A WordPress plugin for creating responsive typography with CSS clamp() functions
 [![License](https://img.shields.io/badge/license-GPL%20v2%2B-green.svg)](LICENSE)
 [![PHP](https://img.shields.io/badge/PHP-7.4%2B-purple.svg)](https://php.net/)
 
-## What is Fluid Font Forge?
 
 Fluid Font Forge simplifies responsive typography by generating CSS clamp() functions that scale fonts smoothly between minimum and maximum viewport widths. Instead of creating breakpoints for different screen sizes, fonts scale continuously using mathematical precision.
 
@@ -168,8 +167,8 @@ This project is licensed under GPL v2 or later. See the [LICENSE](LICENSE) file 
 
 ## Support
 
-- **Issues**: [GitHub Issues](https://github.com/jimrweb/fluid-font-forge/issues)
-- **Documentation**: [GitHub Wiki](https://github.com/jimrweb/fluid-font-forge/wiki)
+- **Issues**: [GitHub Issues](https://github.com/Mij-Strebor/fluid-font-forge/issues)
+- **Documentation**: [GitHub Wiki](https://github.com/Mij-Strebor/fluid-font-forge/wiki)
 
 ---
 
@@ -177,8 +176,8 @@ This project is licensed under GPL v2 or later. See the [LICENSE](LICENSE) file 
 
 **🚀 Made with ❤️ for the WordPress Community**
 
-[⭐ Star this repository](https://github.com/jimrweb/fluid-font-forge) • [🐛 Report Issues](https://github.com/jimrweb/fluid-font-forge/issues) • [💬 Join Discussion](https://github.com/jimrweb/fluid-font-forge/discussions)
+[⭐ Star this repository](https://github.com/Mij-Strebor/fluid-font-forge) • [🐛 Report Issues](https://github.com/Mij-Strebor/fluid-font-forge/issues) • [💬 Join Discussion](https://github.com/Mij-Strebor/fluid-font-forge/discussions)
 
-**Professional WordPress Plugin Development** | **[JimRWeb.com](https://jimrweb.com)**
+**Professional WordPress Development** | **[JimRWeb.com](https://jimrweb.com)**
 
 </div>
