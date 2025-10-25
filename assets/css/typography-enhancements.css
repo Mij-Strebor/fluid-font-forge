@@ -1,0 +1,115 @@
+/**
+ * Typography Fix - 16px Base Font
+ * 
+ * Targeted font size fixes without breaking layout.
+ * Loaded after admin-styles.css to override inline styles.
+ * 
+ * @package FluidFontForge
+ * @version 5.1.0
+ */
+
+/* ==========================================================================
+   TARGETED 16PX TYPOGRAPHY
+   ========================================================================== */
+
+/* Text content in panels - NOT layout divs */
+.fcc-info-content p,
+.fcc-info-content p *,
+.fcc-info-content div[style*="font-size"] > p {
+    font-size: 16px !important;
+}
+
+/* Labels and descriptive text */
+label,
+label *,
+.fcc-font-input label,
+.fcc-font-input span,
+#font-filename {
+    font-size: 16px !important;
+}
+
+/* Data table content */
+.fcc-table tbody td,
+.fcc-table tbody td *,
+.fcc-table thead th,
+.fcc-table thead th * {
+    font-size: 16px !important;
+}
+
+/* Sample panel labels and displays */
+.fcc-sample-controls label,
+.fcc-sample-controls span,
+#titles-size-display,
+#text-size-display,
+#viewport-display {
+    font-size: 16px !important;
+}
+
+/* Settings panel text */
+.font-clamp-container > div > div > label,
+.font-clamp-container > div > div > p {
+    font-size: 16px !important;
+}
+
+/* Paragraph text everywhere */
+p {
+    font-size: 16px !important;
+}
+
+/* DO NOT apply to layout containers */
+.fcc-panel,
+.fcc-main-grid,
+.font-clamp-container,
+.fcc-preview-section,
+.fcc-sample-panel {
+    font-size: inherit !important;
+}
+
+/* ==========================================================================
+   PANEL WIDTH CONSTRAINTS
+   ========================================================================== */
+
+/**
+ * Constrain wide panels to 1280px
+ *
+ * Sample Text, Font Scale, CSS output panels, and Support panel
+ * should match the width of Settings/Data grid (1280px max).
+ */
+.fcc-sample-panel,
+.fcc-preview-section,
+#selected-css-container,
+#generated-css-container,
+.fcc-panel {
+    max-width: 1280px;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/* Ensure panel padding is maintained */
+.fcc-panel {
+    padding: var(--spc-lg) !important;
+}
+
+/* Fix Sample Text and Font Scale width */
+.fcc-preview-enhanced {
+    max-width: 1280px !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+/* Add padding to Settings and Data table panels */
+.fcc-main-grid > .fcc-panel {
+    padding: 24px !important;
+}
+
+/* Specific padding for grid items inside panels */
+.fcc-settings-grid,
+.fcc-table-container {
+    padding: 0 !important;
+}
+
+/* Force padding on all fcc-panel divs */
+div.fcc-panel {
+    padding: 24px !important;
+    box-sizing: border-box !important;
+}

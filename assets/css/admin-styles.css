@@ -1,0 +1,2993 @@
+/**
+ * Fluid Font Forge - Admin Interface Styles
+ * 
+ * Comprehensive styling system for the fluid typography calculator interface.
+ * Implements JimRWeb brand colors with professional design patterns.
+ * 
+ * @package FluidFontForge
+ * @version 5.1.0
+ * @author Jim R (JimRWeb)
+ * @link https://jimrweb.com
+ * @since 1.0.0
+ * 
+ * TABLE OF CONTENTS - Use Ctrl+F with section numbers for quick navigation:
+ *
+ * 0. Inter Font Loading ............. Line 48   (Self-hosted WOFF2 fonts)
+ * 1. CSS Custom Properties .......... Line 95   (Design tokens, colors, spacing)
+ * 2. Global Reset ................... Line 410  (WordPress overrides)
+ * 3. Base Typography ................ Line 473  (Headings, labels, text)
+ * 4. Layout & Grid .................. Line 558  (Containers, grids, panels)
+ * 5. UI Components .................. Line 665  (Buttons, forms, modals)
+ * 6. Interactive Components ......... Line 1067 (Tabs, toggles, drag/drop)
+ * 7. Data Display ................... Line 1490 (Tables, previews, samples)
+ * 8. State Management ............... Line 2160 (Loading, autosave, validation)
+ * 9. Animations & Keyframes ......... Line 2301 (Transitions, keyframes)
+ * 10. Utility Classes ............... Line 2371 (Layout, spacing, helpers)
+ * 11. Accessibility ................. Line 2709 (Motion reduction, focus)
+ * 12. Responsive Design ............. Line 2754 (Breakpoints, mobile)
+ *
+ * Design System:
+ * - Custom CSS properties for consistent theming
+ * - Responsive grid layouts with mobile optimization
+ * - Interactive hover states and smooth transitions
+ * - Accessibility-compliant color contrast ratios
+ * - Professional button and form element styling
+ * 
+ * Color Palette:
+ * - Primary: #3C2017 (Dark Brown)
+ * - Secondary: #5C3324 (Medium Brown) 
+ * - Accent: #FFD700 (Gold)
+ * - Background: #E8D8C3 (Light Cream)
+ * 
+ * Dependencies:
+ * - None (pure CSS)
+ * - Works alongside Tailwind CSS framework
+ * 
+ * Browser Support: Modern browsers (ES6+ JavaScript companion)
+ */
+
+/* ==========================================================================
+   0. INTER FONT LOADING (LOCAL)
+   ========================================================================== */
+
+/**
+ * Inter Font Family - Self-Hosted WOFF2
+ *
+ * Modern, professional sans-serif typeface for enhanced readability.
+ * Self-hosted for performance and GDPR compliance.
+ *
+ * Weights: 400 (Regular), 500 (Medium), 600 (SemiBold), 700 (Bold)
+ * Format: WOFF2 (best compression and browser support)
+ *
+ * @since 5.1.0
+ */
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../fonts/Inter-Regular.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('../fonts/Inter-Medium.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('../fonts/Inter-SemiBold.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('../fonts/Inter-Bold.woff2') format('woff2');
+}
+
+/* ==========================================================================
+   1. CSS CUSTOM PROPERTIES (DESIGN TOKENS)
+   ========================================================================== */
+
+/**
+ * Design System Variables
+ *
+ * Centralized design tokens that define the visual language of the application.
+ * These variables ensure consistency across all components and enable easy
+ * theme modifications from a single location.
+ *
+ * Status: Stable
+ * Updated: 4.3.0
+ * Breaking Changes: None
+ *
+ * Styleguide 1.0
+ */
+:root {
+    /* Font Families - Inter System */
+    --fff-font-body: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --fff-font-heading: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --fff-font-mono: Consolas, Monaco, 'Courier New', monospace;
+
+    /* Brand Colors
+       ========================================================================== */
+
+    /**
+     * Primary Brand Colors
+     *
+     * Core brand identity colors used for headers, borders, and primary elements.
+     * These colors establish the visual hierarchy and brand recognition.
+     *
+     * Status: Stable
+     * Updated: 4.0.0
+     *
+     * Styleguide 1.1
+     */
+    --clr-primary: #3d2f1f;
+    /* Deep brown for headers and main elements */
+    --clr-secondary: #6d4c2f;
+    /* Medium brown for accents and borders */
+    --clr-accent: #f4c542;
+    --clr-accentHover: #e5b12d;    /* Gold hover state */
+    --clr-link: #c97b3c;           /* Burnt Orange for links */
+    /* Gold for highlights and call-to-action elements */
+
+    /**
+     * Text Colors
+     *
+     * Typography color palette ensuring proper contrast ratios for accessibility
+     * while maintaining brand consistency.
+     *
+     * Status: Stable
+     * Updated: 4.0.0
+     *
+     * Styleguide 1.2
+     */
+    --clr-textPrimary: #6d4c2f;
+    /* Main text color - warm brown for primary content */
+    --clr-textLight: #faf9f6;
+    /* Light text color - cream for text on dark backgrounds */
+    --clr-textMuted: #64748b;
+    /* Muted text color - gray for secondary content */
+
+    /**
+     * Background Colors
+     *
+     * Surface colors that create depth and visual separation between interface
+     * elements while maintaining brand warmth.
+     *
+     * Status: Stable
+     * Updated: 4.0.0
+     *
+     * Styleguide 1.3
+     */
+    --clr-pageBackground: #faf6f0;
+    /* Page background - warm beige for main page areas */
+    --clr-cardBackground: #ffffff;
+    /* Card background - light cream for content cards */
+    --clr-light: #faf9f6;
+    /* Lightest background for form elements */
+    --clr-white: #fff;
+    /* Pure white for clean contrasts */
+
+    /**
+     * Interactive Element Colors
+     *
+     * Button and form control colors that provide clear visual feedback
+     * for user interactions.
+     *
+     * Status: Stable
+     * Updated: 4.0.0
+     *
+     * Styleguide 1.4
+     */
+    --clr-buttonHover: #E5B929;
+    /* Button hover state - darker gold */
+    --clr-buttonText: #9C0202;
+    /* Button text - deep red for button labels */
+    --brd-button: #DE0B0B;
+    /* Button border - bright red for button outlines */
+
+    /**
+     * Border Colors
+     *
+     * Border color palette for consistent edge treatment throughout the interface.
+     *
+     * Status: Stable
+     * Updated: 4.3.0
+     *
+     * Styleguide 1.5
+     */
+    --brd-standard: #cbd5e1;
+    /* Standard border color - light gray */
+    --brd-dark: #94a3b8;
+    /* Dark border color - medium gray */
+
+    /**
+     * Drag and Drop Interface Colors
+     *
+     * Interactive states for drag and drop functionality with blue accent
+     * colors to distinguish from brand colors.
+     *
+     * Status: Stable
+     * Updated: 4.1.0
+     *
+     * Styleguide 1.6
+     */
+    --clr-dragHoverBackground: rgba(59, 130, 246, 0.05);
+    /* Subtle blue background for hover */
+    --brd-dragHover: rgba(59, 130, 246, 0.2);
+    /* Light blue border for hover */
+    --clr-dragActiveBackground: rgba(59, 130, 246, 0.25);
+    /* Medium blue for active drag */
+    --brd-dragActive: rgba(59, 130, 246, 0.5);
+    /* Strong blue border for active */
+    --shd-dragActive: rgba(59, 130, 246, 0.4);
+    /* Blue shadow for depth */
+    --clr-dragDropPoint: rgba(59, 130, 246, 0.15);
+    /* Drop zone indicator */
+
+    /**
+     * Semantic Colors
+     *
+     * Status and feedback colors for user interface states including
+     * success, error, warning, and informational messages.
+     *
+     * Status: Stable
+     * Updated: 4.0.0
+     *
+     * Styleguide 1.7
+     */
+    --clr-success: #10b981;
+    /* Success state - green for positive actions */
+    --clr-successDark: #059669;
+    /* Success dark variant for hover states */
+    --clr-danger: #ef4444;
+    /* Danger state - red for errors and warnings */
+    --clr-dangerDark: #dc2626;
+    /* Danger dark variant for hover states */
+    --clr-info: #3b82f6;
+    /* Info state - blue for informational messages */
+    --clr-infoDark: #1d4ed8;
+    /* Info dark variant for hover states */
+    --clr-warning: #f59e0b;
+    /* Warning state - amber for caution messages */
+    --clr-warningDark: #d97706;
+    /* Warning dark variant for hover states */
+
+    /**
+     * Grayscale Palette
+     *
+     * Neutral gray tones for backgrounds, borders, and subtle UI elements
+     * following a consistent scale from light to dark.
+     *
+     * Status: Stable
+     * Updated: 4.0.0
+     *
+     * Styleguide 1.8
+     */
+    --clr-gray50: #f8fafc;
+    /* Lightest gray - near white backgrounds */
+    --clr-gray100: #f1f5f9;
+    /* Very light gray - subtle backgrounds */
+    --clr-gray200: #e2e8f0;
+    /* Light gray - borders and dividers */
+    --clr-gray300: #cbd5e1;
+    /* Medium light gray - disabled states */
+    --clr-gray400: #94a3b8;
+    /* Medium gray - secondary text */
+    --clr-gray500: #64748b;
+    /* Balanced gray - body text */
+    --clr-gray600: #475569;
+    /* Medium dark gray - emphasized text */
+    --clr-gray700: #334155;
+    /* Dark gray - headings */
+    --clr-gray800: #1e293b;
+    /* Very dark gray - high contrast text */
+    --clr-gray900: #0f172a;
+    /* Darkest gray - maximum contrast */
+
+    /**
+     * Shadow System
+     *
+     * Elevation shadows for depth and layering hierarchy using consistent
+     * opacity and blur values.
+     *
+     * Status: Stable
+     * Updated: 4.3.0
+     *
+     * Styleguide 1.9
+     */
+    --shd-baseColor: rgba(60, 32, 23, 0.15);
+    /* Base shadow color */
+    --clr-overlay: rgba(250, 246, 240, 0.95);
+    /* Modal overlay color */
+    --clr-secondaryHover: #dcc7a8;
+    /* Secondary hover state */
+    --shd-small: 0 1px 2px rgba(0, 0, 0, 0.05);
+    /* Small shadow */
+    --shd-standard: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    /* Standard shadow */
+    --shd-medium: 0 6px 12px -2px rgba(0, 0, 0, 0.15);
+    /* Medium shadow */
+    --shd-large: 0 10px 25px rgba(0, 0, 0, 0.2);
+    /* Large shadow */
+    --shd-extraLarge: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    /* Extra large shadow */
+
+    /* Design System Tokens
+       ========================================================================== */
+
+    /**
+     * Border Radius Scale
+     *
+     * Consistent border radius values for creating cohesive rounded corners
+     * throughout the interface.
+     *
+     * Status: Stable
+     * Updated: 4.0.0
+     *
+     * Styleguide 1.10
+     */
+    --rad-standard: 6px;
+    /* Standard border radius for buttons and inputs */
+    --rad-large: 8px;
+    /* Large border radius for cards and containers */
+
+    /**
+     * Transition System
+     *
+     * Animation timing values for consistent motion design across all
+     * interactive elements.
+     *
+     * Status: Stable
+     * Updated: 4.0.0
+     *
+     * Styleguide 1.11
+     */
+    --trn-standard: all 0.2s ease;
+    /* Standard transition for interactions */
+    --trn-slow: all 0.3s ease;
+    /* Slow transition for complex changes */
+
+    /**
+     * Typography Scale
+     *
+     * Font size scale providing consistent typography hierarchy from
+     * captions to page titles.
+     *
+     * Status: Stable
+     * Updated: 4.0.0
+     *
+     * Styleguide 1.12
+     */
+    --fnt-extraSmall: 12px;
+    /* Extra small text - captions and fine print */
+    --fnt-small: 14px;
+    /* Small text - secondary information */
+    --fnt-base: 16px;
+    /* Base text size - primary body text */
+    --fnt-large: 18px;
+    /* Large text - emphasized content */
+    --fnt-extraLarge: 20px;
+    /* Extra large text - section headings */
+    --fnt-2xLarge: 24px;
+    --fnt-3xLarge: 32px;    /* Extra large for H1 titles */
+    /* Double extra large text - page titles */
+
+    /**
+     * Spacing Scale
+     *
+     * Consistent spacing values for margins, padding, and gaps following
+     * a mathematical scale for visual harmony.
+     *
+     * Status: Stable
+     * Updated: 4.0.0
+     *
+     * Styleguide 1.13
+     */
+    --spc-xs: 4px;
+    /* Extra small spacing - tight elements */
+    --spc-sm: 8px;
+    /* Small spacing - compact layouts */
+    --spc-md: 12px;
+    /* Medium small spacing - form controls */
+    --spc-base: 16px;
+    /* Standard spacing - default margins and padding */
+    --spc-lg: 20px;
+    /* Medium large spacing - section breaks */
+    --spc-xl: 24px;
+    /* Large spacing - major sections */
+}
+
+/* ==========================================================================
+   2. GLOBAL RESET & WORDPRESS OVERRIDES
+   ========================================================================== */
+
+/**
+ * WordPress Admin Integration
+ *
+ * Override default WordPress admin styling to integrate seamlessly with
+ * the JimRWeb brand design system.
+ *
+ * Status: Stable
+ * Updated: 4.0.0
+ * Breaking Changes: None
+ *
+ * Styleguide 2.0
+ */
+
+/**
+ * Body Element Override
+ *
+ * Apply brand background and text colors globally to ensure consistent
+ * visual integration with WordPress admin.
+ *
+ * Styleguide 2.1
+ */
+body {
+    font-family: var(--fff-font-body);
+    background: var(--clr-pageBackground) !important;
+    color: var(--clr-textPrimary) !important;
+}
+
+/**
+ * WordPress Admin Container Override
+ *
+ * Ensure consistent brand background throughout the WordPress admin interface.
+ *
+ * Styleguide 2.2
+ */
+.wp-admin {
+    background: var(--clr-pageBackground) !important;
+}
+
+/**
+ * WordPress Content Area Override
+ *
+ * Maintain brand background for plugin pages and content areas.
+ *
+ * Styleguide 2.3
+ */
+#wpbody-content {
+    background: var(--clr-pageBackground) !important;
+}
+
+/**
+ * WordPress Page Wrapper Override
+ *
+ * Apply brand background to admin page containers for visual consistency.
+ *
+ * Styleguide 2.4
+ */
+.wrap {
+    background: var(--clr-pageBackground) !important;
+}
+
+/* ==========================================================================
+   3. BASE TYPOGRAPHY SYSTEM
+   ========================================================================== */
+
+/**
+ * Typography Hierarchy
+ *
+ * Consistent typography system using serif fonts for headings and
+ * maintaining proper visual hierarchy throughout the application.
+ *
+ * Status: Stable
+ * Updated: 4.0.0
+ * Breaking Changes: None
+ *
+ * Styleguide 3.0
+ */
+
+/**
+ * Primary Heading (H1)
+ *
+ * Main page titles with serif typography and subtle text shadow for
+ * enhanced readability and brand presence.
+ *
+ * Styleguide 3.1
+ */
+h1 {
+    color: var(--clr-primary) !important;
+    font-family: var(--fff-font-heading);
+    text-shadow: 1px 1px 2px var(--shd-baseColor);
+}
+
+/**
+ * Secondary Heading (H2)
+ *
+ * Section headings with serif typography, bottom border separation,
+ * and consistent spacing for clear content organization.
+ *
+ * Styleguide 3.2
+ */
+h2 {
+    color: var(--clr-primary) !important;
+    font-family: var(--fff-font-heading);
+    font-size: var(--fnt-2xLarge);
+    text-shadow: 1px 1px 2px var(--shd-baseColor);
+    margin: 0 0 var(--spc-lg) 0;
+    padding-bottom: var(--spc-sm);
+    border-bottom: 2px solid var(--clr-secondary);
+    border-bottom-color: var(--clr-secondary) !important;
+}
+
+/**
+ * Form Labels
+ *
+ * Standard label styling for form field identification with consistent
+ * typography and spacing for accessibility.
+ *
+ * Styleguide 3.3
+ */
+label {
+    color: var(--clr-textPrimary);
+    font-weight: 500;
+    font-size: var(--fnt-small);
+    line-height: 1.3;
+    display: block;
+    margin-bottom: var(--spc-sm);
+}
+
+/**
+ * Main Title Component
+ *
+ * Specialized title styling for application headers with enhanced
+ * typography and brand-appropriate styling.
+ *
+ * Styleguide 3.4
+ */
+.fcc-main-title {
+    font-size: var(--fnt-2xLarge) !important;
+    font-weight: 700 !important;
+    font-family: var(--fff-font-heading) !important;
+    line-height: 1.2 !important;
+    color: var(--clr-primary) !important;
+    text-shadow: 1px 1px 2px var(--shd-baseColor) !important;
+    margin-bottom: var(--spc-base) !important;
+}
+
+/* ==========================================================================
+   4. LAYOUT & GRID COMPONENTS
+   ========================================================================== */
+
+/**
+ * Layout System
+ *
+ * Responsive grid and container components that provide consistent
+ * structure and spacing throughout the application.
+ *
+ * Status: Stable
+ * Updated: 4.0.0
+ * Breaking Changes: None
+ *
+ * Styleguide 4.0
+ */
+
+/**
+ * Fixed-Width Containers
+ *
+ * Centered containers with maximum width for optimal readability
+ * and consistent layout boundaries.
+ *
+ * Styleguide 4.1
+ */
+.fcc-header-section,
+.space-clamp-container {
+    width: 1280px;
+    margin: 0 auto;
+}
+
+/**
+ * Main Application Container
+ *
+ * Primary content wrapper with card styling, loading states,
+ * and smooth fade-in animation.
+ *
+ * Styleguide 4.2
+ */
+.font-clamp-container {
+    margin: 0 auto;
+    overflow: hidden;
+    background: var(--clr-cardBackground);
+    border: 2px solid var(--clr-primary);
+    border-radius: var(--rad-large);
+    box-shadow: var(--shd-extraLarge);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/**
+ * Container Ready State
+ *
+ * Visible state that reveals the container when content has finished loading.
+ *
+ * Styleguide 4.2.1
+ */
+.font-clamp-container.ready {
+    opacity: 1;
+    visibility: visible;
+}
+
+/**
+ * Main Grid Layout
+ *
+ * Two-column responsive grid with optimal proportions for content
+ * and sidebar areas.
+ *
+ * Styleguide 4.3
+ */
+.fcc-main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: var(--spc-xl);
+    margin-bottom: var(--spc-xl);
+    padding: 0 var(--spc-xl);
+}
+
+/**
+ * Content Panel Component
+ *
+ * Elevated card container with brand styling for content sections.
+ *
+ * Styleguide 4.4
+ */
+.fcc-panel {
+    background: var(--clr-light);
+    border: 2px solid var(--clr-secondary);
+    border-radius: var(--rad-large);
+    box-shadow: var(--shd-large);
+    padding: var(--spc-xl);
+    transition: var(--trn-standard);
+}
+
+/**
+ * Grid Item Component
+ *
+ * Vertical flex container for grid cell content with minimal spacing.
+ *
+ * Styleguide 4.5
+ */
+.grid-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+/* ==========================================================================
+   5. UI COMPONENTS (BUTTONS, FORMS, MODALS)
+   ========================================================================== */
+
+/**
+ * Button System
+ *
+ * Comprehensive button components with consistent styling, interactive
+ * states, and specialized variants for different use cases.
+ *
+ * Status: Stable
+ * Updated: 4.1.0
+ * Breaking Changes: None
+ *
+ * Styleguide 5.0
+ */
+
+/**
+ * Base Button Component
+ *
+ * Standard FCC button with brand styling, accent colors, and
+ * professional typography treatment.
+ *
+ * Styleguide 5.1
+ */
+.fcc-btn {
+    background: var(--clr-accent);
+    color: var(--clr-primary);
+    border: none;
+    border-radius: var(--rad-standard);
+    box-shadow: var(--shd-standard);
+    padding: var(--spc-sm) var(--spc-base);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spc-sm);
+    font-size: var(--fnt-small);
+    font-weight: 600;
+    font-style: normal;
+    text-transform: none;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    transition: var(--trn-slow);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+/**
+ * Button Hover State
+ *
+ * Interactive feedback with elevation and color change on hover.
+ *
+ * Styleguide 5.1.1
+ */
+.fcc-btn:hover {
+    background: var(--clr-buttonHover);
+    transform: translateY(-2px);
+    box-shadow: var(--shd-large);
+}
+
+/**
+ * Copy Button Component
+ *
+ * Specialized button for copy-to-clipboard functionality with
+ * ripple animation and consistent sizing.
+ *
+ * Styleguide 5.2
+ */
+.fcc-copy-btn {
+    background: var(--clr-accent);
+    color: var(--clr-primary);
+    border: none;
+    border-radius: var(--rad-standard);
+    box-shadow: var(--shd-standard);
+    padding: var(--spc-sm) var(--spc-base);
+    min-width: 80px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spc-sm);
+    font-size: var(--fnt-small);
+    font-weight: 600;
+    font-style: normal;
+    text-transform: none;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    transition: var(--trn-slow);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+/**
+ * Ripple Effect Animation
+ *
+ * Pseudo-element animation for satisfying click feedback on copy buttons.
+ *
+ * Styleguide 5.2.1
+ */
+.fcc-copy-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.fcc-copy-btn:active::before {
+    width: 300px;
+    height: 300px;
+}
+
+/**
+ * Copy Button Interactive States
+ *
+ * Hover, active, and focus states for comprehensive interaction feedback.
+ *
+ * Styleguide 5.2.2
+ */
+.fcc-copy-btn:hover {
+    background: var(--clr-buttonHover);
+    transform: translateY(-2px);
+    box-shadow: var(--shd-large);
+}
+
+.fcc-copy-btn:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: var(--shd-standard);
+}
+
+.fcc-copy-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.2);
+}
+
+/**
+ * Button Groups
+ *
+ * Layout containers for organizing multiple related buttons.
+ *
+ * Styleguide 5.3
+ */
+.fcc-css-buttons {
+    display: flex;
+    gap: var(--spc-sm);
+    align-items: center;
+}
+
+.fcc-table-buttons {
+    display: flex;
+    gap: var(--spc-sm);
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.fcc-btn-group {
+    display: flex;
+    gap: var(--spc-md);
+    justify-content: flex-end;
+    margin-top: var(--spc-lg);
+}
+
+/**
+ * Form Input System
+ *
+ * Consistent form controls with brand styling and interactive states.
+ *
+ * Status: Stable
+ * Updated: 4.0.0
+ * Breaking Changes: None
+ *
+ * Styleguide 5.4
+ */
+
+/**
+ * Base Input Styling
+ *
+ * Standard form inputs with consistent sizing, border treatment,
+ * and typography.
+ *
+ * Styleguide 5.4.1
+ */
+.component-input,
+.component-select {
+    height: 40px;
+    padding: 10px 12px;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    border: 2px solid var(--clr-secondary);
+    border-radius: var(--rad-standard);
+    background: var(--clr-white);
+    font-size: var(--fnt-base);
+    color: var(--clr-textPrimary);
+    transition: var(--trn-slow);
+}
+
+/**
+ * Input Focus States
+ *
+ * Enhanced focus styling with elevation and accent color feedback.
+ *
+ * Styleguide 5.4.2
+ */
+.fcc-input:focus,
+.component-input:focus,
+.component-select:focus {
+    outline: none;
+    border-color: var(--clr-accent);
+    box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.2), var(--shd-standard);
+    background: var(--clr-light);
+    transform: translateY(-2px);
+}
+
+/**
+ * Select Dropdown Styling
+ *
+ * Custom dropdown arrow and interaction styling for select elements.
+ *
+ * Styleguide 5.4.3
+ */
+.component-select,
+select.fcc-input {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235C3324' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 16px;
+    padding-right: 32px;
+}
+
+/**
+ * Specialized Form Components
+ *
+ * Custom form layouts and specialized input groupings.
+ *
+ * Styleguide 5.4.4
+ */
+#base-value {
+    min-width: 120px;
+    height: 32px !important;
+    font-size: 13px;
+}
+
+.component-label[for="base-value"] {
+    font-size: var(--fnt-small);
+    font-weight: 500;
+    color: var(--clr-textPrimary);
+}
+
+.fcc-form-group {
+    margin-bottom: var(--spc-base);
+}
+
+/**
+ * Font Input Groups
+ *
+ * Specialized layouts for font control inputs with labels and unit displays.
+ *
+ * Styleguide 5.4.5
+ */
+.fcc-font-input {
+    display: flex;
+    align-items: center;
+    gap: var(--spc-md);
+}
+
+.fcc-font-input label {
+    white-space: nowrap;
+    margin-bottom: 0;
+    font-size: var(--fnt-small);
+    font-weight: 500;
+    color: var(--clr-textPrimary);
+}
+
+.fcc-font-input input {
+    width: 200px;
+    margin-bottom: 0;
+}
+
+.fcc-font-input span {
+    font-size: var(--fnt-small);
+    color: var(--clr-gray500);
+    font-style: normal;
+}
+
+/**
+ * Modal System
+ *
+ * Overlay modal components with responsive design and accessibility features.
+ *
+ * Status: Stable
+ * Updated: 4.0.0
+ * Breaking Changes: None
+ *
+ * Styleguide 5.5
+ */
+
+/**
+ * Modal Overlay
+ *
+ * Full-screen backdrop with centered flex container and dark overlay.
+ *
+ * Styleguide 5.5.1
+ */
+.fcc-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.fcc-modal.show {
+    display: flex;
+}
+
+/**
+ * Modal Dialog Container
+ *
+ * Main modal content with responsive sizing and brand styling.
+ *
+ * Styleguide 5.5.2
+ */
+.fcc-modal-dialog {
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow: auto;
+    background: var(--clr-cardBackground);
+    border: 2px solid var(--clr-primary);
+    border-radius: var(--rad-large);
+    box-shadow: var(--shd-extraLarge);
+}
+
+/**
+ * Modal Header
+ *
+ * Header bar with secondary background and title/close button layout.
+ *
+ * Styleguide 5.5.3
+ */
+.fcc-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spc-base);
+    background: var(--clr-secondary);
+    color: var(--clr-textLight);
+    font-weight: 600;
+    font-size: var(--fnt-large);
+}
+
+/**
+ * Modal Close Button
+ *
+ * Circular close button with hover effects and centered icon.
+ *
+ * Styleguide 5.5.4
+ */
+.fcc-modal-close {
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    border-radius: 50%;
+    color: var(--clr-textLight);
+    font-size: 24px;
+    cursor: pointer;
+    transition: var(--trn-standard);
+}
+
+.fcc-modal-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/**
+ * Modal Content Area
+ *
+ * Main content area with consistent interior spacing.
+ *
+ * Styleguide 5.5.5
+ */
+.fcc-modal-content {
+    padding: var(--spc-xl);
+}
+
+/* ==========================================================================
+   6. INTERACTIVE COMPONENTS (TABS, TOGGLES, DRAG/DROP)
+   ========================================================================== */
+
+/**
+ * Interactive Components
+ *
+ * Advanced UI components that provide rich user interactions including
+ * tabs, toggles, and drag-and-drop functionality.
+ *
+ * Status: Stable
+ * Updated: 4.1.0
+ * Breaking Changes: None
+ *
+ * Styleguide 6.0
+ */
+
+/**
+ * Tab Navigation System
+ *
+ * Horizontal tab navigation with active states and smooth transitions.
+ *
+ * Styleguide 6.1
+ */
+.fcc-tabs {
+    display: flex;
+    gap: var(--spc-xs);
+    background: var(--clr-primary);
+    padding: 3px;
+    border-radius: var(--rad-large);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/**
+ * Tab Button Component
+ *
+ * Individual tab button with brand styling and interactive states.
+ *
+ * Styleguide 6.1.1
+ */
+.tab-button {
+    background: var(--clr-accent);
+    color: var(--clr-primary);
+    border: none;
+    transition: var(--trn-slow);
+    cursor: pointer;
+    font-weight: 600;
+    text-shadow: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.tab-button:hover {
+    background: var(--clr-buttonHover);
+    color: var(--clr-primary);
+    border-color: var(--brd-button);
+    transform: translateY(-1px);
+    box-shadow: var(--shd-standard);
+}
+
+.tab-button.active {
+    background: var(--clr-secondary) !important;
+    color: var(--clr-textLight) !important;
+    border-color: var(--clr-primary) !important;
+    font-weight: 700 !important;
+    box-shadow: 0 0 15px rgba(92, 51, 36, 0.4) !important;
+}
+
+/**
+ * Info Toggle System
+ *
+ * Expandable content sections with smooth animations and brand styling.
+ *
+ * Status: Stable
+ * Updated: 4.0.0
+ *
+ * Styleguide 6.2
+ */
+
+/**
+ * Info Toggle Container
+ *
+ * Toggle section wrapper with gradient background and rounded borders.
+ *
+ * Styleguide 6.2.1
+ */
+.fcc-info-toggle-section {
+    margin-bottom: var(--spc-xl);
+    overflow: hidden;
+    border: 2px solid var(--clr-secondary);
+    border-radius: var(--rad-large);
+    background: linear-gradient(135deg, var(--clr-light), var(--clr-cardBackground));
+    box-shadow: var(--shd-standard);
+}
+
+/**
+ * Toggle Button Header
+ *
+ * Clickable toggle header with full-width button and space-between layout.
+ *
+ * Styleguide 6.2.2
+ */
+.fcc-info-toggle {
+    width: 100%;
+    border: none;
+    padding: var(--spc-base) var(--spc-lg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--clr-secondary);
+    color: var(--clr-textLight) !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    font-size: var(--fnt-large);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--trn-slow);
+}
+
+.fcc-info-toggle:hover {
+    background: var(--clr-primary);
+    color: var(--clr-textLight) !important;
+    transform: translateY(-1px);
+}
+
+/**
+ * Toggle Icon Animation
+ *
+ * Chevron icon that rotates to indicate expanded/collapsed state.
+ *
+ * Styleguide 6.2.3
+ */
+.fcc-toggle-icon {
+    transition: transform 0.3s ease;
+    font-size: var(--fnt-base);
+    color: var(--clr-textLight) !important;
+}
+
+.fcc-info-toggle.expanded .fcc-toggle-icon {
+    transform: rotate(180deg);
+}
+
+/**
+ * Toggle Content Panel
+ *
+ * Collapsible content area with smooth height animation.
+ *
+ * Styleguide 6.2.4
+ */
+.fcc-info-content {
+    max-height: 0;
+    overflow: hidden;
+    background: var(--clr-light);
+    color: var(--clr-textPrimary);
+    transition: max-height 0.4s ease, padding 0.4s ease;
+}
+
+.fcc-info-content.expanded {
+    max-height: 2000px;
+    padding: var(--spc-xl);
+}
+
+/**
+ * Font Units Toggle System
+ *
+ * Unit selection controls for font measurement toggles.
+ *
+ * Status: Stable
+ * Updated: 4.0.0
+ *
+ * Styleguide 6.3
+ */
+
+/**
+ * Font Units Section
+ *
+ * Container for unit selection controls with consistent spacing.
+ *
+ * Styleguide 6.3.1
+ */
+.font-units-section {
+    margin-bottom: var(--spc-lg);
+}
+
+.font-units-label {
+    display: block;
+    margin-bottom: var(--spc-xs);
+    font-size: var(--fnt-small);
+    font-weight: 500;
+    color: var(--clr-textPrimary);
+}
+
+/**
+ * Font Units Button Group
+ *
+ * Toggle button container with rounded group styling.
+ *
+ * Styleguide 6.3.2
+ */
+.font-units-buttons {
+    display: flex;
+    overflow: hidden;
+    border: 2px solid var(--clr-primary);
+    border-radius: var(--rad-large);
+    box-shadow: var(--shd-standard);
+}
+
+/**
+ * Unit Toggle Button
+ *
+ * Individual unit button with equal width and brand accent colors.
+ *
+ * Styleguide 6.3.3
+ */
+.unit-button {
+    width: 50%;
+    padding: var(--spc-sm);
+    text-align: center;
+    border: none;
+    background: var(--clr-accent);
+    color: #9C0202;
+    font-size: var(--fnt-base);
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--trn-slow);
+}
+
+.unit-button.active {
+    background: var(--clr-secondary);
+    color: var(--clr-textLight);
+    font-weight: 700;
+}
+
+/**
+ * Autosave Toggle Controls
+ *
+ * Interactive control elements for the autosave functionality with
+ * status indicators and toggle switches.
+ *
+ * Status: Stable
+ * Updated: 4.2.0
+ *
+ * Styleguide 6.4
+ */
+
+/**
+ * Autosave Control Layout
+ *
+ * Horizontal flex layout for autosave toggle and status indicator.
+ *
+ * Styleguide 6.4.1
+ */
+.fcc-autosave-flex {
+    display: flex;
+    align-items: center;
+    gap: var(--spc-base);
+}
+
+.fcc-autosave-flex label {
+    display: flex;
+    align-items: center;
+    gap: var(--spc-xs);
+    margin-bottom: 0;
+    cursor: pointer;
+}
+
+/**
+ * Autosave Status Badge
+ *
+ * Status indicator with state-based styling and smooth transitions.
+ *
+ * Styleguide 6.4.2
+ */
+.autosave-status {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spc-sm);
+    padding: var(--spc-xs) var(--spc-md);
+    border: 1px solid transparent;
+    border-radius: var(--rad-standard);
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: var(--trn-slow);
+}
+
+/**
+ * Autosave Status States
+ *
+ * Different visual states for autosave status feedback.
+ *
+ * Styleguide 6.4.3
+ */
+.autosave-status.saving {
+    background: linear-gradient(135deg, var(--clr-accent), var(--clr-buttonHover));
+    color: var(--clr-primary);
+    border-color: var(--brd-button);
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.autosave-status.saved {
+    background: linear-gradient(135deg, var(--clr-success), var(--clr-successDark));
+    color: var(--clr-white);
+    border-color: #15803d;
+}
+
+.autosave-status.error {
+    background: linear-gradient(135deg, var(--brd-button), var(--clr-danger));
+    color: var(--clr-white);
+    border-color: #991b1b;
+}
+
+.autosave-status.idle {
+    background: var(--clr-cardBackground);
+    color: var(--clr-textPrimary);
+    border-color: var(--clr-secondary);
+}
+
+/**
+ * Drag and Drop Interactions
+ *
+ * Interactive states for drag and drop functionality with visual feedback.
+ *
+ * Status: Stable
+ * Updated: 4.1.0
+ *
+ * Styleguide 6.5
+ */
+
+/**
+ * Row Interaction States
+ *
+ * Interactive styling for preview panels and data table rows.
+ *
+ * Styleguide 6.5.1
+ */
+.preview-row {
+    margin-bottom: var(--spc-xs) !important;
+    padding: var(--spc-sm) var(--spc-md) !important;
+    border: 1px solid transparent !important;
+    border-radius: var(--rad-standard) !important;
+    cursor: pointer !important;
+    transition: var(--trn-standard) !important;
+}
+
+.size-row {
+    border: 1px solid transparent !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+}
+
+/**
+ * Row Hover States
+ *
+ * Hover feedback with blue tint and subtle horizontal movement.
+ *
+ * Styleguide 6.5.2
+ */
+.preview-row:hover,
+.size-row:hover {
+    background-color: var(--clr-dragHoverBackground) !important;
+    border-color: var(--brd-dragHover) !important;
+    transform: translateX(2px) !important;
+}
+
+/**
+ * Row Selected States
+ *
+ * Active selection with stronger blue background and shadow outline.
+ *
+ * Styleguide 6.5.3
+ */
+.preview-row.selected,
+.size-row.selected {
+    background-color: var(--clr-dragActiveBackground) !important;
+    border-color: var(--brd-dragActive) !important;
+    box-shadow: 0 0 0 1px var(--shd-dragActive) !important;
+}
+
+.preview-row.selected:hover,
+.size-row.selected:hover {
+    background-color: var(--clr-dragDropPoint) !important;
+}
+
+/**
+ * Drag Operation States
+ *
+ * Visual feedback during active drag operations.
+ *
+ * Styleguide 6.5.4
+ */
+.size-row.dragging {
+    opacity: 0.5 !important;
+}
+
+/**
+ * Drop Zone Indicators
+ *
+ * Visual indicators for valid drop target locations.
+ *
+ * Styleguide 6.5.5
+ */
+.drag-insertion-line {
+    height: 4px !important;
+    margin: 0 !important;
+    background: var(--clr-info) !important;
+    border-radius: 2px !important;
+    box-shadow: 0 0 4px var(--brd-dragActive) !important;
+}
+
+/**
+ * Drag Handle Cursors
+ *
+ * Cursor feedback for drag handle states.
+ *
+ * Styleguide 6.5.6
+ */
+.drag-handle {
+    cursor: grab !important;
+}
+
+.drag-handle:active {
+    cursor: grabbing !important;
+}
+
+/* ==========================================================================
+   7. DATA DISPLAY COMPONENTS (TABLES, PREVIEWS, SAMPLES)
+   ========================================================================== */
+
+/**
+ * Data Display Components
+ *
+ * Components for displaying structured data including tables, previews,
+ * and content grids with consistent styling and responsive behavior.
+ *
+ * Status: Stable
+ * Updated: 4.3.0
+ * Breaking Changes: None
+ *
+ * Styleguide 7.0
+ */
+
+/**
+ * Table System
+ *
+ * Data table components with responsive design and consistent styling.
+ *
+ * Status: Stable
+ * Updated: 4.0.0
+ *
+ * Styleguide 7.1
+ */
+
+/**
+ * Base Table Styles
+ *
+ * Main data table with fixed layout, rounded corners, and shadow elevation.
+ *
+ * Styleguide 7.1.1
+ */
+.font-table {
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 100%;
+    min-width: 520px;
+    border: none !important;
+    background: var(--clr-white);
+    border-radius: var(--rad-standard);
+    box-shadow: var(--shd-standard);
+    overflow: hidden;
+}
+
+/**
+ * Table Cell Base Styles
+ *
+ * Universal cell styling with consistent padding and text overflow handling.
+ *
+ * Styleguide 7.1.2
+ */
+.font-table th,
+.font-table td {
+    border: none !important;
+    padding: var(--spc-sm) var(--spc-sm);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: var(--fnt-small);
+    line-height: 1.3;
+}
+
+/**
+ * Table Header Styling
+ *
+ * Header cells with uppercase labels, gray background, and bottom border.
+ *
+ * Styleguide 7.1.3
+ */
+.font-table th {
+    font-size: var(--fnt-extraSmall);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--clr-gray700);
+    background-color: var(--clr-gray100) !important;
+    border-bottom: 2px solid var(--clr-gray200) !important;
+    vertical-align: top;
+}
+
+/**
+ * Table Row Separators
+ *
+ * Body row borders for subtle separation between data rows.
+ *
+ * Styleguide 7.1.4
+ */
+.font-table tbody tr:not(:last-child) td {
+    border-bottom: 1px solid var(--clr-gray100) !important;
+}
+
+/**
+ * Table Responsive Container
+ *
+ * Scroll wrapper that enables horizontal scrolling on smaller screens.
+ *
+ * Styleguide 7.1.5
+ */
+#sizes-table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    max-width: 100%;
+}
+
+/**
+ * Preview Component System
+ *
+ * Enhanced preview containers with grid layout and styled headers.
+ *
+ * Status: Stable
+ * Updated: 4.0.0
+ *
+ * Styleguide 7.2
+ */
+
+/**
+ * Preview Container
+ *
+ * Main preview wrapper with elevated panel styling and clear separation.
+ *
+ * Styleguide 7.2.1
+ */
+.fcc-preview-enhanced {
+    background: var(--clr-light);
+    border: 2px solid var(--clr-secondary);
+    border-radius: var(--rad-large);
+    box-shadow: var(--shd-large);
+    padding: var(--spc-xl);
+    margin-top: var(--spc-base);
+    clear: both;
+    display: block;
+    transition: var(--trn-standard);
+}
+
+/**
+ * Preview Header Section
+ *
+ * Main header with bottom border separator and title styling.
+ *
+ * Styleguide 7.2.2
+ */
+.fcc-preview-header-row {
+    text-align: left;
+    margin-bottom: var(--spc-lg);
+    border-bottom: 2px solid var(--clr-secondary);
+    padding-bottom: var(--spc-md);
+}
+
+.fcc-preview-header-row h2 {
+    color: var(--clr-primary) !important;
+    font-family: var(--fff-font-heading) !important;
+    font-size: var(--fnt-2xLarge) !important;
+    font-weight: 700 !important;
+    margin: 0 !important;
+    text-shadow: 1px 1px 2px var(--shd-baseColor) !important;
+    border: none !important;
+}
+
+/**
+ * Preview Grid Layout
+ *
+ * Two-column grid with equal width and responsive minmax sizing.
+ *
+ * Styleguide 7.2.3
+ */
+.fcc-preview-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--spc-xl);
+    align-items: start;
+}
+
+/**
+ * Preview Column Container
+ *
+ * Vertical flex container for column content with consistent spacing.
+ *
+ * Styleguide 7.2.4
+ */
+.fcc-preview-column {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spc-md);
+}
+
+/**
+ * Column Header Section
+ *
+ * Column header with background tint and space-between layout.
+ *
+ * Styleguide 7.2.5
+ */
+.fcc-preview-column-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spc-sm) var(--spc-md);
+    margin-bottom: var(--spc-sm);
+    background: rgba(92, 51, 36, 0.1);
+    border: 1px solid var(--clr-secondary);
+    border-radius: var(--rad-standard);
+}
+
+.fcc-preview-column-header h3 {
+    color: var(--clr-secondary) !important;
+    font-size: var(--fnt-large) !important;
+    font-weight: 600 !important;
+    margin: 0 !important;
+    line-height: 1.2 !important;
+}
+
+/**
+ * Scale Indicator Badge
+ *
+ * Status badge for displaying scale information with consistent branding.
+ *
+ * Styleguide 7.2.6
+ */
+.fcc-scale-indicator {
+    background: var(--clr-secondary);
+    color: var(--clr-textLight);
+    border: 1px solid var(--clr-primary);
+    border-radius: var(--rad-standard);
+    box-shadow: var(--shd-small);
+    padding: var(--spc-xs) var(--spc-md);
+    min-width: 60px;
+    display: inline-block;
+    text-align: center;
+    font-size: var(--fnt-small);
+    font-weight: 600;
+    font-style: normal;
+    line-height: 1.2;
+}
+
+/**
+ * CSS Header Controls
+ *
+ * Header layout for CSS sections with titles and control elements.
+ *
+ * Styleguide 7.3
+ */
+.fcc-css-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spc-md);
+}
+
+/**
+ * Sample Text Display
+ *
+ * Interactive sample text container with smooth font size transitions
+ * and responsive viewport-based scaling preview.
+ *
+ * Status: Stable
+ * Updated: 4.2.0
+ *
+ * Styleguide 7.4
+ */
+
+/**
+ * Sample Display Container
+ *
+ * Elevated panel for sample text demonstration with inset shadow.
+ *
+ * Styleguide 7.4.1
+ */
+.fcc-sample-display {
+    background: var(--clr-white);
+    border: 2px solid var(--clr-secondary);
+    border-radius: var(--rad-large);
+    box-shadow: inset 0 2px 4px var(--shd-baseColor);
+    padding: 30px;
+    margin-bottom: 20px;
+    min-height: 120px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/**
+ * Sample Text Element
+ *
+ * Dynamic text element with smooth transition and variable font support.
+ *
+ * Styleguide 7.4.2
+ */
+#sample-text {
+    font-family: var(--preview-font, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+    color: var(--clr-textPrimary);
+    transition: font-size 0.2s ease, line-height 0.2s ease;
+    text-align: center;
+    font-weight: 500;
+    word-wrap: break-word;
+    hyphens: auto;
+}
+
+/**
+ * Viewport Slider Component
+ *
+ * Custom-styled range slider for interactive viewport size control
+ * with brand colors and smooth interaction feedback.
+ *
+ * Styleguide 7.4.3
+ */
+.fcc-viewport-slider-container {
+    margin-bottom: 16px;
+}
+
+#viewport-slider {
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: linear-gradient(to right, var(--clr-secondary), var(--clr-accent), var(--clr-secondary));
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    transition: var(--trn-standard);
+}
+
+#viewport-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--clr-accent);
+    border: 2px solid var(--clr-primary);
+    cursor: pointer;
+    box-shadow: var(--shd-standard);
+    transition: var(--trn-standard);
+}
+
+#viewport-slider::-webkit-slider-thumb:hover {
+    background: var(--clr-buttonHover);
+    transform: scale(1.1);
+    box-shadow: var(--shd-large);
+}
+
+#viewport-slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--clr-accent);
+    border: 2px solid var(--clr-primary);
+    cursor: pointer;
+    box-shadow: var(--shd-standard);
+    transition: var(--trn-standard);
+}
+
+#viewport-slider::-moz-range-thumb:hover {
+    background: var(--clr-buttonHover);
+    transform: scale(1.1);
+    box-shadow: var(--shd-large);
+}
+
+/**
+ * Viewport Display Value
+ *
+ * Numeric readout showing current viewport width.
+ *
+ * Styleguide 7.4.4
+ */
+#viewport-display {
+    font-size: 14px;
+    color: var(--clr-primary);
+    font-weight: 600;
+    min-width: 60px;
+    text-align: right;
+}
+
+/**
+ * Sample Space Preview System
+ *
+ * Interactive preview panel showing spacing behavior across viewport widths
+ * with real-time interpolation via slider control.
+ *
+ * Status: Stable
+ * Updated: 4.3.0
+ *
+ * Styleguide 7.5
+ */
+
+/**
+ * Sample Space Container
+ *
+ * Main container for sample displays, controls, and slider.
+ *
+ * Styleguide 7.5.1
+ */
+.fcc-sample-space-container {
+    padding: 20px;
+    background: var(--clr-light);
+    border-radius: var(--rad-large);
+}
+
+/**
+ * Sample Displays Grid
+ *
+ * Three-column layout for margin, padding, and gap samples.
+ *
+ * Styleguide 7.5.2
+ */
+.fcc-sample-displays {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 24px;
+}
+
+/**
+ * Sample Group
+ *
+ * Individual sample display container with label.
+ *
+ * Styleguide 7.5.3
+ */
+.fcc-sample-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.fcc-sample-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--clr-secondary);
+    text-align: center;
+}
+
+/**
+ * Sample Box Wrapper
+ *
+ * Container for sample box and value display.
+ *
+ * Styleguide 7.5.4
+ */
+.fcc-sample-box-wrapper {
+    background: var(--clr-white);
+    border: 2px solid var(--brd-dark);
+    border-radius: var(--rad-standard);
+    padding: 20px;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    position: relative;
+}
+
+/**
+ * Margin Sample
+ *
+ * Demonstrates margin spacing with visible outer box.
+ *
+ * Styleguide 7.5.5
+ */
+.fcc-margin-sample {
+    background: #ffcdd2;
+    border: 2px dashed #f44336;
+    border-radius: var(--rad-standard);
+    display: inline-block;
+    transition: margin 0.2s ease;
+}
+
+.fcc-margin-sample .fcc-sample-inner {
+    background: #90caf9;
+    border: 2px solid #2196f3;
+    color: #1565c0;
+    padding: 12px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+}
+
+/**
+ * Padding Sample
+ *
+ * Demonstrates padding spacing with inner content.
+ *
+ * Styleguide 7.5.6
+ */
+.fcc-padding-sample {
+    background: #c8e6c9;
+    border: 2px dashed #4caf50;
+    border-radius: var(--rad-standard);
+    display: inline-block;
+    transition: padding 0.2s ease;
+}
+
+.fcc-padding-sample .fcc-sample-inner {
+    background: #90caf9;
+    border: 2px solid #2196f3;
+    color: #1565c0;
+    padding: 12px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+}
+
+/**
+ * Gap Sample
+ *
+ * Demonstrates gap spacing with flexbox items.
+ *
+ * Styleguide 7.5.7
+ */
+.fcc-gap-sample {
+    display: flex;
+    border: 2px dashed #9e9e9e;
+    border-radius: var(--rad-standard);
+    padding: 8px;
+    background: #fafafa;
+    transition: gap 0.2s ease;
+}
+
+.fcc-sample-item {
+    background: #90caf9;
+    border: 2px solid #2196f3;
+    color: #1565c0;
+    padding: 12px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+}
+
+/**
+ * Sample Value Display
+ *
+ * Shows current calculated space value below sample.
+ *
+ * Styleguide 7.5.8
+ */
+.fcc-sample-value {
+    font-size: 11px;
+    color: var(--clr-textMuted);
+    font-weight: 500;
+    background: var(--clr-gray100);
+    padding: 4px 8px;
+    border-radius: var(--rad-standard);
+    border: 1px solid var(--brd-standard);
+}
+
+/**
+ * Sample Controls
+ *
+ * Controls row for size selector.
+ *
+ * Styleguide 7.5.9
+ */
+.fcc-sample-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--brd-standard);
+}
+
+.fcc-sample-selector {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.fcc-sample-selector .component-label {
+    margin-bottom: 0;
+    white-space: nowrap;
+}
+
+/**
+ * Viewport Slider Section
+ *
+ * Container for viewport slider and display.
+ *
+ * Styleguide 7.5.10
+ */
+.fcc-viewport-slider-section {
+    margin-bottom: 20px;
+}
+
+.fcc-viewport-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+/**
+ * Sample Space Viewport Slider Component
+ *
+ * Custom-styled range slider for interactive viewport size control
+ * with brand colors and smooth interaction feedback.
+ *
+ * Styleguide 7.5.11
+ */
+.fcc-viewport-slider-container {
+    position: relative;
+    margin-bottom: 8px;
+}
+
+#sample-viewport-slider {
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: linear-gradient(to right, var(--clr-secondary), var(--clr-accent), var(--clr-secondary));
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    transition: var(--trn-standard);
+}
+
+#sample-viewport-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--clr-accent);
+    border: 2px solid var(--clr-primary);
+    cursor: pointer;
+    box-shadow: var(--shd-medium);
+    transition: var(--trn-standard);
+}
+
+#sample-viewport-slider::-webkit-slider-thumb:hover {
+    background: var(--clr-buttonHover);
+    transform: scale(1.1);
+    box-shadow: var(--shd-large);
+}
+
+#sample-viewport-slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--clr-accent);
+    border: 2px solid var(--clr-primary);
+    cursor: pointer;
+    box-shadow: var(--shd-medium);
+    transition: var(--trn-standard);
+}
+
+#sample-viewport-slider::-moz-range-thumb:hover {
+    background: var(--clr-buttonHover);
+    transform: scale(1.1);
+    box-shadow: var(--shd-large);
+}
+
+/**
+ * Slider Labels
+ *
+ * Min and max viewport labels below slider.
+ *
+ * Styleguide 7.5.12
+ */
+.fcc-slider-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--clr-textMuted);
+    margin-top: 4px;
+}
+
+/* ==========================================================================
+   8. STATE MANAGEMENT (LOADING, AUTOSAVE, VALIDATION)
+   ========================================================================== */
+
+/**
+ * State Management Components
+ *
+ * Components that handle application states including loading indicators,
+ * autosave functionality, and validation feedback.
+ *
+ * Status: Stable
+ * Updated: 4.2.0
+ * Breaking Changes: None
+ *
+ * Styleguide 8.0
+ */
+
+/**
+ * Loading Screen System
+ *
+ * Full-screen loading overlay with animated spinner and progress indicators.
+ *
+ * Status: Stable
+ * Updated: 4.0.0
+ *
+ * Styleguide 8.1
+ */
+
+/**
+ * Loading Screen Overlay
+ *
+ * Full viewport overlay with blurred background and centered content.
+ *
+ * Styleguide 8.1.1
+ */
+.fcc-loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    background: var(--clr-overlay);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.fcc-loading-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/**
+ * Loading Content Container
+ *
+ * Central loading card with elevated panel and brand styling.
+ *
+ * Styleguide 8.1.2
+ */
+.fcc-loading-content {
+    text-align: center;
+    max-width: 420px;
+    padding: 50px;
+    position: relative;
+    background: var(--clr-cardBackground);
+    border: 3px solid var(--clr-primary);
+    border-radius: var(--rad-large);
+    box-shadow: var(--shd-extraLarge);
+}
+
+/**
+ * Loading Spinner Animation
+ *
+ * Rotating spinner with gradient border and continuous rotation.
+ *
+ * Styleguide 8.1.3
+ */
+.fcc-loading-spinner {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 25px;
+    border-radius: 50%;
+    border: 5px solid var(--clr-light);
+    border-top: 5px solid var(--clr-accent);
+    border-right: 5px solid var(--clr-buttonHover);
+    box-shadow: var(--shd-standard);
+    animation: fcc-spin 1.2s linear infinite;
+}
+
+/**
+ * Loading Typography
+ *
+ * Text styling for loading screen content.
+ *
+ * Styleguide 8.1.4
+ */
+.fcc-loading-content h2 {
+    color: var(--clr-primary);
+    margin: 0 0 12px 0;
+    font-size: 26px;
+    font-weight: 700;
+    font-family: var(--fff-font-heading);
+    text-shadow: 1px 1px 2px var(--shd-baseColor);
+}
+
+.fcc-loading-content p {
+    color: var(--clr-textPrimary);
+    margin: 0 0 25px 0;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/**
+ * Progress Bar System
+ *
+ * Animated progress indicators for loading feedback.
+ *
+ * Styleguide 8.1.5
+ */
+.fcc-loading-progress {
+    width: 100%;
+    height: 6px;
+    background: var(--clr-light);
+    border: 1px solid var(--clr-primary);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.fcc-progress-bar {
+    height: 100%;
+    width: 0%;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--clr-accent), var(--clr-buttonHover), var(--clr-accent));
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+    animation: fcc-progress 3s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   9. ANIMATIONS & KEYFRAMES
+   ========================================================================== */
+
+/**
+ * Animation Library
+ *
+ * Keyframe animations for loading indicators, interactions, and
+ * visual feedback elements.
+ *
+ * Status: Stable
+ * Updated: 4.0.0
+ * Breaking Changes: None
+ *
+ * Styleguide 9.0
+ */
+
+/**
+ * Spinner Rotation
+ *
+ * Continuous 360-degree rotation for loading feedback.
+ *
+ * Styleguide 9.1
+ */
+@keyframes fcc-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/**
+ * Progress Bar Animation
+ *
+ * Smooth progress fill animation that grows to completion.
+ *
+ * Styleguide 9.2
+ */
+@keyframes fcc-progress {
+    0% {
+        width: 0%;
+    }
+
+    50% {
+        width: 70%;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+/**
+ * Pulse Animation
+ *
+ * Subtle opacity animation for saving state visual feedback.
+ *
+ * Styleguide 9.3
+ */
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+}
+
+/* ==========================================================================
+   10. UTILITY CLASSES
+   ========================================================================== */
+
+/**
+ * Utility Class System
+ *
+ * Comprehensive utility classes for layout, typography, spacing,
+ * and common styling patterns using design system tokens.
+ *
+ * All utilities use 'fcc-' prefix to avoid conflicts with other frameworks.
+ * For Tailwind-style shortcuts, use fcc- prefixed equivalents.
+ *
+ * Status: Stable
+ * Updated: 5.0.0
+ * Breaking Changes: None
+ *
+ * Styleguide 10.0
+ */
+
+/**
+ * Layout Utilities
+ *
+ * Flexbox and grid utilities for consistent layout patterns.
+ *
+ * Styleguide 10.1
+ */
+
+/* Flexbox Controls */
+.fcc-flex {
+    display: flex;
+}
+
+.fcc-flex-col {
+    flex-direction: column;
+}
+
+.fcc-items-center {
+    align-items: center;
+}
+
+.fcc-justify-center {
+    justify-content: center;
+}
+
+.fcc-justify-between {
+    justify-content: space-between;
+}
+
+/* Grid Controls */
+.fcc-grid {
+    display: grid;
+}
+
+.fcc-grid-cols-2 {
+    grid-template-columns: 1fr 1fr;
+}
+
+.fcc-grid-cols-4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+/* Gap Utilities */
+.fcc-gap-2 {
+    gap: var(--spc-sm);
+}
+
+.fcc-gap-3 {
+    gap: var(--spc-md);
+}
+
+.fcc-gap-4 {
+    gap: var(--spc-base);
+}
+
+/**
+ * Spacing Utilities
+ *
+ * Margin and padding utilities using design system spacing tokens.
+ *
+ * Styleguide 10.2
+ */
+
+/* Margin Utilities */
+.fcc-mb-2 {
+    margin-bottom: var(--spc-sm);
+}
+
+.fcc-mb-3 {
+    margin-bottom: var(--spc-md);
+}
+
+.fcc-mb-4 {
+    margin-bottom: var(--spc-base);
+}
+
+.fcc-mb-5 {
+    margin-bottom: var(--spc-lg);
+}
+
+.fcc-mb-6 {
+    margin-bottom: var(--spc-xl);
+}
+
+.fcc-mt-2 {
+    margin-top: var(--spc-sm);
+}
+
+.fcc-mt-3 {
+    margin-top: var(--spc-md);
+}
+
+.fcc-mt-4 {
+    margin-top: var(--spc-base);
+}
+
+.fcc-mt-5 {
+    margin-top: var(--spc-lg);
+}
+
+/* Padding Utilities */
+.fcc-p-2 {
+    padding: var(--spc-sm);
+}
+
+.fcc-p-3 {
+    padding: var(--spc-md);
+}
+
+.fcc-p-4 {
+    padding: var(--spc-base);
+}
+
+.fcc-p-5 {
+    padding: var(--spc-xl);
+}
+
+.fcc-px-3 {
+    padding-left: var(--spc-md);
+    padding-right: var(--spc-md);
+}
+
+.fcc-py-2 {
+    padding-top: var(--spc-sm);
+    padding-bottom: var(--spc-sm);
+}
+
+/**
+ * Typography Utilities
+ *
+ * Text styling utilities for alignment, weight, and sizing.
+ *
+ * Styleguide 10.3
+ */
+
+/* Text Alignment */
+.fcc-text-center {
+    text-align: center;
+}
+
+.fcc-text-left {
+    text-align: left;
+}
+
+.fcc-text-right {
+    text-align: right;
+}
+
+/* Font Weight */
+.fcc-font-bold {
+    font-weight: 700;
+}
+
+.fcc-font-semibold {
+    font-weight: 600;
+}
+
+.fcc-font-medium {
+    font-weight: 500;
+}
+
+/* Font Size */
+.fcc-text-sm {
+    font-size: var(--fnt-small);
+}
+
+.fcc-text-base {
+    font-size: var(--fnt-base);
+}
+
+.fcc-text-lg {
+    font-size: var(--fnt-large);
+}
+
+.fcc-text-xl {
+    font-size: var(--fnt-extraLarge);
+}
+
+.fcc-text-2xl {
+    font-size: var(--fnt-2xLarge);
+}
+
+/**
+ * Visual Utilities
+ *
+ * Border, background, shadow, and color utilities.
+ *
+ * Styleguide 10.4
+ */
+
+/* Border Utilities */
+.fcc-border {
+    border: 1px solid var(--clr-secondary);
+}
+
+.fcc-border-2 {
+    border: 2px solid var(--clr-secondary);
+}
+
+.fcc-rounded {
+    border-radius: var(--rad-standard);
+}
+
+.fcc-rounded-lg {
+    border-radius: var(--rad-large);
+}
+
+/* Background Utilities */
+.fcc-bg-white {
+    background-color: var(--clr-white);
+}
+
+.fcc-bg-card {
+    background-color: var(--clr-cardBackground);
+}
+
+.fcc-bg-page {
+    background-color: var(--clr-pageBackground);
+}
+
+/* Shadow Utilities */
+.fcc-shadow {
+    box-shadow: var(--shd-standard);
+}
+
+.fcc-shadow-lg {
+    box-shadow: var(--shd-large);
+}
+
+.fcc-shadow-xl {
+    box-shadow: var(--shd-extraLarge);
+}
+
+/* Color Utilities */
+.fcc-text-primary {
+    color: var(--clr-primary);
+}
+
+.fcc-text-secondary {
+    color: var(--clr-secondary);
+}
+
+.fcc-text-muted {
+    color: var(--clr-gray500);
+}
+
+/**
+ * Positioning and Display Utilities
+ *
+ * Position, overflow, cursor, and display control utilities.
+ *
+ * Styleguide 10.5
+ */
+
+/* Position Utilities */
+.fcc-relative {
+    position: relative;
+}
+
+.fcc-absolute {
+    position: absolute;
+}
+
+.fcc-fixed {
+    position: fixed;
+}
+
+/* Width Utilities */
+.fcc-w-full {
+    width: 100%;
+}
+
+.fcc-w-auto {
+    width: auto;
+}
+
+/* Overflow Utilities */
+.fcc-overflow-hidden {
+    overflow: hidden;
+}
+
+.fcc-overflow-auto {
+    overflow: auto;
+}
+
+/* Cursor Utilities */
+.fcc-cursor-pointer {
+    cursor: pointer;
+}
+
+.fcc-cursor-not-allowed {
+    cursor: not-allowed;
+}
+
+/* Display Utilities */
+.fcc-block {
+    display: block;
+}
+
+.fcc-inline-block {
+    display: inline-block;
+}
+
+.fcc-hidden {
+    display: none;
+}
+
+/**
+ * Component-Specific Utilities
+ *
+ * Specialized utility classes for specific component requirements.
+ *
+ * Styleguide 10.6
+ */
+
+/* Divider Elements */
+.divider {
+    border-top: 1px solid var(--clr-secondary);
+    margin-top: var(--spc-base);
+}
+
+/* ==========================================================================
+   11. ACCESSIBILITY FEATURES
+   ========================================================================== */
+
+/**
+ * Accessibility Enhancement
+ *
+ * Features that improve usability for users with disabilities including
+ * motion reduction support and enhanced focus indicators.
+ *
+ * Status: Stable
+ * Updated: 4.0.0
+ * Breaking Changes: None
+ *
+ * Styleguide 11.0
+ */
+
+/**
+ * Motion Reduction Support
+ *
+ * Respects user preference for reduced motion by disabling animations.
+ *
+ * Styleguide 11.1
+ */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/**
+ * Enhanced Focus Indicators
+ *
+ * High-contrast focus outlines for improved keyboard navigation visibility.
+ *
+ * Styleguide 11.2
+ */
+.fcc-btn:focus-visible,
+.fcc-input:focus-visible {
+    outline: 2px solid var(--clr-accent) !important;
+    outline-offset: 2px !important;
+}
+
+/* ==========================================================================
+   12. RESPONSIVE DESIGN
+   ========================================================================== */
+
+/**
+ * Responsive Design System
+ *
+ * Breakpoint-specific styling adjustments for optimal viewing experience
+ * across different device sizes and orientations.
+ *
+ * Status: Stable
+ * Updated: 4.3.0
+ * Breaking Changes: None
+ *
+ * Styleguide 12.0
+ */
+
+/**
+ * Tablet Breakpoint (1024px and below)
+ *
+ * Layout adjustments for tablet devices and smaller desktop screens.
+ *
+ * Styleguide 12.1
+ */
+@media (max-width: 1024px) {
+    .fcc-main-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spc-base);
+    }
+}
+
+/**
+ * Mobile Breakpoint (768px and below)
+ *
+ * Comprehensive mobile optimizations for improved usability on small screens.
+ *
+ * Styleguide 12.2
+ */
+@media (max-width: 768px) {
+
+    /* Layout Adjustments */
+    .fcc-main-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spc-base);
+    }
+
+    .fcc-tabs {
+        justify-content: center;
+    }
+
+    .fcc-preview-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spc-base);
+    }
+
+    /* Button Layout Adjustments */
+    .fcc-table-buttons {
+        flex-direction: column;
+        gap: 8px;
+        align-items: stretch;
+    }
+
+    /* Form Control Adjustments */
+    #base-value {
+        width: 100px;
+        font-size: 12px;
+    }
+
+    /* Table Optimizations */
+    #sizes-table-container {
+        padding: 12px;
+    }
+
+    .font-table th,
+    .font-table td {
+        padding: 6px 4px;
+        font-size: 11px;
+        white-space: nowrap;
+    }
+
+    /* Grid System Responsive Adjustments */
+    .fcc-grid-cols-4 {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--spc-sm);
+    }
+
+    /* Typography Scaling */
+    .fcc-main-title {
+        font-size: var(--fnt-extraLarge) !important;
+    }
+
+    /* Info Content Grid Override */
+    .fcc-info-content div[style*="grid-template-columns: 1fr 1fr"] {
+        grid-template-columns: 1fr !important;
+        gap: var(--spc-base) !important;
+    }
+
+    /* Sample Space Responsive */
+    .fcc-sample-displays {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+}
+
+/**
+ * Small Mobile Breakpoint (480px and below)
+ *
+ * Final optimizations for very small mobile screens.
+ *
+ * Styleguide 12.3
+ */
+@media (max-width: 480px) {
+
+    /* Grid Simplification */
+    .fcc-grid-cols-2 {
+        grid-template-columns: 1fr;
+    }
+
+    /* Typography Further Scaling */
+    .fcc-main-title {
+        font-size: var(--fnt-large) !important;
+    }
+}
+
+/* ==========================================================================
+   End of Fluid Font Forge Admin Interface Styles
+   ========================================================================== */
+/* ==========================================================================
+   WORDPRESS ADMIN FOOTER OVERRIDE
+   ========================================================================== */
+
+/**
+ * Hide WordPress Admin Footer
+ *
+ * Hides the default "Thank you for creating with WordPress" footer
+ * on FFF admin pages for a cleaner, more focused interface.
+ */
+#wpfooter {
+    display: none !important;
+}
+
+/* ==========================================================================
+   CONTAINER WIDTH AND ALIGNMENT (MIF STANDARD)
+   ========================================================================== */
+
+/**
+ * Main Wrap Container - Width Constraint and Left Alignment
+ *
+ * Matches MIF v3.0 standard: 1280px max-width, left-justified.
+ * No margin: 0 auto - naturally left-aligned like MIF.
+ */
+.wrap {
+    max-width: 1280px !important;
+}
+
+/**
+ * Font Clamp Container - Remove Auto Centering
+ *
+ * Override default centering to match MIF left-justified layout.
+ */
+.font-clamp-container {
+    margin: 0 !important;  /* Left-justified, not centered */
+}
+
+/* ==========================================================================
+   COPY BUTTON SPACING FIX
+   ========================================================================== */
+
+/**
+ * CSS Header - Increase Bottom Margin
+ *
+ * Adds more space between the header (with copy buttons) and the code
+ * container below, so buttons don't appear to be sitting on the divider.
+ */
+.fcc-css-header {
+    margin-bottom: 20px !important;
+}
+
+/* ==========================================================================
+   TYPOGRAPHY UPGRADE - 14px to 16px BASE
+   ========================================================================== */
+
+/**
+ * Global Base Font Size Upgrade
+ *
+ * Upgrades all text from 14px to 16px for WCAG 2.1 Level AA compliance
+ * and better readability across all panels and components.
+ */
+
+/* Panels and content areas */
+.fcc-info-content,
+.fcc-panel,
+.font-clamp-container,
+label,
+input,
+select,
+.fcc-table,
+.fcc-table td,
+.fcc-table th {
+    font-size: 16px !important;
+}
+
+/* Ensure specific elements also get 16px */
+.fcc-input,
+.fcc-select {
+    font-size: 16px !important;
+}
+
+/* ==========================================================================
+   PANEL HEADER TYPOGRAPHY FIX
+   ========================================================================== */
+
+/**
+ * Panel Headers - Inter 600 24px
+ *
+ * Standardizes all h2 panel headers to use Inter SemiBold (600) at 24px
+ * instead of Georgia Bold (700).
+ */
+h2,
+.fcc-preview-header-row h2,
+.fcc-css-header h2,
+.fcc-panel h2 {
+    font-family: var(--fff-font-heading) !important;
+    font-weight: 600 !important;
+    font-size: 24px !important;
+}
+
+/* Font filename display */
+#font-filename {
+    font-size: 16px !important;
+}
+
+/* Ensure all labels and descriptive text are 16px */
+.fcc-font-input label,
+.fcc-font-input span,

@@ -1,0 +1,85 @@
+/**
+ * Panel Layout Fixes
+ * 
+ * Critical fixes for panel padding and width constraints.
+ * Loaded last to override all other styles.
+ * 
+ * @package FluidFontForge
+ * @version 5.1.0
+ */
+
+/* ==========================================================================
+   PANEL PADDING FIX
+   ========================================================================== */
+
+/**
+ * Settings and Data Table Panels - Internal Padding
+ *
+ * Ensures content doesn't touch the panel borders.
+ */
+#sizes-table-container,
+.fcc-panel[style*="margin-bottom: 8px"] {
+    padding: 24px !important;
+}
+
+/* All fcc-panel divs get padding */
+.fcc-panel {
+    padding: 24px !important;
+    box-sizing: border-box !important;
+}
+
+/* ==========================================================================
+   SAMPLE TEXT AND FONT SCALE WIDTH FIX
+   ========================================================================== */
+
+/**
+ * Sample Text and Font Scale - Exact 1280px Width
+ *
+ * These panels are currently 1325px, need to be exactly 1280px
+ * to match Settings/Data grid width.
+ */
+.fcc-preview-enhanced {
+    max-width: 1280px !important;
+    width: 1280px !important;
+    margin-left: 24px !important;
+    margin-right: 0 !important;
+    box-sizing: border-box !important;
+}
+
+/* Inner content should not exceed panel width */
+.fcc-preview-enhanced > * {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* Ultra-specific selectors for Settings and Data panels */
+.fcc-main-grid > div > .fcc-panel,
+div.fcc-panel[style*="margin-bottom: 8px"],
+div#sizes-table-container.fcc-panel {
+    padding: 24px !important;
+}
+
+/* Remove any conflicting padding rules on children */
+.fcc-panel > h2:first-child {
+    margin-top: 0 !important;
+}
+
+.fcc-panel > div:first-of-type {
+    margin-top: 0 !important;
+}
+
+/* Nuclear option - inline attribute selector */
+div[class="fcc-panel"],
+div.fcc-panel.fcc-panel,
+.fcc-panel.fcc-panel.fcc-panel {
+    padding: 24px !important;
+    padding-top: 24px !important;
+    padding-right: 24px !important;
+    padding-bottom: 24px !important;
+    padding-left: 24px !important;
+}
+
+/* Add left margin to panels outside the grid to match grid padding */
+.fcc-panel:not(.fcc-main-grid .fcc-panel) {
+    margin-left: 24px !important;
+}
