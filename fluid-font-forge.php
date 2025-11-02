@@ -94,7 +94,7 @@ if (!defined('ABSPATH')) {
  *
  * @var string FLUID_FONT_FORGE_VERSION Current plugin version
  */
-define('FLUID_FONT_FORGE_VERSION', '5.1.0-NOCACHE-' . time());
+define('FLUID_FONT_FORGE_VERSION', '5.1.0');
 
 /**
  * Plugin Directory Path Constant
