@@ -7,8 +7,8 @@
  *
  * @package FluidFontForge
  * @version 5.0.0
- * @author Jim R (JimRWeb)
- * @link https://jimrweb.com
+ * @author Jim R (JimRForge)
+ * @link https://jimrforge.com
  * @since 4.2.0
  *
  * Dependencies:
@@ -409,28 +409,16 @@ class SamplePanelController {
     sampleText.style.lineHeight = textSize.lineHeight || "1.4";
     sampleText.style.fontWeight = "400";
 
-    // Update header labels to match their sample sizes
-    const titlesLabel = document.getElementById("titles-header-label");
-    const textLabel = document.getElementById("text-header-label");
-    if (titlesLabel) {
-      titlesLabel.style.fontSize = titlesFontSizeInPx + "px";
-    }
-    if (textLabel) {
-      textLabel.style.fontSize = textFontSizeInPx + "px";
-    }
-
-    // Update px displays with readable size
+    // Update px displays with current calculated sizes
+    // Labels "Titles" and "Text" remain constant at 24px (set in template)
+    // Size displays remain constant at 16px (set in template)
     const titlesSizeDisplay = document.getElementById("titles-size-display");
     const textSizeDisplay = document.getElementById("text-size-display");
     if (titlesSizeDisplay) {
       titlesSizeDisplay.textContent = Math.round(titlesFontSizeInPx) + "px";
-      titlesSizeDisplay.style.fontSize =
-        Math.max(14, titlesFontSizeInPx * 0.5) + "px";
     }
     if (textSizeDisplay) {
       textSizeDisplay.textContent = Math.round(textFontSizeInPx) + "px";
-      textSizeDisplay.style.fontSize =
-        Math.max(14, textFontSizeInPx * 0.5) + "px";
     }
   }
 

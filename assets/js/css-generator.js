@@ -7,8 +7,8 @@
  *
  * @package FluidFontForge
  * @version 5.0.0
- * @author Jim R (JimRWeb)
- * @link https://jimrweb.com
+ * @author Jim R (JimRForge)
+ * @link https://jimrforge.com
  * @since 4.2.0
  *
  * Dependencies:
@@ -419,7 +419,7 @@ class CSSGeneratorController {
                         data-tooltip="${tooltipText}" 
                         aria-label="Copy selected CSS to clipboard"
                         title="Copy CSS">
-                    <span class="copy-icon">📋</span> copy
+                    copy
                 </button>
             `;
     }
@@ -430,10 +430,10 @@ class CSSGeneratorController {
 
       generatedCopyContainer.innerHTML = `
                 <button id="copy-all-btn" class="fcc-copy-btn" 
-                        data-tooltip="${tooltipText}" 
+                        data-tooltip="${tooltipText}"
                         aria-label="Copy all generated CSS to clipboard"
                         title="Copy All CSS">
-                    <span class="copy-icon">📋</span> copy all
+                    copy all
                 </button>
             `;
     }

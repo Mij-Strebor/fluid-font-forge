@@ -334,7 +334,7 @@ class FontClampEnhancedCoreInterface {
 
     if (this.elements.baseValueSelect) {
       this.elements.baseValueSelect.addEventListener("change", () => {
-        this.updateSampleTextFromSettings();
+        this.samplePanel.updateSampleTextFromSettings();
       });
     }
   }
@@ -420,6 +420,53 @@ class FontClampEnhancedCoreInterface {
         icon.style.transform = "rotate(180deg)";
       }
     }
+
+    // Save panel state immediately
+    this.savePanelStates();
+  }
+
+  /**
+   * Save panel expand/collapse states to database
+   *
+   * @private
+   */
+  savePanelStates() {
+    // Collect panel states
+    const panelStates = {
+      aboutExpanded: document.getElementById("about-content")?.classList.contains("expanded") ?? true,
+      howToUseExpanded: document.getElementById("info-content")?.classList.contains("expanded") ?? true,
+      sampleTextExpanded: document.getElementById("sample-text-content")?.classList.contains("expanded") ?? true,
+      fontScaleExpanded: document.getElementById("font-preview-content")?.classList.contains("expanded") ?? true,
+    };
+
+    // Prepare control settings (panels + current tab/unit)
+    const controlSettings = {
+      ...panelStates,
+      activeTab: window.fluifofoCore?.activeTab,
+      unitType: window.fluifofoCore?.unitType,
+      autosaveEnabled: this.elements.autosaveToggle?.checked,
+    };
+
+    // Save silently without UI feedback
+    const data = {
+      action: "fluidfontforge_save_font_clamp_settings",
+      nonce: window.fluidfontforgeAjax.nonce,
+      settings: JSON.stringify(controlSettings),
+      sizes: JSON.stringify({
+        classSizes: window.fluidfontforgeAjax?.data?.classSizes || [],
+        variableSizes: window.fluidfontforgeAjax?.data?.variableSizes || [],
+        tagSizes: window.fluidfontforgeAjax?.data?.tagSizes || [],
+        tailwindSizes: window.fluidfontforgeAjax?.data?.tailwindSizes || [],
+      }),
+    };
+
+    fetch(window.fluidfontforgeAjax.ajaxurl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: new URLSearchParams(data),
+    });
   }
 
   /**
@@ -926,6 +973,7 @@ class FontClampAdvanced {
     });
 
     this.bindResetFontButton();
+    this.bindResetSettingsButton();
   }
 
   /**
@@ -993,9 +1041,9 @@ class FontClampAdvanced {
     if (!tableButtons) return;
 
     tableButtons.innerHTML = `
-        <button id="add-size" class="fcc-btn">➕ add size</button>
-        <button id="reset-defaults" class="fcc-btn">🔄 reset</button>
-        <button id="clear-sizes" class="fcc-btn fcc-btn-danger">🗑️ clear all</button>
+        <button id="add-size" class="fcc-btn">add size</button>
+        <button id="reset-defaults" class="fcc-btn">reset</button>
+        <button id="clear-sizes" class="fcc-btn">clear all</button>
     `;
 
     tableButtons.addEventListener("click", (e) => {
@@ -1376,7 +1424,7 @@ class FontClampAdvanced {
       this.updatePreview();
       this.cssGenerator.updateCSS();
       setTimeout(() => {
-        this.updateSampleTextFromSettings();
+        this.samplePanel.updateSampleTextFromSettings();
       }, 100);
     } catch (error) {
       console.error("Error in calculateSizes:", error);
@@ -1798,8 +1846,8 @@ class FontClampAdvanced {
     )}</td>
     <td style="text-align: center; font-size: 16px;">${size.lineHeight}</td>
     <td style="text-align: center; padding: 2px;">
-      <button class="edit-btn" style="color: #3b82f6; background: none; border: none; cursor: pointer; margin-right: 6px; font-size: 13px; padding: 2px;" title="Edit">✎</button>
-      <button class="delete-btn" style="color: #ef4444; background: none; border: none; cursor: pointer; font-size: 12px; padding: 2px;" title="Delete">🗑️</button>
+      <button class="edit-btn" style="color: #3b82f6; background: none; border: none; cursor: pointer; margin-right: 6px; font-size: 16px; padding: 2px;" title="Edit">✎</button>
+      <button class="delete-btn" style="color: #ef4444; background: none; border: none; cursor: pointer; font-size: 16px; padding: 2px;" title="Delete">🗑</button>
     </td>
   `;
 
@@ -1880,6 +1928,43 @@ class FontClampAdvanced {
      ======================================================================== */
 
   /**
+   * Detect the actual system font being used
+   *
+   * @returns {string} The name of the detected system font
+   */
+  detectSystemFont() {
+    // Create a test element with the exact same font stack as preview elements
+    const testElement = document.createElement('span');
+    testElement.style.cssText = 'position: absolute; left: -9999px; visibility: hidden; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;';
+    testElement.textContent = 'test';
+    document.body.appendChild(testElement);
+
+    // Get the computed font - this will be the ACTUAL font the browser is using
+    const computedFont = window.getComputedStyle(testElement).fontFamily;
+    document.body.removeChild(testElement);
+
+    // Clean up the font name - remove quotes and get first font
+    let detectedFont = computedFont.split(',')[0].replace(/["']/g, '').trim();
+
+    // Filter out CSS generic font names that shouldn't be displayed
+    const genericFonts = ['-apple-system', 'BlinkMacSystemFont', 'system-ui', 'sans-serif', 'serif', 'monospace'];
+
+    if (genericFonts.includes(detectedFont)) {
+      // If browser returned a generic name, try to detect the actual font
+      // On Windows, Segoe UI is the default; on Mac, San Francisco; on Linux, usually Roboto or Ubuntu
+      if (navigator.platform.indexOf('Win') !== -1) {
+        return 'Segoe UI';
+      } else if (navigator.platform.indexOf('Mac') !== -1) {
+        return 'San Francisco';
+      } else {
+        return 'System Font';
+      }
+    }
+
+    return detectedFont || 'System Font';
+  }
+
+  /**
    * Update preview font from URL input
    */
   updatePreviewFont() {
@@ -1955,8 +2040,9 @@ class FontClampAdvanced {
       document.head.appendChild(fontStyle);
       this.lastFontStyle = fontStyle;
     } else {
+      // No custom font URL - show detected system font name
       if (filenameSpan) {
-        filenameSpan.textContent = "Default";
+        filenameSpan.textContent = this.detectSystemFont();
         filenameSpan.style.color = "";
       }
       if (this.lastFontStyle) {
@@ -1979,6 +2065,62 @@ class FontClampAdvanced {
           fontInput.value = "";
           this.updatePreviewFont();
         }
+      });
+    }
+  }
+
+  /**
+   * Bind reset settings button event
+   */
+  bindResetSettingsButton() {
+    const resetSettingsBtn = document.getElementById("reset-settings-btn");
+    if (resetSettingsBtn) {
+      resetSettingsBtn.addEventListener("click", () => {
+        if (!window.fluidFontNotices) {
+          window.fluidFontNotices = new WordPressAdminNotices();
+        }
+
+        window.fluidFontNotices.confirm(
+          `Reset all settings to default values?<br><br>This will reset:<br>- Min Font Size to 16px<br>- Max Font Size to 20px<br>- Min Viewport Width to 375px<br>- Max Viewport Width to 1620px<br>- Min Scale to 1.125 (Major Second)<br>- Max Scale to 1.333 (Perfect Fourth)<br><br>Your font size entries will not be affected, but their calculated values could change.`,
+          () => {
+            // Reset Min/Max Root Size
+            if (this.elements.minRootSizeInput) {
+              this.elements.minRootSizeInput.value = 16;
+            }
+            if (this.elements.maxRootSizeInput) {
+              this.elements.maxRootSizeInput.value = 20;
+            }
+
+            // Reset Min/Max Viewport Width
+            if (this.elements.minViewportInput) {
+              this.elements.minViewportInput.value = 375;
+            }
+            if (this.elements.maxViewportInput) {
+              this.elements.maxViewportInput.value = 1620;
+            }
+
+            // Reset Min/Max Scale dropdowns
+            if (this.elements.minScaleSelect) {
+              this.elements.minScaleSelect.value = "1.125"; // Major Second
+            }
+            if (this.elements.maxScaleSelect) {
+              this.elements.maxScaleSelect.value = "1.333"; // Perfect Fourth
+            }
+
+            // Trigger recalculation
+            this.calculateSizes();
+            this.renderSizes();
+            this.updatePreview();
+
+            // Show success message
+            if (!window.fluidFontNotices) {
+              window.fluidFontNotices = new WordPressAdminNotices();
+            }
+            window.fluidFontNotices.success(
+              `<strong>Settings Reset:</strong> All settings have been restored to default values.`
+            );
+          }
+        );
       });
     }
   }
@@ -2104,7 +2246,9 @@ class FontClampAdvanced {
     modal.classList.add("show");
 
     setTimeout(() => {
-      (activeTab === "tag" ? lineHeightInput : nameInput).focus();
+      const inputToFocus = activeTab === "tag" ? lineHeightInput : nameInput;
+      inputToFocus.focus();
+      inputToFocus.select();
     }, 100);
   }
 
@@ -3069,17 +3213,7 @@ class FontClampAdvanced {
             <div style="font-weight: 600; margin-bottom: 4px;">Cleared ${backupData.length} ${tabName}</div>
             <div style="font-size: 12px; opacity: 0.9;">This action can be undone</div>
         </div>
-<button id="undo-clear-btn" style="
-            background: var(--clr-accent);
-            color: var(--clr-btn-txt);
-            border: 1px solid var(--clr-btn-bdr);
-            padding: 8px 16px;
-            border-radius: var(--jimr-border-radius);
-            font-size: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--jimr-transition);
-        " onmouseover="this.style.background='var(--clr-btn-hover)'; this.style.transform='translateY(-2px)'; this.style.boxShadow='var(--clr-shadow-lg)';" onmouseout="this.style.background='var(--clr-accent)'; this.style.transform='translateY(0)'; this.style.boxShadow='none';">UNDO</button>
+<button id="undo-clear-btn" class="fcc-btn">undo</button>
         <button id="dismiss-clear-btn" style="
             background: none;
             border: none;

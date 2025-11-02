@@ -7,8 +7,8 @@
  *
  * @package FluidFontForge
  * @version 5.0.0
- * @author Jim R (JimRWeb)
- * @link https://jimrweb.com
+ * @author Jim R (JimRForge)
+ * @link https://jimrforge.com
  * @since 4.2.0
  *
  * Dependencies:

@@ -303,13 +303,15 @@ class SimpleTooltips {
       padding: 8px 12px;
       border-radius: 4px;
       font-size: 12px;
-      white-space: nowrap;
+      white-space: normal;
+      max-width: 400px;
+      line-height: 1.4;
       z-index: 99999;
       pointer-events: none;
       box-shadow: 0 2px 8px rgba(0,0,0,0.3);
       border: 1px solid #654321;
     `;
-    this.tooltip.textContent = text;
+    this.tooltip.innerHTML = text;
     document.body.appendChild(this.tooltip);
 
     const rect = element.getBoundingClientRect();
@@ -626,14 +628,14 @@ class WordPressAdminNotices {
     confirmModal.className = "fcc-modal";
     confirmModal.innerHTML = `
       <div class="fcc-modal-dialog" style="max-width: 500px;">
-        <div class="fcc-modal-header" style="background: var(--clr-secondary); color: var(--clr-txt-light);">
+        <div class="fcc-modal-header" style="background: var(--clr-secondary); color: var(--clr-textLight);">
           <span>Confirm Action</span>
         </div>
         <div class="fcc-modal-content">
-          <p style="margin: 0 0 20px 0; line-height: 1.5; color: var(--clr-txt);">${message}</p>
+          <p style="margin: 0 0 20px 0; line-height: 1.5; color: var(--clr-textPrimary);">${message}</p>
           <div class="fcc-btn-group">
-            <button type="button" class="fcc-btn fcc-btn-ghost" id="confirm-cancel">Cancel</button>
-            <button type="button" class="fcc-btn" id="confirm-ok">Confirm</button>
+            <button type="button" class="fcc-btn" id="confirm-cancel">cancel</button>
+            <button type="button" class="fcc-btn fcc-btn-danger" id="confirm-ok">confirm</button>
           </div>
         </div>
       </div>

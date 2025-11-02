@@ -7,7 +7,7 @@
  *
  * @package FluidFontForge
  * @version 5.1.0
- * @author Jim R (JimRWeb)
+ * @author Jim R (JimRForge)
  *
  * Design Philosophy:
  * - Warm, inviting forge atmosphere reinforcing brand metaphor
@@ -198,6 +198,10 @@
     position: relative !important;  /* Create stacking context */
     z-index: 3 !important;  /* Above forge background (z-index: 0) */
     max-width: 1280px !important;  /* Match header and container width */
+}
+
+/* About panel centering - More specific to override panel-layout.css */
+.wrap > .fcc-info-toggle-section.fcc-info-toggle-section:first-of-type {
     margin-left: auto !important;
     margin-right: auto !important;
 }

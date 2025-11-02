@@ -14,12 +14,16 @@ if (!defined('ABSPATH')) {
 ?>
 
 <!-- How to Use Panel -->
+<?php
+$is_expanded = isset($settings['howToUseExpanded']) ? $settings['howToUseExpanded'] : true;
+$expanded_class = $is_expanded ? 'expanded' : '';
+?>
 <div class="fcc-info-toggle-section">
-    <button class="fcc-info-toggle expanded" data-toggle-target="info-content">
-        <span style="color: #FAF9F6 !important;">ℹ️ How to Use Fluid Font Forge</span>
+    <button class="fcc-info-toggle <?php echo esc_attr($expanded_class); ?>" data-toggle-target="info-content">
+        <span style="color: #FAF9F6 !important;">How to Use Fluid Font Forge</span>
         <span class="fcc-toggle-icon" style="color: #FAF9F6 !important;">▼</span>
     </button>
-    <div class="fcc-info-content expanded" id="info-content">
+    <div class="fcc-info-content <?php echo esc_attr($expanded_class); ?>" id="info-content">
         <div style="color: var(--clr-txt); font-size: 16px; line-height: 1.6;">
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 20px;">
                 <div>

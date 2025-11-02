@@ -37,7 +37,8 @@ extract($template_data);
 
         <!-- Main Section -->
         <div class="font-clamp-container" id="fcc-main-container">
-            <div style="padding: 20px;">
+            <?php echo "<!-- DEBUG: File loaded at " . date('Y-m-d H:i:s') . " - Horizontal padding only -->"; ?>
+            <div style="padding: 0 20px;">
 
                 <!-- How to Use Panel -->
                 <?php include FLUID_FONT_FORGE_PATH . 'templates/admin/how-to-use-panel.php'; ?>

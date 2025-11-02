@@ -1,9 +1,9 @@
 /**
  * Panel Layout Fixes
- * 
+ *
  * Critical fixes for panel padding and width constraints.
  * Loaded last to override all other styles.
- * 
+ *
  * @package FluidFontForge
  * @version 5.1.0
  */
@@ -33,16 +33,13 @@
    ========================================================================== */
 
 /**
- * Sample Text and Font Scale - Exact 1280px Width
+ * Sample Text and Font Scale - Constrained Width
  *
- * These panels are currently 1325px, need to be exactly 1280px
- * to match Settings/Data grid width.
+ * Uses max-width with margins for proper alignment without forcing fixed width.
  */
 .fcc-preview-enhanced {
     max-width: 1280px !important;
-    width: 1280px !important;
-    margin-left: 24px !important;
-    margin-right: 0 !important;
+    margin: 20px !important;
     box-sizing: border-box !important;
 }
 
@@ -83,3 +80,32 @@ div.fcc-panel.fcc-panel,
 .fcc-panel:not(.fcc-main-grid .fcc-panel) {
     margin-left: 24px !important;
 }
+
+/* ==========================================================================
+   ALL INFO TOGGLE SECTIONS - WIDTH AND ALIGNMENT
+   ========================================================================== */
+
+/**
+ * Base Rules - All panels using .fcc-info-toggle-section (brown headers)
+ *
+ * DEFAULT: All panels constrained by max-width with horizontal margins
+ * This allows proper alignment without forcing fixed widths.
+ */
+.fcc-info-toggle-section {
+    max-width: 1280px !important;
+    margin: 20px !important;
+    box-sizing: border-box !important;
+}
+
+/* Inner content should not exceed panel width */
+.fcc-info-toggle-section > * {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/**
+ * REMOVED: LEFT-ALIGNED Panels override
+ *
+ * All panels now use consistent 20px margins (set in base rule above).
+ * This ensures proper alignment without forcing specific left/right margin combinations.
+ */

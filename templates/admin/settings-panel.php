@@ -16,7 +16,12 @@ if (!defined('ABSPATH')) {
 <!-- Column 1: Settings Panel -->
 <div>
     <div class="fcc-panel" style="margin-bottom: 8px; padding: 24px !important;">
-        <h2 class="settings-title">Settings</h2>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+            <h2 class="settings-title" style="margin: 0;">Settings</h2>
+            <button id="reset-settings-btn" class="fcc-btn" title="Reset all settings to default values">
+                reset
+            </button>
+        </div>
 
         <!-- Font Units Selector -->
         <div class="font-units-section">
@@ -94,13 +99,6 @@ if (!defined('ABSPATH')) {
                     <option value="1.200" <?php selected($settings['minScale'], '1.200'); ?>>1.200 Minor Third</option>
                     <option value="1.250" <?php selected($settings['minScale'], '1.250'); ?>>1.250 Major Third</option>
                     <option value="1.333" <?php selected($settings['minScale'], '1.333'); ?>>1.333 Perfect Fourth</option>
-                    <option value="1.414" <?php selected($settings['minScale'], '1.414'); ?>>1.414 Augmented Fourth</option>
-                    <option value="1.500" <?php selected($settings['minScale'], '1.500'); ?>>1.500 Perfect Fifth</option>
-                    <option value="1.618" <?php selected($settings['minScale'], '1.618'); ?>>1.618 Golden Ratio</option>
-                    <option value="1.667" <?php selected($settings['minScale'], '1.667'); ?>>1.667 Major Sixth</option>
-                    <option value="1.778" <?php selected($settings['minScale'], '1.778'); ?>>1.778 Minor Seventh</option>
-                    <option value="1.875" <?php selected($settings['minScale'], '1.875'); ?>>1.875 Major Seventh</option>
-                    <option value="2.000" <?php selected($settings['minScale'], '2.000'); ?>>2.000 Octave</option>
                 </select>
             </div>
         </div>
@@ -117,13 +115,6 @@ if (!defined('ABSPATH')) {
                     <option value="1.200" <?php selected($settings['maxScale'], '1.200'); ?>>1.200 Minor Third</option>
                     <option value="1.250" <?php selected($settings['maxScale'], '1.250'); ?>>1.250 Major Third</option>
                     <option value="1.333" <?php selected($settings['maxScale'], '1.333'); ?>>1.333 Perfect Fourth</option>
-                    <option value="1.414" <?php selected($settings['maxScale'], '1.414'); ?>>1.414 Augmented Fourth</option>
-                    <option value="1.500" <?php selected($settings['maxScale'], '1.500'); ?>>1.500 Perfect Fifth</option>
-                    <option value="1.618" <?php selected($settings['maxScale'], '1.618'); ?>>1.618 Golden Ratio</option>
-                    <option value="1.667" <?php selected($settings['maxScale'], '1.667'); ?>>1.667 Major Sixth</option>
-                    <option value="1.778" <?php selected($settings['maxScale'], '1.778'); ?>>1.778 Minor Seventh</option>
-                    <option value="1.875" <?php selected($settings['maxScale'], '1.875'); ?>>1.875 Major Seventh</option>
-                    <option value="2.000" <?php selected($settings['maxScale'], '2.000'); ?>>2.000 Octave</option>
                 </select>
             </div>
         </div>

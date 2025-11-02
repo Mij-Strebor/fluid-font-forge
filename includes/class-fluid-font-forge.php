@@ -25,8 +25,8 @@
  * @subpackage Core
  * @since      1.0.0
  * @version    5.0.0
- * @author     Jim R (JimRWeb)
- * @link       https://jimrweb.com
+ * @author     Jim R (JimRForge)
+ * @link       https://jimrforge.com
  * @license    GPL-2.0-or-later
  */
 
@@ -365,6 +365,14 @@ class FluidFontForge
                 update_option(self::OPTION_SETTINGS, $settings);
             }
 
+            // Migration: Reset autosave to false (v5.1.0 standard)
+            $migration_version = get_option('fluid_font_forge_migration_version', '0');
+            if (version_compare($migration_version, '5.1.0', '<')) {
+                $settings['autosaveEnabled'] = false;
+                update_option(self::OPTION_SETTINGS, $settings);
+                update_option('fluid_font_forge_migration_version', '5.1.0');
+            }
+
             $cached_settings = $settings;
         }
 
@@ -527,8 +535,8 @@ class FluidFontForge
                 <!-- Generated CSS Template -->
                 <?php include FLUID_FONT_FORGE_PATH . 'templates/admin/generated-css-panel.php'; ?>
 
-                <!-- Support Development Panel -->
-                <?php include FLUID_FONT_FORGE_PATH . 'templates/admin/support-panel.php'; ?>
+                <!-- Jim R Forge Community & Tools Panel -->
+                <?php include FLUID_FONT_FORGE_PATH . 'templates/admin/community-panel.php'; ?>
         </div>
 <?php
         return ob_get_clean();
@@ -694,7 +702,7 @@ class FluidFontForge
                     $preview_url = ''; // Non-HTTP protocol, reject
                 }
                 $settings['previewFontUrl'] = $preview_url;
-                $settings['autosaveEnabled'] = (bool) ($settings['autosaveEnabled'] ?? true);
+                $settings['autosaveEnabled'] = (bool) ($settings['autosaveEnabled'] ?? false);
             }
             if (json_last_error() !== JSON_ERROR_NONE) {
                 wp_send_json_error(['message' => 'Invalid JSON data provided']);

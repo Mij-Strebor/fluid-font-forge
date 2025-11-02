@@ -85,10 +85,15 @@ class DefaultDataFactory
             'previewFontUrl' => '',
             'minScale' => \JimRWeb\FluidFontForge\FluidFontForge::DEFAULT_MIN_SCALE,
             'maxScale' => \JimRWeb\FluidFontForge\FluidFontForge::DEFAULT_MAX_SCALE,
-            'autosaveEnabled' => true,
+            'autosaveEnabled' => false,
             'classBaseValue' => 'medium',
             'varsBaseValue' => '--fs-md',
-            'tagBaseValue' => 'p'
+            'tagBaseValue' => 'p',
+            // Panel persistence states - default all panels to expanded
+            'aboutExpanded' => true,
+            'howToUseExpanded' => true,
+            'sampleTextExpanded' => true,
+            'fontScaleExpanded' => true
         ];
     }
 

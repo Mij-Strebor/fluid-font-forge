@@ -2,12 +2,12 @@
  * Fluid Font Forge - Admin Interface Styles
  * 
  * Comprehensive styling system for the fluid typography calculator interface.
- * Implements JimRWeb brand colors with professional design patterns.
+ * Implements JimRForge brand colors with professional design patterns.
  * 
  * @package FluidFontForge
  * @version 5.1.0
- * @author Jim R (JimRWeb)
- * @link https://jimrweb.com
+ * @author Jim R (JimRForge)
+ * @link https://jimrforge.com
  * @since 1.0.0
  * 
  * TABLE OF CONTENTS - Use Ctrl+F with section numbers for quick navigation:
@@ -188,12 +188,8 @@
      *
      * Styleguide 1.4
      */
-    --clr-buttonHover: #E5B929;
-    /* Button hover state - darker gold */
-    --clr-buttonText: #9C0202;
-    /* Button text - deep red for button labels */
-    --brd-button: #DE0B0B;
-    /* Button border - bright red for button outlines */
+    --clr-btn-hover: #dda824;
+    /* Button hover state - matches FSF v1.2.1 standard */
 
     /**
      * Border Colors
@@ -415,7 +411,7 @@
  * WordPress Admin Integration
  *
  * Override default WordPress admin styling to integrate seamlessly with
- * the JimRWeb brand design system.
+ * the JimRForge brand design system.
  *
  * Status: Stable
  * Updated: 4.0.0
@@ -719,9 +715,53 @@ label {
  * Styleguide 5.1.1
  */
 .fcc-btn:hover {
-    background: var(--clr-buttonHover);
+    background: var(--clr-btn-hover);
     transform: translateY(-2px);
     box-shadow: var(--shd-large);
+}
+
+/**
+ * Danger Button Variant
+ *
+ * Red button for destructive actions (delete, clear, reset confirmations).
+ * Uses danger colors with white text for high visibility.
+ *
+ * Styleguide 5.1.2
+ */
+.fcc-btn-danger {
+    background: var(--clr-danger);
+    color: var(--clr-white) !important;
+    border-color: var(--clr-dangerDark);
+    font-style: normal;
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+.fcc-btn-danger:hover {
+    background: var(--clr-dangerDark);
+    color: var(--clr-white) !important;
+}
+
+/**
+ * Ghost Button Variant
+ *
+ * Gray button for secondary actions (cancel, dismiss).
+ * Lower visual emphasis than primary buttons.
+ *
+ * Styleguide 5.1.3
+ */
+.fcc-btn-ghost {
+    background: var(--clr-gray500);
+    color: var(--clr-white);
+    border-color: var(--clr-gray600);
+    font-style: normal;
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+.fcc-btn-ghost:hover {
+    background: var(--clr-gray600);
+    color: var(--clr-white);
 }
 
 /**
@@ -789,7 +829,7 @@ label {
  * Styleguide 5.2.2
  */
 .fcc-copy-btn:hover {
-    background: var(--clr-buttonHover);
+    background: var(--clr-btn-hover);
     transform: translateY(-2px);
     box-shadow: var(--shd-large);
 }
@@ -1119,9 +1159,8 @@ select.fcc-input {
 }
 
 .tab-button:hover {
-    background: var(--clr-buttonHover);
+    background: var(--clr-btn-hover);
     color: var(--clr-primary);
-    border-color: var(--brd-button);
     transform: translateY(-1px);
     box-shadow: var(--shd-standard);
 }
@@ -1228,6 +1267,39 @@ select.fcc-input {
 }
 
 /**
+ * Static Header (Non-Collapsible Brown Headers)
+ *
+ * Matches the brown toggle header style but without interactivity.
+ * Used for CSS output panels and Community panel that should always be visible.
+ *
+ * Styleguide 6.2.5
+ */
+.fcc-info-header-static {
+    width: 100%;
+    padding: var(--spc-base) var(--spc-lg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--clr-secondary);
+    cursor: default;
+    font-weight: 600;
+    font-size: 18px;
+    border-radius: var(--rad-large) var(--rad-large) 0 0;
+}
+
+.fcc-info-header-static span {
+    font-size: 24px !important;
+    font-weight: 600 !important;
+}
+
+.fcc-info-content-static {
+    background: var(--clr-light);
+    color: var(--clr-textPrimary);
+    padding: var(--spc-xl);
+    border-radius: 0 0 var(--rad-large) var(--rad-large);
+}
+
+/**
  * Font Units Toggle System
  *
  * Unit selection controls for font measurement toggles.
@@ -1285,7 +1357,7 @@ select.fcc-input {
     text-align: center;
     border: none;
     background: var(--clr-accent);
-    color: #9C0202;
+    color: var(--clr-primary);
     font-size: var(--fnt-base);
     font-weight: 500;
     cursor: pointer;
@@ -1358,9 +1430,9 @@ select.fcc-input {
  * Styleguide 6.4.3
  */
 .autosave-status.saving {
-    background: linear-gradient(135deg, var(--clr-accent), var(--clr-buttonHover));
+    background: linear-gradient(135deg, var(--clr-accent), var(--clr-btn-hover));
     color: var(--clr-primary);
-    border-color: var(--brd-button);
+    border-color: var(--clr-accent);
     animation: pulse 1.5s ease-in-out infinite;
 }
 
@@ -1371,9 +1443,9 @@ select.fcc-input {
 }
 
 .autosave-status.error {
-    background: linear-gradient(135deg, var(--brd-button), var(--clr-danger));
+    background: var(--clr-danger);
     color: var(--clr-white);
-    border-color: #991b1b;
+    border-color: var(--clr-dangerDark);
 }
 
 .autosave-status.idle {
@@ -1828,7 +1900,7 @@ select.fcc-input {
 }
 
 #viewport-slider::-webkit-slider-thumb:hover {
-    background: var(--clr-buttonHover);
+    background: var(--clr-btn-hover);
     transform: scale(1.1);
     box-shadow: var(--shd-large);
 }
@@ -1845,7 +1917,7 @@ select.fcc-input {
 }
 
 #viewport-slider::-moz-range-thumb:hover {
-    background: var(--clr-buttonHover);
+    background: var(--clr-btn-hover);
     transform: scale(1.1);
     box-shadow: var(--shd-large);
 }
@@ -2122,7 +2194,7 @@ select.fcc-input {
 }
 
 #sample-viewport-slider::-webkit-slider-thumb:hover {
-    background: var(--clr-buttonHover);
+    background: var(--clr-btn-hover);
     transform: scale(1.1);
     box-shadow: var(--shd-large);
 }
@@ -2139,7 +2211,7 @@ select.fcc-input {
 }
 
 #sample-viewport-slider::-moz-range-thumb:hover {
-    background: var(--clr-buttonHover);
+    background: var(--clr-btn-hover);
     transform: scale(1.1);
     box-shadow: var(--shd-large);
 }
@@ -2247,7 +2319,7 @@ select.fcc-input {
     border-radius: 50%;
     border: 5px solid var(--clr-light);
     border-top: 5px solid var(--clr-accent);
-    border-right: 5px solid var(--clr-buttonHover);
+    border-right: 5px solid var(--clr-btn-hover);
     box-shadow: var(--shd-standard);
     animation: fcc-spin 1.2s linear infinite;
 }
@@ -2295,7 +2367,7 @@ select.fcc-input {
     height: 100%;
     width: 0%;
     border-radius: 2px;
-    background: linear-gradient(90deg, var(--clr-accent), var(--clr-buttonHover), var(--clr-accent));
+    background: linear-gradient(90deg, var(--clr-accent), var(--clr-btn-hover), var(--clr-accent));
     box-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
     animation: fcc-progress 3s ease-in-out infinite;
 }
@@ -2709,6 +2781,9 @@ select.fcc-input {
 .divider {
     border-top: 1px solid var(--clr-secondary);
     margin-top: var(--spc-base);
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-top: 8px;
 }
 
 /* ==========================================================================
@@ -2981,6 +3056,12 @@ h2,
     font-family: var(--fff-font-heading) !important;
     font-weight: 600 !important;
     font-size: 24px !important;
+}
+
+/* Brown toggle button headers - match h2 size */
+.fcc-info-toggle span {
+    font-size: 24px !important;
+    font-weight: 600 !important;
 }
 
 /* Font filename display */

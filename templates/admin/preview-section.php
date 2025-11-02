@@ -16,15 +16,18 @@ if (!defined('ABSPATH')) {
 ?>
 
 <!--  Font Preview Section -->
-<div class="fcc-preview-enhanced" style="clear: both; margin: 20px 0;">
+<?php
+$is_expanded = isset($settings['fontScaleExpanded']) ? $settings['fontScaleExpanded'] : true;
+$expanded_class = $is_expanded ? 'expanded' : '';
+?>
+<div class="fcc-info-toggle-section" style="clear: both; margin: 20px 0;">
 
-    <button class="fcc-info-toggle expanded" data-toggle-target="font-preview-content" style="width: 100%; text-align: left; background: transparent; border: none; border-bottom: 2px solid var(--clr-secondary); padding-bottom: var(--jimr-space-3);     
-    margin-bottom: var(--jimr-space-5); cursor: pointer;">
-        <span style="color: var(--clr-primary) !important; font-family: 'Inter', sans-serif !important; font-size: 24px !important; font-weight: 600 !important;">👁️ Font Scale</span>
-        <span class="fcc-toggle-icon" style="color: var(--clr-primary) !important; float: right;">▼</span>
+    <button class="fcc-info-toggle <?php echo esc_attr($expanded_class); ?>" data-toggle-target="font-preview-content">
+        <span style="color: #FAF9F6 !important;">Font Scale</span>
+        <span class="fcc-toggle-icon" style="color: #FAF9F6 !important;">▼</span>
     </button>
 
-    <div class="fcc-info-content expanded" id="font-preview-content">
+    <div class="fcc-info-content <?php echo esc_attr($expanded_class); ?>" id="font-preview-content">
 
         <div class="fcc-preview-grid">
             <div class="fcc-preview-column">
