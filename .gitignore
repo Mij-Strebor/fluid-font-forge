@@ -1,0 +1,23 @@
+# Development files
+*.backup
+*.bak
+*.bak2
+*.tmp
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.sublime-*
+
+# Testing files
+docs/product-test-log.docx
+*-test.php
+test-*.php
+
+# Release notes (optional - include if you want them in repo)
+# RELEASE-NOTES-*.md
+
+# Node modules if ever added
+node_modules/
