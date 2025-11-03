@@ -15,7 +15,7 @@ if (!defined('ABSPATH')) {
 
 <div class="fcc-info-toggle-section" style="margin-top: 20px;">
     <div class="fcc-info-header-static">
-        <span style="color: #FAF9F6;">Generated CSS (All Classes)</span>
+        <span id="generated-code-title" style="color: #FAF9F6;">Generated CSS (All Classes)</span>
         <div class="fcc-css-buttons" id="generated-copy-buttons" style="margin-left: auto;">
         </div>
     </div>

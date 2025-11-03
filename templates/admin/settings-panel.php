@@ -18,7 +18,7 @@ if (!defined('ABSPATH')) {
     <div class="fcc-panel" style="margin-bottom: 8px; padding: 24px !important;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
             <h2 class="settings-title" style="margin: 0;">Settings</h2>
-            <button id="reset-settings-btn" class="fcc-btn" title="Reset all settings to default values">
+            <button id="reset-settings-btn" class="fcc-btn" data-tooltip="Reset all settings to default values">
                 reset
             </button>
         </div>

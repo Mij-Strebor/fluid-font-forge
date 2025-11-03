@@ -229,7 +229,7 @@ function fluid_font_forge_activate()
     // Set default settings if they don't exist
     if (!get_option(FLUID_FONT_FORGE_OPTION_SETTINGS)) {
         $default_settings = array(
-            'minRootSize' => 16,
+            'minRootSize' => 12,
             'maxRootSize' => 20,
             'minViewport' => 375,
             'maxViewport' => 1620,

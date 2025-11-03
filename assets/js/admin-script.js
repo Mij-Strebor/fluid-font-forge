@@ -511,6 +511,10 @@ class FontClampEnhancedCoreInterface {
     this.triggerHook("tab:changed", {
       activeTab: tabName,
     });
+    
+    
+    // Save activeTab state immediately (like other controls)
+    this.savePanelStates();
   }
 
   /**
@@ -1690,10 +1694,6 @@ class FontClampAdvanced {
     );
     if (dataTableRow) {
       dataTableRow.classList.add("selected");
-      dataTableRow.scrollIntoView({
-        behavior: "smooth",
-        block: "nearest",
-      });
     }
   }
 

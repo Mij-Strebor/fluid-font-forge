@@ -7,6 +7,49 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [5.1.1] - 2025-11-03
+
+### Bug Fixes
+
+#### Critical Tab System Issues
+- **Fixed Tailwind tab persistence** - Added 'tailwind' to VALID_TABS constant to prevent reset to 'class' on page refresh
+- **Fixed tab switching crash** - Added missing ID attributes (`selected-code-title`, `generated-code-title`) to template elements preventing null reference errors
+- **Fixed tab state persistence** - Added `savePanelStates()` call to `switchTab()` for immediate state persistence matching other control behavior
+
+#### User Experience Improvements  
+- **Fixed scroll jump behavior** - Removed `scrollIntoView()` call that caused unwanted page scrolling when selecting preview rows
+- **Fixed REM unit display** - Implemented unit-aware display logic in Sample Text panel showing correct REM values with 3 decimal precision instead of hardcoded "px" suffix
+
+### Content Updates
+
+#### Community Panel Enhancements
+- Updated section title: "Community & Support" → "Community & Tools"
+- Updated FSF status: "Submitted to WordPress.org" → "In review at WordPress.org"  
+- Added jimrforge.com project hub link with "Coming soon" messaging
+- Shortened feedback button text: "Suggestions & Feedback" → "Feedback"
+- Added new "⭐ Rate" button linking to WordPress.org reviews
+
+### Technical Details
+
+**Files Modified:**
+- `includes/class-fluid-font-forge.php` (line 92) - Added 'tailwind' to VALID_TABS array
+- `templates/admin/selected-css-panel.php` - Added `id="selected-code-title"` attribute
+- `templates/admin/generated-css-panel.php` - Added `id="generated-code-title"` attribute
+- `assets/js/admin-script.js` (lines 493-518, 1688-1699) - Tab persistence and scroll behavior fixes
+- `assets/js/sample-panel.js` (lines 412-436) - Unit-aware size display implementation
+- `templates/admin/community-panel.php` (lines 20, 30, 45, 60, 62-64) - Content updates
+
+**Breaking Changes:** None - All changes are internal bug fixes and content updates
+
+**Testing:** Comprehensive testing confirmed:
+- All four tabs (Class, Variables, Tags, Tailwind) persist correctly across page refreshes
+- Tab switching updates all UI elements without crashes
+- Sample Text panel displays correct units (REM/PX) based on settings
+- No unwanted scroll jumps when selecting preview items
+- Community panel displays updated content with all links functional
+
+---
+
 ## [5.1.0] - 2025-10-24
 
 ### Complete UI Modernization - MIF v3.0 Design System Alignment

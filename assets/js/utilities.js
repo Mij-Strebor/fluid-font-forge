@@ -634,8 +634,8 @@ class WordPressAdminNotices {
         <div class="fcc-modal-content">
           <p style="margin: 0 0 20px 0; line-height: 1.5; color: var(--clr-textPrimary);">${message}</p>
           <div class="fcc-btn-group">
-            <button type="button" class="fcc-btn" id="confirm-cancel">cancel</button>
-            <button type="button" class="fcc-btn fcc-btn-danger" id="confirm-ok">confirm</button>
+            <button type="button" class="fcc-btn fcc-btn-ghost" id="confirm-cancel">cancel</button>
+            <button type="button" class="fcc-btn" id="confirm-ok">confirm</button>
           </div>
         </div>
       </div>

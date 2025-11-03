@@ -52,9 +52,9 @@ class FluidFontForge
     const PLUGIN_SLUG = 'fluid-font-forge';
     const NONCE_ACTION = 'fluid_font_nonce';
 
-    // Default Values - PRIMARY CONSTANTS 
-    // Why 16px: Browser default font size - ensures accessibility baseline
-    const DEFAULT_MIN_ROOT_SIZE = 16;
+    // Default Values - PRIMARY CONSTANTS
+    // Why 12px: Smaller baseline for more scaling range - allows larger difference between min and max
+    const DEFAULT_MIN_ROOT_SIZE = 12;
     // Why 20px: 25% larger than default - provides good contrast without being jarring
     const DEFAULT_MAX_ROOT_SIZE = 20;
     // Why 375px: iPhone SE width - covers smallest modern mobile devices
@@ -88,8 +88,8 @@ class FluidFontForge
     // Valid Options
     // Why these units: px and rem are most common for font sizing, ensuring compatibility
     const VALID_UNITS = ['px', 'rem'];
-    // Why these tabs: Covers all three size management methods provided by the plugin
-    const VALID_TABS = ['class', 'vars', 'tag'];
+    // Why these tabs: Covers all four size management methods provided by the plugin
+    const VALID_TABS = ['class', 'vars', 'tag', 'tailwind'];
 
     // Validation Ranges
     // Why 1-100px: Prevents unusably small (<1px) or absurdly large (>100px) root sizes

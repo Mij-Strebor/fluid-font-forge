@@ -414,11 +414,25 @@ class SamplePanelController {
     // Size displays remain constant at 16px (set in template)
     const titlesSizeDisplay = document.getElementById("titles-size-display");
     const textSizeDisplay = document.getElementById("text-size-display");
-    if (titlesSizeDisplay) {
-      titlesSizeDisplay.textContent = Math.round(titlesFontSizeInPx) + "px";
-    }
-    if (textSizeDisplay) {
-      textSizeDisplay.textContent = Math.round(textFontSizeInPx) + "px";
+    if (unitType === "rem") {
+      // Calculate current root size at this viewport
+      const currentRootSize = minRootSize + (maxRootSize - minRootSize) * factor;
+
+      if (titlesSizeDisplay) {
+        const titlesSizeInRem = (titlesFontSizeInPx / currentRootSize).toFixed(3);
+        titlesSizeDisplay.textContent = titlesSizeInRem + " rem";
+      }
+      if (textSizeDisplay) {
+        const textSizeInRem = (textFontSizeInPx / currentRootSize).toFixed(3);
+        textSizeDisplay.textContent = textSizeInRem + " rem";
+      }
+    } else {
+      if (titlesSizeDisplay) {
+        titlesSizeDisplay.textContent = Math.round(titlesFontSizeInPx) + "px";
+      }
+      if (textSizeDisplay) {
+        textSizeDisplay.textContent = Math.round(textFontSizeInPx) + "px";
+      }
     }
   }
 
