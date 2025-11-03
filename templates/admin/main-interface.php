@@ -21,12 +21,12 @@ extract($template_data);
     <?php echo "<!-- FILE IS LOADING: " . __FILE__ . " -->"; ?>
     <!-- Forge Header with Title -->
     <div class="fcc-header-section">
-        <h1>TESTING 5.1.0 UPDATE</h1>
+        <h1>Fluid Font Forge</h1>
     </div>
 
     <!-- Version Info (between header and About) -->
     <p style="font-family: 'Inter', sans-serif; font-weight: 400; font-size: 14px; font-style: italic; color: rgb(60, 67, 74); text-align: center; margin: -15vh auto 20px; max-width: 1280px; position: relative; z-index: 2;">
-        Version <?php echo esc_html($version); ?> - CACHE TEST
+        Version <?php echo esc_html($version); ?>
     </p>
 
     <!-- About Panel (positioned by forge-header.css with negative margin) -->
