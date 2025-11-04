@@ -5,7 +5,7 @@ Tags: typography, fonts, responsive, clamp, fluid
 Requires at least: 5.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 5.0.0
+Stable tag: 5.1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -113,6 +113,15 @@ The plugin saves all your configurations in the WordPress database. For backup o
 * **Perfect Fourth (1.333)**: Strong contrast for headlines
 * **Golden Ratio (1.618)**: Dramatic scaling for hero sections
 == Changelog ==
+
+= 5.1.1 =
+* Fixed: Tailwind tab persistence now works correctly across page refreshes
+* Fixed: Tab switching no longer causes JavaScript errors
+* Fixed: Sample Text panel displays correct REM values when REM units selected
+* Fixed: Removed unwanted scroll jump when selecting preview items
+* Enhanced: Community panel content updated with current project status
+* Note: Internal bug fixes only - no new features or breaking changes
+
 
 = 4.3.0 =
 * Architecture: Implemented PHP namespaces (JimRWeb\FluidFontForge) for professional code organization
