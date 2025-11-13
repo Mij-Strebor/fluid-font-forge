@@ -7,6 +7,49 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [5.1.2] - 2025-11-12
+
+### New Features
+
+#### Settings Input Validation
+- **Input validation with visual feedback** - Settings inputs now validate on blur with configurable limits:
+  - Min Viewport Font Size: 8-32px
+  - Max Viewport Font Size: 8-80px (must be ≥ Min Viewport Font Size)
+  - Min Viewport Width: 200-992px
+  - Max Viewport Width: 200-1920px (must be ≥ Min Viewport Width)
+- **Red error modal** - Invalid values display red error message below input, matching input width
+- **Auto-correction** - After 3 seconds, invalid values automatically correct to limit and update calculations
+- **Dynamic validation** - Max values validate against current min values for consistency
+
+#### Enhanced Input Interaction
+- **Auto-select on focus** - Text automatically selected when clicking or tabbing into settings inputs
+- **Enter key navigation** - Press Enter to move through inputs in visual tab order:
+  - Min Root → Min Viewport → Max Root → Max Viewport → Min Scale dropdown
+- **Keyboard-friendly workflow** - Streamlined data entry for power users
+
+#### Improved Display Containers
+- **Scrolling overflow** - Sample Text and Font Scale displays now scroll when content exceeds container:
+  - Sample Text panel: max-height 400px with vertical scrollbar
+  - Font Scale previews: max-height 500px with vertical scrollbar
+- **Synchronized scrolling** - Min and Max Font Scale previews scroll together in sync
+- **Smooth performance** - Uses requestAnimationFrame for optimal scroll synchronization
+
+### Technical Details
+
+**New Files:**
+- `assets/js/settings-validation.js` - Validation logic and synchronized scrolling
+
+**Files Modified:**
+- `includes/class-fluid-font-forge.php` (lines 106-116, 259-266) - Added validation constants and enqueued validation script
+- `templates/admin/sample-panel.php` (line 33) - Added overflow scrolling to Sample Text display
+- `templates/admin/preview-section.php` (lines 38, 51) - Added overflow scrolling to Font Scale previews
+
+**Breaking Changes:** None
+
+**Browser Compatibility:** Modern browsers (Chrome 79+, Firefox 75+, Safari 13.1+, Edge 79+)
+
+---
+
 ## [5.1.1] - 2025-11-03
 
 ### Bug Fixes

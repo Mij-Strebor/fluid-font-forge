@@ -101,6 +101,20 @@ class FluidFontForge
     // Why 1.0-3.0: Below 1.0 shrinks text, above 3.0 creates extreme size jumps
     const SCALE_RANGE = [1.0, 3.0];
 
+    // Specific validation ranges for v5.1.2 - enforced by JavaScript
+    // Min root size: 8-32px
+    const MIN_ROOT_MIN = 8;
+    const MIN_ROOT_MAX = 32;
+    // Max root size: minRootSize-80px (dynamic lower bound)
+    const MAX_ROOT_MIN = 8;
+    const MAX_ROOT_MAX = 80;
+    // Min viewport: 200-992px
+    const MIN_VIEWPORT_MIN = 200;
+    const MIN_VIEWPORT_MAX = 992;
+    // Max viewport: minViewport-1920px (dynamic lower bound)
+    const MAX_VIEWPORT_MIN = 200;
+    const MAX_VIEWPORT_MAX = 1920;
+
     // ========================================================================
     // CLASS PROPERTIES
     // ========================================================================
@@ -193,14 +207,9 @@ class FluidFontForge
      */
     public function enqueue_assets($hook)
     {
-        error_log('ENQUEUE ASSETS CALLED - Hook: ' . $hook);
-
         if ($hook !== 'tools_page_fluid-font-forge') {
-            error_log('HOOK MISMATCH - Exiting early');
             return;
         }
-
-        error_log('HOOK MATCHED - Proceeding with enqueue');
 
         // Enqueue Forge header CSS first (loaded before main styles)
         wp_enqueue_style(
@@ -237,6 +246,15 @@ class FluidFontForge
         wp_enqueue_script(
             'fluidfontforge-utilities',
             FLUID_FONT_FORGE_URL . 'assets/js/utilities.js',
+            [], // NO dependencies
+            FLUID_FONT_FORGE_VERSION,
+            true
+        );
+
+        // Enqueue settings validation (v5.1.2)
+        wp_enqueue_script(
+            'fluidfontforge-settings-validation',
+            FLUID_FONT_FORGE_URL . 'assets/js/settings-validation.js',
             [], // NO dependencies
             FLUID_FONT_FORGE_VERSION,
             true

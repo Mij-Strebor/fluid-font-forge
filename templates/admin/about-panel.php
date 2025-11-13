@@ -14,15 +14,15 @@ if (!defined('ABSPATH')) {
 ?>
 
 <?php
-$is_expanded = isset($settings['aboutExpanded']) ? $settings['aboutExpanded'] : true;
-$expanded_class = $is_expanded ? 'expanded' : '';
+$fluid_font_forge_is_expanded = isset($settings['aboutExpanded']) ? $settings['aboutExpanded'] : true;
+$fluid_font_forge_expanded_class = $fluid_font_forge_is_expanded ? 'expanded' : '';
 ?>
 <div class="fcc-info-toggle-section">
-    <button class="fcc-info-toggle <?php echo esc_attr($expanded_class); ?>" data-toggle-target="about-content">
+    <button class="fcc-info-toggle <?php echo esc_attr($fluid_font_forge_expanded_class); ?>" data-toggle-target="about-content">
         <span style="color: #FAF9F6 !important;">About Fluid Font Forge</span>
         <span class="fcc-toggle-icon" style="color: #FAF9F6 !important;">▼</span>
     </button>
-    <div class="fcc-info-content <?php echo esc_attr($expanded_class); ?>" id="about-content">
+    <div class="fcc-info-content <?php echo esc_attr($fluid_font_forge_expanded_class); ?>" id="about-content">
         <div style="color: var(--clr-txt); font-size: 16px; line-height: 1.6;">
             <p style="margin: 0 0 16px 0; color: var(--clr-txt);">
                 I've been a font nerd for years. Great design presents content in a striking way without drawing attention to itself—much like how a skilled cinematographer draws you into a film's emotional depth without you consciously noticing the craft. When CSS clamp() arrived, it revolutionized responsive typography. Suddenly, fonts could scale fluidly across devices, keeping the focus on the message rather than awkward size jumps. I recently watched a YouTube presentation by a favorite WordPress expert who demonstrated a sophisticated font clamping calculator—better than most available tools. But it still wasn't quite enough for my needs. So I built this plugin. Enjoy.
