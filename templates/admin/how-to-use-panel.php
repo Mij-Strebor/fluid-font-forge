@@ -15,15 +15,15 @@ if (!defined('ABSPATH')) {
 
 <!-- How to Use Panel -->
 <?php
-$fff_is_expanded = isset($settings['howToUseExpanded']) ? $settings['howToUseExpanded'] : true;
-$fff_expanded_class = $fff_is_expanded ? 'expanded' : '';
+$fluid_font_forge_is_expanded = isset($settings['howToUseExpanded']) ? $settings['howToUseExpanded'] : true;
+$fluid_font_forge_expanded_class = $fluid_font_forge_is_expanded ? 'expanded' : '';
 ?>
 <div class="fcc-info-toggle-section">
-    <button class="fcc-info-toggle <?php echo esc_attr($fff_expanded_class); ?>" data-toggle-target="info-content">
+    <button class="fcc-info-toggle <?php echo esc_attr($fluid_font_forge_expanded_class); ?>" data-toggle-target="info-content">
         <span style="color: #FAF9F6 !important;">How to Use Fluid Font Forge</span>
         <span class="fcc-toggle-icon" style="color: #FAF9F6 !important;">▼</span>
     </button>
-    <div class="fcc-info-content <?php echo esc_attr($fff_expanded_class); ?>" id="info-content">
+    <div class="fcc-info-content <?php echo esc_attr($fluid_font_forge_expanded_class); ?>" id="info-content">
         <div style="color: var(--clr-txt); font-size: 16px; line-height: 1.6;">
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 20px;">
                 <div>

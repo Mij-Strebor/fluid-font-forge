@@ -17,17 +17,17 @@ if (!defined('ABSPATH')) {
 
 <!--  Font Preview Section -->
 <?php
-$fff_is_expanded = isset($settings['fontScaleExpanded']) ? $settings['fontScaleExpanded'] : true;
-$fff_expanded_class = $fff_is_expanded ? 'expanded' : '';
+$fluid_font_forge_is_expanded = isset($settings['fontScaleExpanded']) ? $settings['fontScaleExpanded'] : true;
+$fluid_font_forge_expanded_class = $fluid_font_forge_is_expanded ? 'expanded' : '';
 ?>
 <div class="fcc-info-toggle-section" style="clear: both; margin: 20px 0;">
 
-    <button class="fcc-info-toggle <?php echo esc_attr($fff_expanded_class); ?>" data-toggle-target="font-preview-content">
+    <button class="fcc-info-toggle <?php echo esc_attr($fluid_font_forge_expanded_class); ?>" data-toggle-target="font-preview-content">
         <span style="color: #FAF9F6 !important;">Font Scale</span>
         <span class="fcc-toggle-icon" style="color: #FAF9F6 !important;">▼</span>
     </button>
 
-    <div class="fcc-info-content <?php echo esc_attr($fff_expanded_class); ?>" id="font-preview-content">
+    <div class="fcc-info-content <?php echo esc_attr($fluid_font_forge_expanded_class); ?>" id="font-preview-content">
 
         <div class="fcc-preview-grid">
             <div class="fcc-preview-column">

@@ -28,25 +28,25 @@ if (!defined('ABSPATH')) {
                     <?php
                     // Populate based on current tab
                     if ($settings['activeTab'] === 'class') {
-                        $fff_current_sizes = $class_sizes;
-                        $fff_property_name = 'className';
-                        $fff_selected_id = $settings['selectedClassSizeId'];
+                        $fluid_font_forge_current_sizes = $class_sizes;
+                        $fluid_font_forge_property_name = 'className';
+                        $fluid_font_forge_selected_id = $settings['selectedClassSizeId'];
                     } elseif ($settings['activeTab'] === 'vars') {
-                        $fff_current_sizes = $variable_sizes;
-                        $fff_property_name = 'variableName';
-                        $fff_selected_id = $settings['selectedVariableSizeId'];
+                        $fluid_font_forge_current_sizes = $variable_sizes;
+                        $fluid_font_forge_property_name = 'variableName';
+                        $fluid_font_forge_selected_id = $settings['selectedVariableSizeId'];
                     } elseif ($settings['activeTab'] === 'tailwind') {
-                        $fff_current_sizes = $this->get_font_clamp_tailwind_sizes();
-                        $fff_property_name = 'tailwindName';
-                        $fff_selected_id = 5; // default to 'base'
+                        $fluid_font_forge_current_sizes = $this->get_font_clamp_tailwind_sizes();
+                        $fluid_font_forge_property_name = 'tailwindName';
+                        $fluid_font_forge_selected_id = 5; // default to 'base'
                     } else {
-                        $fff_current_sizes = $tag_sizes;
-                        $fff_property_name = 'tagName';
-                        $fff_selected_id = $settings['selectedTagSizeId'];
+                        $fluid_font_forge_current_sizes = $tag_sizes;
+                        $fluid_font_forge_property_name = 'tagName';
+                        $fluid_font_forge_selected_id = $settings['selectedTagSizeId'];
                     }
-                    foreach ($fff_current_sizes as $fff_size) {
-                        $fff_selected = $fff_size['id'] == $fff_selected_id ? 'selected' : '';
-                        echo '<option value="' . esc_attr($fff_size['id']) . '" ' . ($fff_selected ? 'selected="selected"' : '') . '>' . esc_html($fff_size[$fff_property_name]) . '</option>';
+                    foreach ($fluid_font_forge_current_sizes as $fluid_font_forge_size) {
+                        $fluid_font_forge_selected = $fluid_font_forge_size['id'] == $fluid_font_forge_selected_id ? 'selected' : '';
+                        echo '<option value="' . esc_attr($fluid_font_forge_size['id']) . '" ' . ($fluid_font_forge_selected ? 'selected="selected"' : '') . '>' . esc_html($fluid_font_forge_size[$fluid_font_forge_property_name]) . '</option>';
                     }
                     ?>
                 </select>
