@@ -71,10 +71,22 @@
       maxViewportInput,
     ];
 
-    autoSelectInputs.forEach((input) => {
+    autoSelectInputs.forEach((input, index) => {
       if (input) {
+        // Auto-select on focus
         input.addEventListener("focus", (e) => {
           e.target.select();
+        });
+
+        // Enter key moves to next input
+        input.addEventListener("keydown", (e) => {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            const nextIndex = index + 1;
+            if (nextIndex < autoSelectInputs.length && autoSelectInputs[nextIndex]) {
+              autoSelectInputs[nextIndex].focus();
+            }
+          }
         });
       }
     });
