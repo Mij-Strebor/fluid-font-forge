@@ -402,9 +402,9 @@ if (is_admin()) {
      * throughout WordPress admin interface and inter-component communication.
      * Provides centralized access point for plugin functionality.
      *
-     * @global FluidFontForge $fluidFontForge Main plugin instance
+     * @global FluidFontForge $fluid_font_forge Main plugin instance
      */
-    global $fluidFontForge;
+    global $fluid_font_forge;
 
     /**
      * Instantiate Main Plugin Class
@@ -412,7 +412,7 @@ if (is_admin()) {
      * Creates primary plugin instance with error handling to ensure
      * graceful failure if initialization problems occur.
      */
-    $fluidFontForge = new \JimRWeb\FluidFontForge\FluidFontForge();
+    $fluid_font_forge = new \JimRWeb\FluidFontForge\FluidFontForge();
 }
 
 /**

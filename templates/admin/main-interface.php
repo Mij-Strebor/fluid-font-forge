@@ -37,7 +37,6 @@ extract($template_data);
 
         <!-- Main Section -->
         <div class="font-clamp-container" id="fcc-main-container">
-            <?php echo "<!-- DEBUG: File loaded at " . date('Y-m-d H:i:s') . " - Horizontal padding only -->"; ?>
             <div style="padding: 0 20px;">
 
                 <!-- How to Use Panel -->

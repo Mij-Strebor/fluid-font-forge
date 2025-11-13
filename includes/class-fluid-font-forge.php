@@ -207,14 +207,9 @@ class FluidFontForge
      */
     public function enqueue_assets($hook)
     {
-        error_log('ENQUEUE ASSETS CALLED - Hook: ' . $hook);
-
         if ($hook !== 'tools_page_fluid-font-forge') {
-            error_log('HOOK MISMATCH - Exiting early');
             return;
         }
-
-        error_log('HOOK MATCHED - Proceeding with enqueue');
 
         // Enqueue Forge header CSS first (loaded before main styles)
         wp_enqueue_style(
