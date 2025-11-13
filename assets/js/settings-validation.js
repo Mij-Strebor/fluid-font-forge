@@ -226,6 +226,51 @@
     }, 3000);
   }
 
+  /**
+   * Synchronize scrolling between Font Scale preview containers
+   */
+  function initSyncScroll() {
+    // Wait for DOM to be ready
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", bindSyncScroll);
+    } else {
+      bindSyncScroll();
+    }
+  }
+
+  /**
+   * Bind scroll sync event listeners
+   */
+  function bindSyncScroll() {
+    const minContainer = document.getElementById("preview-min-container");
+    const maxContainer = document.getElementById("preview-max-container");
+
+    if (!minContainer || !maxContainer) return;
+
+    let isSyncing = false;
+
+    minContainer.addEventListener("scroll", () => {
+      if (isSyncing) return;
+      isSyncing = true;
+      maxContainer.scrollTop = minContainer.scrollTop;
+      requestAnimationFrame(() => {
+        isSyncing = false;
+      });
+    });
+
+    maxContainer.addEventListener("scroll", () => {
+      if (isSyncing) return;
+      isSyncing = true;
+      minContainer.scrollTop = maxContainer.scrollTop;
+      requestAnimationFrame(() => {
+        isSyncing = false;
+      });
+    });
+  }
+
   // Initialize validation
   initValidation();
+
+  // Initialize synchronized scrolling
+  initSyncScroll();
 })();
