@@ -101,6 +101,20 @@ class FluidFontForge
     // Why 1.0-3.0: Below 1.0 shrinks text, above 3.0 creates extreme size jumps
     const SCALE_RANGE = [1.0, 3.0];
 
+    // Specific validation ranges for v5.1.2 - enforced by JavaScript
+    // Min root size: 8-32px
+    const MIN_ROOT_MIN = 8;
+    const MIN_ROOT_MAX = 32;
+    // Max root size: minRootSize-80px (dynamic lower bound)
+    const MAX_ROOT_MIN = 8;
+    const MAX_ROOT_MAX = 80;
+    // Min viewport: 200-992px
+    const MIN_VIEWPORT_MIN = 200;
+    const MIN_VIEWPORT_MAX = 992;
+    // Max viewport: minViewport-1920px (dynamic lower bound)
+    const MAX_VIEWPORT_MIN = 200;
+    const MAX_VIEWPORT_MAX = 1920;
+
     // ========================================================================
     // CLASS PROPERTIES
     // ========================================================================
