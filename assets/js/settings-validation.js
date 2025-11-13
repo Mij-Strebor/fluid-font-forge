@@ -64,10 +64,11 @@
     }
 
     // Auto-select text on focus (v5.1.2)
+    // Order matches visual tab order: Row 1 (Min Root, Min Viewport), Row 2 (Max Root, Max Viewport)
     const autoSelectInputs = [
       minRootInput,
-      maxRootInput,
       minViewportInput,
+      maxRootInput,
       maxViewportInput,
     ];
 
