@@ -256,6 +256,15 @@ class FluidFontForge
             true
         );
 
+        // Enqueue settings validation (v5.1.2)
+        wp_enqueue_script(
+            'fluidfontforge-settings-validation',
+            FLUID_FONT_FORGE_URL . 'assets/js/settings-validation.js',
+            [], // NO dependencies
+            FLUID_FONT_FORGE_VERSION,
+            true
+        );
+
         wp_enqueue_script(
             'fluid-font-forge-unified-access',
             FLUID_FONT_FORGE_URL . 'assets/js/unified-size-access.js',
