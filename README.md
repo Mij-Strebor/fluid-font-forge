@@ -6,7 +6,7 @@
 
 A WordPress plugin for creating responsive typography with CSS clamp() functions. Generate fluid font scaling that adapts smoothly across all viewport sizes.
 
-[![Version](https://img.shields.io/badge/version-5.1.1-blue.svg)](https://github.com/jimrweb/fluid-font-forge)
+[![Version](https://img.shields.io/badge/version-5.1.2-blue.svg)](https://github.com/jimrweb/fluid-font-forge)
 [![WordPress](https://img.shields.io/badge/WordPress-5.0%2B-blue.svg)](https://wordpress.org/)
 [![License](https://img.shields.io/badge/license-GPL%20v2%2B-green.svg)](LICENSE)
 [![PHP](https://img.shields.io/badge/PHP-7.4%2B-purple.svg)](https://php.net/)
