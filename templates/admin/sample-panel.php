@@ -18,17 +18,17 @@ if (!defined('ABSPATH')) {
 
 <!-- Sample Text Preview Panel -->
 <?php
-$is_expanded = isset($settings['sampleTextExpanded']) ? $settings['sampleTextExpanded'] : true;
-$expanded_class = $is_expanded ? 'expanded' : '';
+$fff_is_expanded = isset($settings['sampleTextExpanded']) ? $settings['sampleTextExpanded'] : true;
+$fff_expanded_class = $fff_is_expanded ? 'expanded' : '';
 ?>
 <div class="fcc-info-toggle-section" style="clear: both; margin: 20px 0;">
 
-    <button class="fcc-info-toggle <?php echo esc_attr($expanded_class); ?>" data-toggle-target="sample-text-content">
+    <button class="fcc-info-toggle <?php echo esc_attr($fff_expanded_class); ?>" data-toggle-target="sample-text-content">
         <span style="color: #FAF9F6 !important;">Sample Text</span>
         <span class="fcc-toggle-icon" style="color: #FAF9F6 !important;">▼</span>
     </button>
 
-    <div class="fcc-info-content <?php echo esc_attr($expanded_class); ?>" id="sample-text-content">
+    <div class="fcc-info-content <?php echo esc_attr($fff_expanded_class); ?>" id="sample-text-content">
 
         <div class="fcc-sample-display" style="display: block; background: white; border-radius: 8px; padding: 20px; border: 2px solid var(--clr-secondary); margin-bottom: 20px; box-shadow: inset 0 2px 4px var(--clr-shadow); min-height: 220px; max-height: 400px; overflow-y: auto;">
             <!-- Row 1: Labels above display boxes -->

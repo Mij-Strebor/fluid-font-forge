@@ -28,25 +28,25 @@ if (!defined('ABSPATH')) {
                     <?php
                     // Populate based on current tab
                     if ($settings['activeTab'] === 'class') {
-                        $current_sizes = $class_sizes;
-                        $property_name = 'className';
-                        $selected_id = $settings['selectedClassSizeId'];
+                        $fff_current_sizes = $class_sizes;
+                        $fff_property_name = 'className';
+                        $fff_selected_id = $settings['selectedClassSizeId'];
                     } elseif ($settings['activeTab'] === 'vars') {
-                        $current_sizes = $variable_sizes;
-                        $property_name = 'variableName';
-                        $selected_id = $settings['selectedVariableSizeId'];
+                        $fff_current_sizes = $variable_sizes;
+                        $fff_property_name = 'variableName';
+                        $fff_selected_id = $settings['selectedVariableSizeId'];
                     } elseif ($settings['activeTab'] === 'tailwind') {
-                        $current_sizes = $this->get_font_clamp_tailwind_sizes();
-                        $property_name = 'tailwindName';
-                        $selected_id = 5; // default to 'base'
+                        $fff_current_sizes = $this->get_font_clamp_tailwind_sizes();
+                        $fff_property_name = 'tailwindName';
+                        $fff_selected_id = 5; // default to 'base'
                     } else {
-                        $current_sizes = $tag_sizes;
-                        $property_name = 'tagName';
-                        $selected_id = $settings['selectedTagSizeId'];
+                        $fff_current_sizes = $tag_sizes;
+                        $fff_property_name = 'tagName';
+                        $fff_selected_id = $settings['selectedTagSizeId'];
                     }
-                    foreach ($current_sizes as $size) {
-                        $selected = $size['id'] == $selected_id ? 'selected' : '';
-                        echo '<option value="' . esc_attr($size['id']) . '" ' . ($selected ? 'selected="selected"' : '') . '>' . esc_html($size[$property_name]) . '</option>';
+                    foreach ($fff_current_sizes as $size) {
+                        $selected = $size['id'] == $fff_selected_id ? 'selected' : '';
+                        echo '<option value="' . esc_attr($size['id']) . '" ' . ($selected ? 'selected="selected"' : '') . '>' . esc_html($size[$fff_property_name]) . '</option>';
                     }
                     ?>
                 </select>
