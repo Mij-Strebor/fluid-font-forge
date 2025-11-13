@@ -86,6 +86,12 @@
             const nextIndex = index + 1;
             if (nextIndex < autoSelectInputs.length && autoSelectInputs[nextIndex]) {
               autoSelectInputs[nextIndex].focus();
+            } else {
+              // Last input - move to Min Viewport Font Scaling dropdown
+              const minScaleDropdown = document.getElementById("min-scale");
+              if (minScaleDropdown) {
+                minScaleDropdown.focus();
+              }
             }
           }
         });
