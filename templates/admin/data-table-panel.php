@@ -44,9 +44,9 @@ if (!defined('ABSPATH')) {
                         $fff_property_name = 'tagName';
                         $fff_selected_id = $settings['selectedTagSizeId'];
                     }
-                    foreach ($fff_current_sizes as $size) {
-                        $selected = $size['id'] == $fff_selected_id ? 'selected' : '';
-                        echo '<option value="' . esc_attr($size['id']) . '" ' . ($selected ? 'selected="selected"' : '') . '>' . esc_html($size[$fff_property_name]) . '</option>';
+                    foreach ($fff_current_sizes as $fff_size) {
+                        $fff_selected = $fff_size['id'] == $fff_selected_id ? 'selected' : '';
+                        echo '<option value="' . esc_attr($fff_size['id']) . '" ' . ($fff_selected ? 'selected="selected"' : '') . '>' . esc_html($fff_size[$fff_property_name]) . '</option>';
                     }
                     ?>
                 </select>
