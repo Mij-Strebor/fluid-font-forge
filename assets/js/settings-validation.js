@@ -144,37 +144,41 @@
    *
    * @param {string} message - Error message to display
    * @param {HTMLInputElement} input - The input element that failed validation
-   * @param {number} correctedValue - The corrected value to apply after 10 seconds
+   * @param {number} correctedValue - The corrected value to apply after 3 seconds
    */
   function showValidationError(message, input, correctedValue) {
-    // Create modal overlay
+    // Get input position
+    const rect = input.getBoundingClientRect();
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+
+    // Create modal positioned below input
     const modal = document.createElement("div");
     modal.className = "fff-validation-error-modal";
     modal.style.cssText = `
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      position: absolute;
+      top: ${rect.bottom + scrollTop + 8}px;
+      left: ${rect.left + scrollLeft}px;
       background: #dc2626;
       color: white;
-      padding: 24px 32px;
-      border-radius: 8px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      padding: 12px 16px;
+      border-radius: 6px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
       z-index: 10000;
       font-family: Inter, sans-serif;
-      font-size: 16px;
+      font-size: 14px;
       font-weight: 600;
-      max-width: 500px;
-      text-align: center;
-      animation: fadeIn 0.3s ease-in-out;
+      max-width: 400px;
+      text-align: left;
+      animation: fadeIn 0.2s ease-in-out;
     `;
     modal.textContent = message;
     document.body.appendChild(modal);
 
-    // Auto-correct after 10 seconds
+    // Auto-correct after 3 seconds
     setTimeout(() => {
       input.value = correctedValue;
-      modal.style.animation = "fadeOut 0.3s ease-in-out";
+      modal.style.animation = "fadeOut 0.2s ease-in-out";
       setTimeout(() => {
         modal.remove();
         // Trigger calculation if the function exists
@@ -184,8 +188,8 @@
         ) {
           window.fontClampEnhancedCore.triggerCalculation();
         }
-      }, 300);
-    }, 10000);
+      }, 200);
+    }, 3000);
   }
 
   // Initialize validation
