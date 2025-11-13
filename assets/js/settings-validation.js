@@ -62,6 +62,22 @@
         validateInput(e.target, "max-viewport")
       );
     }
+
+    // Auto-select text on focus (v5.1.2)
+    const autoSelectInputs = [
+      minRootInput,
+      maxRootInput,
+      minViewportInput,
+      maxViewportInput,
+    ];
+
+    autoSelectInputs.forEach((input) => {
+      if (input) {
+        input.addEventListener("focus", (e) => {
+          e.target.select();
+        });
+      }
+    });
   }
 
   /**
