@@ -30,7 +30,7 @@ $expanded_class = $is_expanded ? 'expanded' : '';
 
     <div class="fcc-info-content <?php echo esc_attr($expanded_class); ?>" id="sample-text-content">
 
-        <div class="fcc-sample-display" style="display: block; background: white; border-radius: 8px; padding: 20px; border: 2px solid var(--clr-secondary); margin-bottom: 20px; box-shadow: inset 0 2px 4px var(--clr-shadow); min-height: 220px; overflow: hidden;">
+        <div class="fcc-sample-display" style="display: block; background: white; border-radius: 8px; padding: 20px; border: 2px solid var(--clr-secondary); margin-bottom: 20px; box-shadow: inset 0 2px 4px var(--clr-shadow); min-height: 220px; max-height: 400px; overflow-y: auto;">
             <!-- Row 1: Labels above display boxes -->
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 16px;">
                 <!-- Titles Header -->
