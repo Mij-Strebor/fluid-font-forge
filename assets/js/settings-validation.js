@@ -159,6 +159,7 @@
       position: absolute;
       top: ${rect.bottom + scrollTop + 8}px;
       left: ${rect.left + scrollLeft}px;
+      width: ${rect.width}px;
       background: #dc2626;
       color: white;
       padding: 12px 16px;
@@ -168,9 +169,9 @@
       font-family: Inter, sans-serif;
       font-size: 14px;
       font-weight: 600;
-      max-width: 400px;
       text-align: left;
       animation: fadeIn 0.2s ease-in-out;
+      box-sizing: border-box;
     `;
     modal.textContent = message;
     document.body.appendChild(modal);
@@ -178,16 +179,14 @@
     // Auto-correct after 3 seconds
     setTimeout(() => {
       input.value = correctedValue;
+
+      // Trigger input event to update all calculations
+      const event = new Event('input', { bubbles: true });
+      input.dispatchEvent(event);
+
       modal.style.animation = "fadeOut 0.2s ease-in-out";
       setTimeout(() => {
         modal.remove();
-        // Trigger calculation if the function exists
-        if (
-          typeof window.fontClampEnhancedCore !== "undefined" &&
-          window.fontClampEnhancedCore.triggerCalculation
-        ) {
-          window.fontClampEnhancedCore.triggerCalculation();
-        }
       }, 200);
     }, 3000);
   }
