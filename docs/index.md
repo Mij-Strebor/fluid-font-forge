@@ -1,11 +1,13 @@
 ---
 layout: default
-title: Fluid Font Forge Documentation
+title: Fluid Font Forge
 ---
 
-# Fluid Font Forge
+<div align="center">
+  <img src="screenshots/banner.png" alt="Fluid Font Forge" style="max-width: 100%; height: auto; margin: 2rem 0;">
+</div>
 
-![Fluid Font Forge](/docs/screenshots/banner.png)
+# Fluid Font Forge
 
 **Professional responsive typography for WordPress**
 

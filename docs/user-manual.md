@@ -1,8 +1,11 @@
-'HEADER'
 ---
 layout: default
 title: User Manual
----# Fluid Font Forge User Manual
+---
+
+[← Back to Documentation](index)
+
+# Fluid Font Forge User Manual
 
 **Version 5.1.2**  
 Professional Responsive Typography for WordPress
@@ -194,7 +197,7 @@ Try different fonts during the meeting:
 
 ### Pro Tips for Client Presentations
 
-**Note**: The following features are planned for a future Pro version:
+**Note**: The following features are planned for a future version:
 
 1. **Prepare Multiple Scenarios**: Save different configurations before the meeting *(Coming Soon)*
 2. **Use Client's Content**: Replace sample text with actual headlines from their business *(Coming Soon)*
@@ -2331,11 +2334,14 @@ Whether you're:
 Fluid Font Forge provides the tools you need for professional, accessible, and maintainable typography.
 
 For more information, visit:
-- **Plugin Page**: Tools → [Fluid Font Forge](https://wordpress.org/plugins/fluid-font-forge/) in WordPress admin
-- **Documentation**: [GitHub Wiki](https://github.com/Mij-Strebor/fluid-font-forge/wiki)
-- **Support**: [GitHub Issues](https://github.com/Mij-Strebor/fluid-font-forge/issues)
+- **Plugin Page**: Tools → Fluid Font Forge in WordPress admin
+- **Documentation**: [GitHub Wiki](https://github.com/jimrweb/fluid-font-forge/wiki)
+- **Support**: [GitHub Issues](https://github.com/jimrweb/fluid-font-forge/issues)
 
 ---
 
 *Generated for Fluid Font Forge v5.1.2*  
-*© 2025 Jim R Forge, JimRForge.com - All rights reserved*
+*© 2025 JimRWeb.com - All rights reserved*
+---
+
+[← Back to Documentation](index) | [Quick Start Guide](quick-start) | [Report Issues](https://github.com/Mij-Strebor/fluid-font-forge/issues)
