@@ -173,9 +173,8 @@ This project is licensed under GPL v2 or later. See the [LICENSE](LICENSE) file 
 
 ## Documentation
 
-- 📘 **[User Manual](USER-MANUAL.md)** - Comprehensive guide with real-world use cases
-- 📖 **[Quick Start Guide](docs/quick-start.md)** - Get started in 5 minutes *(coming soon)*
-- 🔧 **[Troubleshooting](docs/troubleshooting.md)** - Common issues and solutions *(coming soon)*
+- 📘 **[User Manual](USER-MANUAL.md)** - Comprehensive guide with real-world use cases- 
+- 📖 **[Quick Start Guide](docs/quick-start.md)** - Get started in 5 minutes 
 - 💬 **[GitHub Discussions](https://github.com/Mij-Strebor/fluid-font-forge/discussions)** - Ask questions
 
 
