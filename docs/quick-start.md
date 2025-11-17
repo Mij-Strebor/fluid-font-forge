@@ -5,6 +5,7 @@ title: Quick Start
 
 [← Back to Documentation](index)
 
+
 # Quick Start Guide
 
 Get started with Fluid Font Forge in 5 minutes and generate your first responsive typography system.
