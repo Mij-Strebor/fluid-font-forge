@@ -6,7 +6,7 @@
 
 A WordPress plugin for creating responsive typography with CSS clamp() functions. Generate fluid font scaling that adapts smoothly across all viewport sizes.
 
-[![Version](https://img.shields.io/badge/version-5.1.2-blue.svg)](https://github.com/jimrweb/fluid-font-forge)
+[![Version](https://img.shields.io/badge/version-5.1.2-blue.svg)](https://github.com/Mij-Strebor/fluid-font-forge)
 [![WordPress](https://img.shields.io/badge/WordPress-5.0%2B-blue.svg)](https://wordpress.org/)
 [![License](https://img.shields.io/badge/license-GPL%20v2%2B-green.svg)](LICENSE)
 [![PHP](https://img.shields.io/badge/PHP-7.4%2B-purple.svg)](https://php.net/)
@@ -170,10 +170,22 @@ This project is licensed under GPL v2 or later. See the [LICENSE](LICENSE) file 
 **Inspiration**
 - [Imran Siddiq](https://websquadron.co.uk) - Original Font Clamp Calculator concept
 
+
+## Documentation
+
+- 📘 **[User Manual](USER-MANUAL.md)** - Comprehensive guide with real-world use cases
+- 📖 **[Quick Start Guide](docs/quick-start.md)** - Get started in 5 minutes *(coming soon)*
+- 🔧 **[Troubleshooting](docs/troubleshooting.md)** - Common issues and solutions *(coming soon)*
+- 💬 **[GitHub Discussions](https://github.com/Mij-Strebor/fluid-font-forge/discussions)** - Ask questions
+
+
+
 ## Support
 
-- **Issues**: [GitHub Issues](https://github.com/jimrweb/fluid-font-forge/issues)
-- **Documentation**: [GitHub Wiki](https://github.com/jimrweb/fluid-font-forge/wiki)
+- **Issues**: [GitHub Issues](https://github.com/Mij-Strebor/fluid-font-forge/issues)
+- **Documentation**: [GitHub Wiki](https://github.com/Mij-Strebor/fluid-font-forge/wiki) 
+- **Documentation**: [User Manual](USER-MANUAL.md)
+- **Email**: jim@jimrforge.com
 
 ---
 
@@ -181,7 +193,7 @@ This project is licensed under GPL v2 or later. See the [LICENSE](LICENSE) file 
 
 **🚀 Made with ❤️ for the WordPress Community**
 
-[⭐ Star this repository](https://github.com/jimrweb/fluid-font-forge) • [🐛 Report Issues](https://github.com/jimrweb/fluid-font-forge/issues) • [💬 Join Discussion](https://github.com/jimrweb/fluid-font-forge/discussions)
+[⭐ Star this repository](https://github.com/Mij-Strebor/fluid-font-forge) • [🐛 Report Issues](https://github.com/Mij-Strebor/fluid-font-forge/issues) • [💬 Join Discussion](https://github.com/Mij-Strebor/fluid-font-forge/discussions)
 
 **Professional WordPress Plugin Development** | **[JimRWeb.com](https://jimrweb.com)**
 
