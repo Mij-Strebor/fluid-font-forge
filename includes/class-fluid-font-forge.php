@@ -304,32 +304,7 @@ class FluidFontForge
             true
         );
 
-        // TEST VERSION - Simple data
-        wp_localize_script('fluidfontforge-utilities', 'fluidfontforgeAjax', [
-            'nonce' => wp_create_nonce(self::NONCE_ACTION),
-            'ajaxurl' => admin_url('admin-ajax.php'),
-            'test' => 'working'
-        ]);
-
-        // Localize data for the UTILITIES script (loaded first)
-        /*** 
-        wp_localize_script('fluidfontforge-utilities', 'fluidfontforgeAjax', [
-            'nonce' => wp_create_nonce(self::NONCE_ACTION),
-            'ajaxurl' => admin_url('admin-ajax.php'),
-            'data' => [
-                'settings' => $this->get_font_clamp_settings(),
-                'classSizes' => $this->get_font_clamp_class_sizes(),
-                'variableSizes' => $this->get_font_clamp_variable_sizes(),
-                'tagSizes' => $this->get_font_clamp_tag_sizes(),
-                'tailwindSizes' => $this->get_font_clamp_tailwind_sizes()
-            ],
-            'constants' => $this->get_all_constants(),
-            'version' => FLUID_FONT_FORGE_VERSION
-        ]);
-    }
-         ***/
-
-        // Localize data for the MAIN ADMIN script (loaded last)
+        // Localize data for the MAIN ADMIN script
         wp_localize_script('fluidfontforge-admin', 'fluidfontforgeAjax', [
             'nonce' => wp_create_nonce(self::NONCE_ACTION),
             'ajaxurl' => admin_url('admin-ajax.php'),
@@ -686,8 +661,8 @@ class FluidFontForge
     public function save_settings()
     {
         try {
-            // Update nonce verification to use correct action
-            if (!isset($_POST['nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['nonce'])), 'fluid_font_nonce')) {
+            // Verify nonce using class constant
+            if (!isset($_POST['nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['nonce'])), self::NONCE_ACTION)) {
                 wp_send_json_error(['message' => 'Security check failed']);
                 return;
             }
@@ -764,13 +739,13 @@ class FluidFontForge
                 'message' => 'All data saved to database successfully',
                 'saved_settings' => $result1,
                 'saved_sizes' => $result2 && $result3 && $result4,
-                'timestamp' => current_time('timestamp')
+                'timestamp' => time()
             ]);
         } catch (Exception $e) {
             wp_send_json_error([
                 'message' => 'Save failed: ' . $e->getMessage(),
                 'error_code' => 'SAVE_SETTINGS_FAILED',
-                'timestamp' => current_time('timestamp')
+                'timestamp' => time()
             ]);
         }
     }

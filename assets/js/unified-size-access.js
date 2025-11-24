@@ -374,7 +374,6 @@ class FontForgeDataAccessor {
             return window.fontClampAdvanced.getDefaultClassSizes?.() || [];
           }
           return result;
-          return window.fontClampAdvanced.getDefaultClassSizes?.() || [];
         case "vars":
           return window.fontClampAdvanced.getDefaultVariableSizes?.() || [];
         case "tag":
