@@ -19,9 +19,9 @@
  *
  * @package    FluidFontForge
  * @subpackage Uninstall
- * @author     Jim R (JimRWeb)
+ * @author     Jim R (JimRForge)
  * @version    4.1.0
- * @link       https://jimrweb.com
+ * @link       https://jimrforge.com
  */
 
 // If uninstall not called from WordPress, then exit
@@ -43,11 +43,16 @@ require_once plugin_dir_path(__FILE__) . 'fluid-font-forge.php';
  * Systematically delete all plugin-related options to ensure
  * complete data removal and prevent orphaned database entries.
  */
+// Main plugin data options
 delete_option(FLUID_FONT_FORGE_OPTION_SETTINGS);
 delete_option(FLUID_FONT_FORGE_OPTION_CLASS_SIZES);
 delete_option(FLUID_FONT_FORGE_OPTION_VARIABLE_SIZES);
 delete_option(FLUID_FONT_FORGE_OPTION_TAG_SIZES);
 delete_option(FLUID_FONT_FORGE_OPTION_TAILWIND_SIZES);
+
+// Version tracking options
+delete_option('fluid_font_forge_version');
+delete_option('fluid_font_forge_migration_version');
 
 // Clear any cached data
 wp_cache_flush();

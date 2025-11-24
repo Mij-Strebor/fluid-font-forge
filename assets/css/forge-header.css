@@ -103,7 +103,7 @@
  * Positions the header content above the background with proper z-index.
  * Centered alignment matches body panels. Top padding positions H1 at top third.
  */
-.fcc-header-section {
+.fff-header-section {
     position: relative !important;
     z-index: 1 !important;           /* Above ::before background */
     padding-top: 16vh !important;    /* Position H1 at top third (~33% of 50vh header) */
@@ -123,7 +123,7 @@
  * Positions ONLY the first About panel closer to header, just below the fade transition.
  * Targets About section inside header using descendant selector to prevent affecting inventory category panels.
  */
-.fcc-header-section .fcc-info-toggle-section {
+.fff-header-section .fff-info-toggle-section {
     margin-top: 36vh !important;  /* Move up closer to header fade */
     margin-top: max(280px, 36vh) !important;  /* Minimum 280px for small screens */
 }
@@ -136,7 +136,7 @@
  *
  * Gradient strategy: Radial from top-left (bright yellow) to bottom-right (deep orange)
  */
-.fcc-header-section h1 {
+.fff-header-section h1 {
     /* STRONGER multi-directional gradient - radial for top-to-bottom + left-to-right */
     background: radial-gradient(
         ellipse at top left,
@@ -185,15 +185,15 @@
 /**
  * About Panel Positioning (Outside Header)
  *
- * Since About panel is now outside .fcc-header-section, we need to position it
+ * Since About panel is now outside .fff-header-section, we need to position it
  * appropriately below the forge background fade. Uses negative margin to pull
  * it up into the faded area for seamless integration.
  *
- * IMPORTANT: Only targets the About panel (first .fcc-info-toggle-section that's
+ * IMPORTANT: Only targets the About panel (first .fff-info-toggle-section that's
  * a direct child of .wrap). How to Use panel is inside .font-clamp-container
  * and should NOT get this spacing.
  */
-.wrap > .fcc-info-toggle-section:first-of-type {
+.wrap > .fff-info-toggle-section:first-of-type {
     margin: 0 auto 40px !important;  /* Pull up into bottom fade area */
     position: relative !important;  /* Create stacking context */
     z-index: 3 !important;  /* Above forge background (z-index: 0) */
@@ -201,13 +201,13 @@
 }
 
 /* About panel centering - More specific to override panel-layout.css */
-.wrap > .fcc-info-toggle-section.fcc-info-toggle-section:first-of-type {
+.wrap > .fff-info-toggle-section.fff-info-toggle-section:first-of-type {
     margin-left: auto !important;
     margin-right: auto !important;
 }
 
 /* Ensure How to Use panel (inside container) has normal spacing */
-.font-clamp-container .fcc-info-toggle-section {
+.font-clamp-container .fff-info-toggle-section {
     margin-top: 0 !important;
     margin-bottom: var(--spc-xl) !important;
 }
@@ -217,6 +217,6 @@
  *
  * Moves the title in from the left edge for better visual balance.
  */
-.fcc-header-section h1 {
+.fff-header-section h1 {
     padding-left: 140px !important;
 }

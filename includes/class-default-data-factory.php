@@ -11,7 +11,7 @@
  * @since 4.2.0
  */
 
-namespace JimRWeb\FluidFontForge;
+namespace JimRForge\FluidFontForge;
 
 // Prevent direct access
 if (!defined('ABSPATH')) {
@@ -73,18 +73,18 @@ class DefaultDataFactory
     public static function getDefaultSettings()
     {
         return [
-            'minRootSize' => \JimRWeb\FluidFontForge\FluidFontForge::DEFAULT_MIN_ROOT_SIZE,
-            'maxRootSize' => \JimRWeb\FluidFontForge\FluidFontForge::DEFAULT_MAX_ROOT_SIZE,
-            'minViewport' => \JimRWeb\FluidFontForge\FluidFontForge::DEFAULT_MIN_VIEWPORT,
-            'maxViewport' => \JimRWeb\FluidFontForge\FluidFontForge::DEFAULT_MAX_VIEWPORT,
+            'minRootSize' => \JimRForge\FluidFontForge\FluidFontForge::DEFAULT_MIN_ROOT_SIZE,
+            'maxRootSize' => \JimRForge\FluidFontForge\FluidFontForge::DEFAULT_MAX_ROOT_SIZE,
+            'minViewport' => \JimRForge\FluidFontForge\FluidFontForge::DEFAULT_MIN_VIEWPORT,
+            'maxViewport' => \JimRForge\FluidFontForge\FluidFontForge::DEFAULT_MAX_VIEWPORT,
             'unitType' => 'px',
             'selectedClassSizeId' => 5,
             'selectedVariableSizeId' => 5,
             'selectedTagSizeId' => 7, // 'p' tag
             'activeTab' => 'class',
             'previewFontUrl' => '',
-            'minScale' => \JimRWeb\FluidFontForge\FluidFontForge::DEFAULT_MIN_SCALE,
-            'maxScale' => \JimRWeb\FluidFontForge\FluidFontForge::DEFAULT_MAX_SCALE,
+            'minScale' => \JimRForge\FluidFontForge\FluidFontForge::DEFAULT_MIN_SCALE,
+            'maxScale' => \JimRForge\FluidFontForge\FluidFontForge::DEFAULT_MAX_SCALE,
             'autosaveEnabled' => false,
             'classBaseValue' => 'medium',
             'varsBaseValue' => '--fs-md',
@@ -113,14 +113,14 @@ class DefaultDataFactory
     public static function getDefaultClassSizes()
     {
         return array(
-            array('id' => 1, 'className' => 'xxxlarge', 'lineHeight' => \JimRWeb\FluidFontForge\FluidFontForge::DEFAULT_HEADING_LINE_HEIGHT),
-            array('id' => 2, 'className' => 'xxlarge', 'lineHeight' => \JimRWeb\FluidFontForge\FluidFontForge::DEFAULT_HEADING_LINE_HEIGHT),
-            array('id' => 3, 'className' => 'xlarge', 'lineHeight' => \JimRWeb\FluidFontForge\FluidFontForge::DEFAULT_HEADING_LINE_HEIGHT),
-            array('id' => 4, 'className' => 'large', 'lineHeight' => \JimRWeb\FluidFontForge\FluidFontForge::DEFAULT_BODY_LINE_HEIGHT),
-            array('id' => 5, 'className' => 'medium', 'lineHeight' => \JimRWeb\FluidFontForge\FluidFontForge::DEFAULT_BODY_LINE_HEIGHT),
-            array('id' => 6, 'className' => 'small', 'lineHeight' => \JimRWeb\FluidFontForge\FluidFontForge::DEFAULT_BODY_LINE_HEIGHT),
-            array('id' => 7, 'className' => 'xsmall', 'lineHeight' => \JimRWeb\FluidFontForge\FluidFontForge::DEFAULT_BODY_LINE_HEIGHT),
-            array('id' => 8, 'className' => 'xxsmall', 'lineHeight' => \JimRWeb\FluidFontForge\FluidFontForge::DEFAULT_BODY_LINE_HEIGHT)
+            array('id' => 1, 'className' => 'xxxlarge', 'lineHeight' => \JimRForge\FluidFontForge\FluidFontForge::DEFAULT_HEADING_LINE_HEIGHT),
+            array('id' => 2, 'className' => 'xxlarge', 'lineHeight' => \JimRForge\FluidFontForge\FluidFontForge::DEFAULT_HEADING_LINE_HEIGHT),
+            array('id' => 3, 'className' => 'xlarge', 'lineHeight' => \JimRForge\FluidFontForge\FluidFontForge::DEFAULT_HEADING_LINE_HEIGHT),
+            array('id' => 4, 'className' => 'large', 'lineHeight' => \JimRForge\FluidFontForge\FluidFontForge::DEFAULT_BODY_LINE_HEIGHT),
+            array('id' => 5, 'className' => 'medium', 'lineHeight' => \JimRForge\FluidFontForge\FluidFontForge::DEFAULT_BODY_LINE_HEIGHT),
+            array('id' => 6, 'className' => 'small', 'lineHeight' => \JimRForge\FluidFontForge\FluidFontForge::DEFAULT_BODY_LINE_HEIGHT),
+            array('id' => 7, 'className' => 'xsmall', 'lineHeight' => \JimRForge\FluidFontForge\FluidFontForge::DEFAULT_BODY_LINE_HEIGHT),
+            array('id' => 8, 'className' => 'xxsmall', 'lineHeight' => \JimRForge\FluidFontForge\FluidFontForge::DEFAULT_BODY_LINE_HEIGHT)
         );
     }
 
@@ -136,14 +136,14 @@ class DefaultDataFactory
     public static function getDefaultVariableSizes()
     {
         return array(
-            array('id' => 1, 'variableName' => '--fs-xxxl', 'lineHeight' => \JimRWeb\FluidFontForge\FluidFontForge::DEFAULT_HEADING_LINE_HEIGHT),
-            array('id' => 2, 'variableName' => '--fs-xxl', 'lineHeight' => \JimRWeb\FluidFontForge\FluidFontForge::DEFAULT_HEADING_LINE_HEIGHT),
-            array('id' => 3, 'variableName' => '--fs-xl', 'lineHeight' => \JimRWeb\FluidFontForge\FluidFontForge::DEFAULT_HEADING_LINE_HEIGHT),
-            array('id' => 4, 'variableName' => '--fs-lg', 'lineHeight' => \JimRWeb\FluidFontForge\FluidFontForge::DEFAULT_BODY_LINE_HEIGHT),
-            array('id' => 5, 'variableName' => '--fs-md', 'lineHeight' => \JimRWeb\FluidFontForge\FluidFontForge::DEFAULT_BODY_LINE_HEIGHT),
-            array('id' => 6, 'variableName' => '--fs-sm', 'lineHeight' => \JimRWeb\FluidFontForge\FluidFontForge::DEFAULT_BODY_LINE_HEIGHT),
-            array('id' => 7, 'variableName' => '--fs-xs', 'lineHeight' => \JimRWeb\FluidFontForge\FluidFontForge::DEFAULT_BODY_LINE_HEIGHT),
-            array('id' => 8, 'variableName' => '--fs-xxs', 'lineHeight' => \JimRWeb\FluidFontForge\FluidFontForge::DEFAULT_BODY_LINE_HEIGHT)
+            array('id' => 1, 'variableName' => '--fs-xxxl', 'lineHeight' => \JimRForge\FluidFontForge\FluidFontForge::DEFAULT_HEADING_LINE_HEIGHT),
+            array('id' => 2, 'variableName' => '--fs-xxl', 'lineHeight' => \JimRForge\FluidFontForge\FluidFontForge::DEFAULT_HEADING_LINE_HEIGHT),
+            array('id' => 3, 'variableName' => '--fs-xl', 'lineHeight' => \JimRForge\FluidFontForge\FluidFontForge::DEFAULT_HEADING_LINE_HEIGHT),
+            array('id' => 4, 'variableName' => '--fs-lg', 'lineHeight' => \JimRForge\FluidFontForge\FluidFontForge::DEFAULT_BODY_LINE_HEIGHT),
+            array('id' => 5, 'variableName' => '--fs-md', 'lineHeight' => \JimRForge\FluidFontForge\FluidFontForge::DEFAULT_BODY_LINE_HEIGHT),
+            array('id' => 6, 'variableName' => '--fs-sm', 'lineHeight' => \JimRForge\FluidFontForge\FluidFontForge::DEFAULT_BODY_LINE_HEIGHT),
+            array('id' => 7, 'variableName' => '--fs-xs', 'lineHeight' => \JimRForge\FluidFontForge\FluidFontForge::DEFAULT_BODY_LINE_HEIGHT),
+            array('id' => 8, 'variableName' => '--fs-xxs', 'lineHeight' => \JimRForge\FluidFontForge\FluidFontForge::DEFAULT_BODY_LINE_HEIGHT)
         );
     }
 
@@ -159,14 +159,14 @@ class DefaultDataFactory
     public static function getDefaultTagSizes()
     {
         return array(
-            array('id' => 1, 'tagName' => 'h1', 'lineHeight' => \JimRWeb\FluidFontForge\FluidFontForge::DEFAULT_HEADING_LINE_HEIGHT),
-            array('id' => 2, 'tagName' => 'h2', 'lineHeight' => \JimRWeb\FluidFontForge\FluidFontForge::DEFAULT_HEADING_LINE_HEIGHT),
-            array('id' => 3, 'tagName' => 'h3', 'lineHeight' => \JimRWeb\FluidFontForge\FluidFontForge::DEFAULT_HEADING_LINE_HEIGHT),
-            array('id' => 4, 'tagName' => 'h4', 'lineHeight' => \JimRWeb\FluidFontForge\FluidFontForge::DEFAULT_HEADING_LINE_HEIGHT),
-            array('id' => 5, 'tagName' => 'h5', 'lineHeight' => \JimRWeb\FluidFontForge\FluidFontForge::DEFAULT_HEADING_LINE_HEIGHT),
-            array('id' => 6, 'tagName' => 'h6', 'lineHeight' => \JimRWeb\FluidFontForge\FluidFontForge::DEFAULT_HEADING_LINE_HEIGHT),
-            array('id' => 7, 'tagName' => 'p', 'lineHeight' => \JimRWeb\FluidFontForge\FluidFontForge::DEFAULT_BODY_LINE_HEIGHT),
-            array('id' => 8, 'tagName' => 'small', 'lineHeight' => \JimRWeb\FluidFontForge\FluidFontForge::DEFAULT_BODY_LINE_HEIGHT)
+            array('id' => 1, 'tagName' => 'h1', 'lineHeight' => \JimRForge\FluidFontForge\FluidFontForge::DEFAULT_HEADING_LINE_HEIGHT),
+            array('id' => 2, 'tagName' => 'h2', 'lineHeight' => \JimRForge\FluidFontForge\FluidFontForge::DEFAULT_HEADING_LINE_HEIGHT),
+            array('id' => 3, 'tagName' => 'h3', 'lineHeight' => \JimRForge\FluidFontForge\FluidFontForge::DEFAULT_HEADING_LINE_HEIGHT),
+            array('id' => 4, 'tagName' => 'h4', 'lineHeight' => \JimRForge\FluidFontForge\FluidFontForge::DEFAULT_HEADING_LINE_HEIGHT),
+            array('id' => 5, 'tagName' => 'h5', 'lineHeight' => \JimRForge\FluidFontForge\FluidFontForge::DEFAULT_HEADING_LINE_HEIGHT),
+            array('id' => 6, 'tagName' => 'h6', 'lineHeight' => \JimRForge\FluidFontForge\FluidFontForge::DEFAULT_HEADING_LINE_HEIGHT),
+            array('id' => 7, 'tagName' => 'p', 'lineHeight' => \JimRForge\FluidFontForge\FluidFontForge::DEFAULT_BODY_LINE_HEIGHT),
+            array('id' => 8, 'tagName' => 'small', 'lineHeight' => \JimRForge\FluidFontForge\FluidFontForge::DEFAULT_BODY_LINE_HEIGHT)
         );
     }
 
@@ -182,14 +182,14 @@ class DefaultDataFactory
     public static function getDefaultTailwindSizes()
     {
         return array(
-            array('id' => 1, 'tailwindName' => '4xl', 'lineHeight' => \JimRWeb\FluidFontForge\FluidFontForge::DEFAULT_HEADING_LINE_HEIGHT),
-            array('id' => 2, 'tailwindName' => '3xl', 'lineHeight' => \JimRWeb\FluidFontForge\FluidFontForge::DEFAULT_HEADING_LINE_HEIGHT),
-            array('id' => 3, 'tailwindName' => '2xl', 'lineHeight' => \JimRWeb\FluidFontForge\FluidFontForge::DEFAULT_HEADING_LINE_HEIGHT),
-            array('id' => 4, 'tailwindName' => 'xl', 'lineHeight' => \JimRWeb\FluidFontForge\FluidFontForge::DEFAULT_BODY_LINE_HEIGHT),
-            array('id' => 5, 'tailwindName' => 'base', 'lineHeight' => \JimRWeb\FluidFontForge\FluidFontForge::DEFAULT_BODY_LINE_HEIGHT),
-            array('id' => 6, 'tailwindName' => 'lg', 'lineHeight' => \JimRWeb\FluidFontForge\FluidFontForge::DEFAULT_BODY_LINE_HEIGHT),
-            array('id' => 7, 'tailwindName' => 'sm', 'lineHeight' => \JimRWeb\FluidFontForge\FluidFontForge::DEFAULT_BODY_LINE_HEIGHT),
-            array('id' => 8, 'tailwindName' => 'xs', 'lineHeight' => \JimRWeb\FluidFontForge\FluidFontForge::DEFAULT_BODY_LINE_HEIGHT)
+            array('id' => 1, 'tailwindName' => '4xl', 'lineHeight' => \JimRForge\FluidFontForge\FluidFontForge::DEFAULT_HEADING_LINE_HEIGHT),
+            array('id' => 2, 'tailwindName' => '3xl', 'lineHeight' => \JimRForge\FluidFontForge\FluidFontForge::DEFAULT_HEADING_LINE_HEIGHT),
+            array('id' => 3, 'tailwindName' => '2xl', 'lineHeight' => \JimRForge\FluidFontForge\FluidFontForge::DEFAULT_HEADING_LINE_HEIGHT),
+            array('id' => 4, 'tailwindName' => 'xl', 'lineHeight' => \JimRForge\FluidFontForge\FluidFontForge::DEFAULT_BODY_LINE_HEIGHT),
+            array('id' => 5, 'tailwindName' => 'base', 'lineHeight' => \JimRForge\FluidFontForge\FluidFontForge::DEFAULT_BODY_LINE_HEIGHT),
+            array('id' => 6, 'tailwindName' => 'lg', 'lineHeight' => \JimRForge\FluidFontForge\FluidFontForge::DEFAULT_BODY_LINE_HEIGHT),
+            array('id' => 7, 'tailwindName' => 'sm', 'lineHeight' => \JimRForge\FluidFontForge\FluidFontForge::DEFAULT_BODY_LINE_HEIGHT),
+            array('id' => 8, 'tailwindName' => 'xs', 'lineHeight' => \JimRForge\FluidFontForge\FluidFontForge::DEFAULT_BODY_LINE_HEIGHT)
         );
     }
 
@@ -209,22 +209,22 @@ class DefaultDataFactory
     public static function getConstants()
     {
         return array(
-            'DEFAULT_MIN_ROOT_SIZE' => \JimRWeb\FluidFontForge\FluidFontForge::DEFAULT_MIN_ROOT_SIZE,
-            'DEFAULT_MAX_ROOT_SIZE' => \JimRWeb\FluidFontForge\FluidFontForge::DEFAULT_MAX_ROOT_SIZE,
-            'DEFAULT_MIN_VIEWPORT' => \JimRWeb\FluidFontForge\FluidFontForge::DEFAULT_MIN_VIEWPORT,
-            'DEFAULT_MAX_VIEWPORT' => \JimRWeb\FluidFontForge\FluidFontForge::DEFAULT_MAX_VIEWPORT,
-            'DEFAULT_MIN_SCALE' => \JimRWeb\FluidFontForge\FluidFontForge::DEFAULT_MIN_SCALE,
-            'DEFAULT_MAX_SCALE' => \JimRWeb\FluidFontForge\FluidFontForge::DEFAULT_MAX_SCALE,
-            'DEFAULT_HEADING_LINE_HEIGHT' => \JimRWeb\FluidFontForge\FluidFontForge::DEFAULT_HEADING_LINE_HEIGHT,
-            'DEFAULT_BODY_LINE_HEIGHT' => \JimRWeb\FluidFontForge\FluidFontForge::DEFAULT_BODY_LINE_HEIGHT,
-            'BROWSER_DEFAULT_FONT_SIZE' => \JimRWeb\FluidFontForge\FluidFontForge::BROWSER_DEFAULT_FONT_SIZE,
-            'CSS_UNIT_CONVERSION_BASE' => \JimRWeb\FluidFontForge\FluidFontForge::CSS_UNIT_CONVERSION_BASE,
-            'MIN_ROOT_SIZE_RANGE' => \JimRWeb\FluidFontForge\FluidFontForge::MIN_ROOT_SIZE_RANGE,
-            'VIEWPORT_RANGE' => \JimRWeb\FluidFontForge\FluidFontForge::VIEWPORT_RANGE,
-            'LINE_HEIGHT_RANGE' => \JimRWeb\FluidFontForge\FluidFontForge::LINE_HEIGHT_RANGE,
-            'SCALE_RANGE' => \JimRWeb\FluidFontForge\FluidFontForge::SCALE_RANGE,
-            'VALID_UNITS' => \JimRWeb\FluidFontForge\FluidFontForge::VALID_UNITS,
-            'VALID_TABS' => \JimRWeb\FluidFontForge\FluidFontForge::VALID_TABS
+            'DEFAULT_MIN_ROOT_SIZE' => \JimRForge\FluidFontForge\FluidFontForge::DEFAULT_MIN_ROOT_SIZE,
+            'DEFAULT_MAX_ROOT_SIZE' => \JimRForge\FluidFontForge\FluidFontForge::DEFAULT_MAX_ROOT_SIZE,
+            'DEFAULT_MIN_VIEWPORT' => \JimRForge\FluidFontForge\FluidFontForge::DEFAULT_MIN_VIEWPORT,
+            'DEFAULT_MAX_VIEWPORT' => \JimRForge\FluidFontForge\FluidFontForge::DEFAULT_MAX_VIEWPORT,
+            'DEFAULT_MIN_SCALE' => \JimRForge\FluidFontForge\FluidFontForge::DEFAULT_MIN_SCALE,
+            'DEFAULT_MAX_SCALE' => \JimRForge\FluidFontForge\FluidFontForge::DEFAULT_MAX_SCALE,
+            'DEFAULT_HEADING_LINE_HEIGHT' => \JimRForge\FluidFontForge\FluidFontForge::DEFAULT_HEADING_LINE_HEIGHT,
+            'DEFAULT_BODY_LINE_HEIGHT' => \JimRForge\FluidFontForge\FluidFontForge::DEFAULT_BODY_LINE_HEIGHT,
+            'BROWSER_DEFAULT_FONT_SIZE' => \JimRForge\FluidFontForge\FluidFontForge::BROWSER_DEFAULT_FONT_SIZE,
+            'CSS_UNIT_CONVERSION_BASE' => \JimRForge\FluidFontForge\FluidFontForge::CSS_UNIT_CONVERSION_BASE,
+            'MIN_ROOT_SIZE_RANGE' => \JimRForge\FluidFontForge\FluidFontForge::MIN_ROOT_SIZE_RANGE,
+            'VIEWPORT_RANGE' => \JimRForge\FluidFontForge\FluidFontForge::VIEWPORT_RANGE,
+            'LINE_HEIGHT_RANGE' => \JimRForge\FluidFontForge\FluidFontForge::LINE_HEIGHT_RANGE,
+            'SCALE_RANGE' => \JimRForge\FluidFontForge\FluidFontForge::SCALE_RANGE,
+            'VALID_UNITS' => \JimRForge\FluidFontForge\FluidFontForge::VALID_UNITS,
+            'VALID_TABS' => \JimRForge\FluidFontForge\FluidFontForge::VALID_TABS
         );
     }
 

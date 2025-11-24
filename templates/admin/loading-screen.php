@@ -13,13 +13,13 @@ if (!defined('ABSPATH')) {
 }
 ?>
 
-<div id="fcc-loading-screen" class="fcc-loading-screen">
-    <div class="fcc-loading-content">
-        <div class="fcc-loading-spinner"></div>
+<div id="fff-loading-screen" class="fff-loading-screen">
+    <div class="fff-loading-content">
+        <div class="fff-loading-spinner"></div>
         <h2>Fluid Font Forge<br><br>Loading...</h2>
         <p>Initializing enhanced interface and advanced features...</p>
-        <div class="fcc-loading-progress">
-            <div class="fcc-progress-bar"></div>
+        <div class="fff-loading-progress">
+            <div class="fff-progress-bar"></div>
         </div>
     </div>
 </div>

@@ -18,12 +18,12 @@
  * Ensures content doesn't touch the panel borders.
  */
 #sizes-table-container,
-.fcc-panel[style*="margin-bottom: 8px"] {
+.fff-panel[style*="margin-bottom: 8px"] {
     padding: 24px !important;
 }
 
-/* All fcc-panel divs get padding */
-.fcc-panel {
+/* All fff-panel divs get padding */
+.fff-panel {
     padding: 24px !important;
     box-sizing: border-box !important;
 }
@@ -37,38 +37,38 @@
  *
  * Uses max-width with margins for proper alignment without forcing fixed width.
  */
-.fcc-preview-enhanced {
+.fff-preview-enhanced {
     max-width: 1280px !important;
     margin: 20px !important;
     box-sizing: border-box !important;
 }
 
 /* Inner content should not exceed panel width */
-.fcc-preview-enhanced > * {
+.fff-preview-enhanced > * {
     max-width: 100% !important;
     box-sizing: border-box !important;
 }
 
 /* Ultra-specific selectors for Settings and Data panels */
-.fcc-main-grid > div > .fcc-panel,
-div.fcc-panel[style*="margin-bottom: 8px"],
-div#sizes-table-container.fcc-panel {
+.fff-main-grid > div > .fff-panel,
+div.fff-panel[style*="margin-bottom: 8px"],
+div#sizes-table-container.fff-panel {
     padding: 24px !important;
 }
 
 /* Remove any conflicting padding rules on children */
-.fcc-panel > h2:first-child {
+.fff-panel > h2:first-child {
     margin-top: 0 !important;
 }
 
-.fcc-panel > div:first-of-type {
+.fff-panel > div:first-of-type {
     margin-top: 0 !important;
 }
 
 /* Nuclear option - inline attribute selector */
-div[class="fcc-panel"],
-div.fcc-panel.fcc-panel,
-.fcc-panel.fcc-panel.fcc-panel {
+div[class="fff-panel"],
+div.fff-panel.fff-panel,
+.fff-panel.fff-panel.fff-panel {
     padding: 24px !important;
     padding-top: 24px !important;
     padding-right: 24px !important;
@@ -77,7 +77,7 @@ div.fcc-panel.fcc-panel,
 }
 
 /* Add left margin to panels outside the grid to match grid padding */
-.fcc-panel:not(.fcc-main-grid .fcc-panel) {
+.fff-panel:not(.fff-main-grid .fff-panel) {
     margin-left: 24px !important;
 }
 
@@ -86,19 +86,19 @@ div.fcc-panel.fcc-panel,
    ========================================================================== */
 
 /**
- * Base Rules - All panels using .fcc-info-toggle-section (brown headers)
+ * Base Rules - All panels using .fff-info-toggle-section (brown headers)
  *
  * DEFAULT: All panels constrained by max-width with horizontal margins
  * This allows proper alignment without forcing fixed widths.
  */
-.fcc-info-toggle-section {
+.fff-info-toggle-section {
     max-width: 1280px !important;
     margin: 20px !important;
     box-sizing: border-box !important;
 }
 
 /* Inner content should not exceed panel width */
-.fcc-info-toggle-section > * {
+.fff-info-toggle-section > * {
     max-width: 100% !important;
     box-sizing: border-box !important;
 }

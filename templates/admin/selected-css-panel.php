@@ -13,13 +13,13 @@ if (!defined('ABSPATH')) {
 }
 ?>
 
-<div class="fcc-info-toggle-section" style="margin-top: 20px;">
-    <div class="fcc-info-header-static">
+<div class="fff-info-toggle-section" style="margin-top: 20px;">
+    <div class="fff-info-header-static">
         <span id="selected-code-title" style="color: #FAF9F6;">Selected Class CSS</span>
         <div id="selected-copy-button" style="margin-left: auto;">
         </div>
     </div>
-    <div class="fcc-info-content-static">
+    <div class="fff-info-content-static">
         <div style="background: white; border-radius: 6px; padding: 8px; border: 1px solid #d1d5db;">
             <pre id="class-code" style="font-size: 12px; white-space: pre-wrap; color: #111827; margin: 0;">/* Loading CSS output... */</pre>
         </div>

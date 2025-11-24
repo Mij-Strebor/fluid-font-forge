@@ -20,7 +20,7 @@ extract($template_data);
 <div class="wrap" style="background: var(--clr-pageBackground); padding: 20px; min-height: 100vh;">
     <?php echo "<!-- FILE IS LOADING: " . __FILE__ . " -->"; ?>
     <!-- Forge Header with Title -->
-    <div class="fcc-header-section">
+    <div class="fff-header-section">
         <h1>Fluid Font Forge</h1>
     </div>
 
@@ -36,7 +36,7 @@ extract($template_data);
     <?php include FLUID_FONT_FORGE_PATH . 'templates/admin/loading-screen.php'; ?>
 
         <!-- Main Section -->
-        <div class="font-clamp-container" id="fcc-main-container">
+        <div class="font-clamp-container" id="fff-main-container">
             <div style="padding: 0 20px;">
 
                 <!-- How to Use Panel -->

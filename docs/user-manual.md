@@ -2341,7 +2341,7 @@ For more information, visit:
 ---
 
 *Generated for Fluid Font Forge v5.1.2*  
-*© 2025 JimRWeb.com - All rights reserved*
+*© 2025 JimRForge.com - All rights reserved*
 ---
 
 [← Back to Documentation](index) | [Quick Start Guide](quick-start) | [Report Issues](https://github.com/Mij-Strebor/fluid-font-forge/issues)

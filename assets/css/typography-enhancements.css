@@ -13,32 +13,32 @@
    ========================================================================== */
 
 /* Text content in panels - NOT layout divs */
-.fcc-info-content p,
-.fcc-info-content p *,
-.fcc-info-content div[style*="font-size"] > p {
+.fff-info-content p,
+.fff-info-content p *,
+.fff-info-content div[style*="font-size"] > p {
     font-size: 16px !important;
 }
 
 /* Labels and descriptive text */
 label,
 label *,
-.fcc-font-input label,
-.fcc-font-input span,
+.fff-font-input label,
+.fff-font-input span,
 #font-filename {
     font-size: 16px !important;
 }
 
 /* Data table content */
-.fcc-table tbody td,
-.fcc-table tbody td *,
-.fcc-table thead th,
-.fcc-table thead th * {
+.fff-table tbody td,
+.fff-table tbody td *,
+.fff-table thead th,
+.fff-table thead th * {
     font-size: 16px !important;
 }
 
 /* Sample panel labels and displays */
-.fcc-sample-controls label,
-.fcc-sample-controls span,
+.fff-sample-controls label,
+.fff-sample-controls span,
 #titles-size-display,
 #text-size-display,
 #viewport-display {
@@ -57,11 +57,11 @@ p {
 }
 
 /* DO NOT apply to layout containers */
-.fcc-panel,
-.fcc-main-grid,
+.fff-panel,
+.fff-main-grid,
 .font-clamp-container,
-.fcc-preview-section,
-.fcc-sample-panel {
+.fff-preview-section,
+.fff-sample-panel {
     font-size: inherit !important;
 }
 
@@ -75,41 +75,41 @@ p {
  * Sample Text, Font Scale, CSS output panels, and Support panel
  * should match the width of Settings/Data grid (1280px max).
  */
-.fcc-sample-panel,
-.fcc-preview-section,
+.fff-sample-panel,
+.fff-preview-section,
 #selected-css-container,
 #generated-css-container,
-.fcc-panel {
+.fff-panel {
     max-width: 1280px;
     margin-left: 0;
     margin-right: 0;
 }
 
 /* Ensure panel padding is maintained */
-.fcc-panel {
+.fff-panel {
     padding: var(--spc-lg) !important;
 }
 
 /* Fix Sample Text and Font Scale width */
-.fcc-preview-enhanced {
+.fff-preview-enhanced {
     max-width: 1280px !important;
     margin-left: 0 !important;
     margin-right: 0 !important;
 }
 
 /* Add padding to Settings and Data table panels */
-.fcc-main-grid > .fcc-panel {
+.fff-main-grid > .fff-panel {
     padding: 24px !important;
 }
 
 /* Specific padding for grid items inside panels */
-.fcc-settings-grid,
-.fcc-table-container {
+.fff-settings-grid,
+.fff-table-container {
     padding: 0 !important;
 }
 
-/* Force padding on all fcc-panel divs */
-div.fcc-panel {
+/* Force padding on all fff-panel divs */
+div.fff-panel {
     padding: 24px !important;
     box-sizing: border-box !important;
 }

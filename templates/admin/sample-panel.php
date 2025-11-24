@@ -21,16 +21,16 @@ if (!defined('ABSPATH')) {
 $fluid_font_forge_is_expanded = isset($settings['sampleTextExpanded']) ? $settings['sampleTextExpanded'] : true;
 $fluid_font_forge_expanded_class = $fluid_font_forge_is_expanded ? 'expanded' : '';
 ?>
-<div class="fcc-info-toggle-section" style="clear: both; margin: 20px 0;">
+<div class="fff-info-toggle-section" style="clear: both; margin: 20px 0;">
 
-    <button class="fcc-info-toggle <?php echo esc_attr($fluid_font_forge_expanded_class); ?>" data-toggle-target="sample-text-content">
+    <button class="fff-info-toggle <?php echo esc_attr($fluid_font_forge_expanded_class); ?>" data-toggle-target="sample-text-content">
         <span style="color: #FAF9F6 !important;">Sample Text</span>
-        <span class="fcc-toggle-icon" style="color: #FAF9F6 !important;">▼</span>
+        <span class="fff-toggle-icon" style="color: #FAF9F6 !important;">▼</span>
     </button>
 
-    <div class="fcc-info-content <?php echo esc_attr($fluid_font_forge_expanded_class); ?>" id="sample-text-content">
+    <div class="fff-info-content <?php echo esc_attr($fluid_font_forge_expanded_class); ?>" id="sample-text-content">
 
-        <div class="fcc-sample-display" style="display: block; background: white; border-radius: 8px; padding: 20px; border: 2px solid var(--clr-secondary); margin-bottom: 20px; box-shadow: inset 0 2px 4px var(--clr-shadow); min-height: 220px; max-height: 400px; overflow-y: auto;">
+        <div class="fff-sample-display" style="display: block; background: white; border-radius: 8px; padding: 20px; border: 2px solid var(--clr-secondary); margin-bottom: 20px; box-shadow: inset 0 2px 4px var(--clr-shadow); min-height: 220px; max-height: 400px; overflow-y: auto;">
             <!-- Row 1: Labels above display boxes -->
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 16px;">
                 <!-- Titles Header -->
@@ -88,7 +88,7 @@ $fluid_font_forge_expanded_class = $fluid_font_forge_is_expanded ? 'expanded' : 
         </div>
 
         <!-- Viewport Size Slider -->
-        <div class="fcc-viewport-slider-container" style="margin-bottom: 16px; display: flex; flex-direction: column; align-items: center;">
+        <div class="fff-viewport-slider-container" style="margin-bottom: 16px; display: flex; flex-direction: column; align-items: center;">
             <div style="display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 12px; width: 100%;">
                 <span style="font-size: 12px; color: var(--clr-txt); font-weight: 500;">Viewport Size:</span>
                 <span id="viewport-display" style="font-size: 16px; color: var(--clr-primary); font-weight: 600;">

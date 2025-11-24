@@ -14,7 +14,7 @@ if (!defined('ABSPATH')) {
 ?>
 
 <div>
-    <div class="fcc-panel" id="sizes-table-container" style="padding: 24px !important;">
+    <div class="fff-panel" id="sizes-table-container" style="padding: 24px !important;">
         <h2 style="margin-bottom: 12px;" id="table-title">Font Size Classes</h2>
 
         <!-- Base Value and Action Buttons Row -->
@@ -53,7 +53,7 @@ if (!defined('ABSPATH')) {
             </div>
 
             <!-- Right: Action Buttons -->
-            <div class="fcc-table-buttons" id="table-action-buttons">
+            <div class="fff-table-buttons" id="table-action-buttons">
                 <div style="color: var(--clr-secondary); font-size: 12px; font-style: italic;">Loading...</div>
             </div>
         </div>

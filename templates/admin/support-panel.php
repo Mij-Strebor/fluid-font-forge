@@ -13,8 +13,8 @@ if (!defined('ABSPATH')) {
 }
 ?>
 
-<div class="fcc-panel" style="margin-top: 40px;">
-    <div class="fcc-css-header">
+<div class="fff-panel" style="margin-top: 40px;">
+    <div class="fff-css-header">
         <h2 style="flex-grow: 1;">Support Development</h2>
     </div>
     <div style="padding: 20px; background: var(--clr-cardBackground); border-radius: 0 0 6px 6px;">

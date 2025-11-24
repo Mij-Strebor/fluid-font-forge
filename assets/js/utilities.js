@@ -280,13 +280,36 @@ class SimpleTooltips {
   }
 
   /**
+   * Sanitize HTML for tooltip display
+   *
+   * Allows only safe formatting tags (br, b, strong, i, em, code)
+   * Strips all other HTML tags and dangerous content
+   *
+   * @param {string} html - HTML string to sanitize
+   * @returns {string} Sanitized HTML safe for tooltip display
+   * @private
+   */
+  sanitizeTooltipHTML(html) {
+    const div = document.createElement("div");
+    div.textContent = html; // First escape everything
+    let sanitized = div.innerHTML;
+
+    // Only allow specific safe tags: br, b, strong, i, em, code
+    // Replace &lt;br&gt; back to <br>
+    sanitized = sanitized.replace(/&lt;br\s*\/?&gt;/gi, "<br>");
+    sanitized = sanitized.replace(/&lt;(\/?(b|strong|i|em|code))&gt;/gi, "<$1>");
+
+    return sanitized;
+  }
+
+  /**
    * Display tooltip near element
    *
    * Positions tooltip above element by default, adjusts for viewport boundaries.
    * Automatically handles positioning logic to keep tooltip visible.
    *
    * @param {HTMLElement} element - Element to attach tooltip to
-   * @param {string} text - Tooltip text content
+   * @param {string} text - Tooltip text content (may contain safe HTML: br, b, strong, i, em, code)
    *
    * @example
    * const button = document.querySelector('#save-btn');
@@ -311,7 +334,8 @@ class SimpleTooltips {
       box-shadow: 0 2px 8px rgba(0,0,0,0.3);
       border: 1px solid #654321;
     `;
-    this.tooltip.innerHTML = text;
+    // Sanitize HTML to prevent XSS while allowing safe formatting tags
+    this.tooltip.innerHTML = this.sanitizeTooltipHTML(text);
     document.body.appendChild(this.tooltip);
 
     const rect = element.getBoundingClientRect();
@@ -414,13 +438,13 @@ class WordPressAdminNotices {
   createContainer() {
     const wrap = document.querySelector(".wrap");
     if (wrap) {
-      const existing = document.getElementById("fcc-admin-notices");
+      const existing = document.getElementById("fff-admin-notices");
       if (existing) {
         existing.remove();
       }
 
       this.container = document.createElement("div");
-      this.container.id = "fcc-admin-notices";
+      this.container.id = "fff-admin-notices";
       this.container.style.cssText =
         "margin: 0 0 20px 0; position: relative; z-index: 1000;";
 
@@ -603,12 +627,33 @@ class WordPressAdminNotices {
   }
 
   /**
+   * Sanitize HTML for confirmation dialog
+   *
+   * Uses same sanitization as tooltips - allows only safe formatting tags
+   *
+   * @param {string} html - HTML string to sanitize
+   * @returns {string} Sanitized HTML
+   * @private
+   */
+  sanitizeConfirmHTML(html) {
+    const div = document.createElement("div");
+    div.textContent = html; // First escape everything
+    let sanitized = div.innerHTML;
+
+    // Only allow specific safe tags: br, b, strong, i, em, code
+    sanitized = sanitized.replace(/&lt;br\s*\/?&gt;/gi, "<br>");
+    sanitized = sanitized.replace(/&lt;(\/?(b|strong|i|em|code))&gt;/gi, "<$1>");
+
+    return sanitized;
+  }
+
+  /**
    * Show confirmation dialog
    *
    * Displays modal confirmation dialog with confirm/cancel buttons.
    * Blocks user interaction until choice is made - this is a modal/blocking operation.
    *
-   * @param {string} message - Confirmation message (HTML allowed)
+   * @param {string} message - Confirmation message (may contain safe HTML: br, b, strong, i, em, code)
    * @param {Function} onConfirm - Callback function when user confirms
    * @param {Function|null} [onCancel=null] - Callback function when user cancels
    *
@@ -623,23 +668,55 @@ class WordPressAdminNotices {
     const existing = document.getElementById("confirm-dialog-modal");
     if (existing) existing.remove();
 
+    // Build modal structure using DOM methods for security
     const confirmModal = document.createElement("div");
     confirmModal.id = "confirm-dialog-modal";
-    confirmModal.className = "fcc-modal";
-    confirmModal.innerHTML = `
-      <div class="fcc-modal-dialog" style="max-width: 500px;">
-        <div class="fcc-modal-header" style="background: var(--clr-secondary); color: var(--clr-textLight);">
-          <span>Confirm Action</span>
-        </div>
-        <div class="fcc-modal-content">
-          <p style="margin: 0 0 20px 0; line-height: 1.5; color: var(--clr-textPrimary);">${message}</p>
-          <div class="fcc-btn-group">
-            <button type="button" class="fcc-btn fcc-btn-ghost" id="confirm-cancel">cancel</button>
-            <button type="button" class="fcc-btn" id="confirm-ok">confirm</button>
-          </div>
-        </div>
-      </div>
-    `;
+    confirmModal.className = "fff-modal";
+
+    const modalDialog = document.createElement("div");
+    modalDialog.className = "fff-modal-dialog";
+    modalDialog.style.maxWidth = "500px";
+
+    const modalHeader = document.createElement("div");
+    modalHeader.className = "fff-modal-header";
+    modalHeader.style.cssText = "background: var(--clr-secondary); color: var(--clr-textLight);";
+    const headerSpan = document.createElement("span");
+    headerSpan.textContent = "Confirm Action";
+    modalHeader.appendChild(headerSpan);
+
+    const modalContent = document.createElement("div");
+    modalContent.className = "fff-modal-content";
+
+    const messagePara = document.createElement("p");
+    messagePara.style.cssText = "margin: 0 0 20px 0; line-height: 1.5; color: var(--clr-textPrimary);";
+    // Sanitize message to allow safe HTML formatting
+    messagePara.innerHTML = this.sanitizeConfirmHTML(message);
+
+    const btnGroup = document.createElement("div");
+    btnGroup.className = "fff-btn-group";
+
+    const cancelBtn = document.createElement("button");
+    cancelBtn.type = "button";
+    cancelBtn.className = "fff-btn fff-btn-ghost";
+    cancelBtn.id = "confirm-cancel";
+    cancelBtn.textContent = "cancel";
+
+    const confirmBtn = document.createElement("button");
+    confirmBtn.type = "button";
+    confirmBtn.className = "fff-btn";
+    confirmBtn.id = "confirm-ok";
+    confirmBtn.textContent = "confirm";
+
+    btnGroup.appendChild(cancelBtn);
+    btnGroup.appendChild(confirmBtn);
+
+    modalContent.appendChild(messagePara);
+    modalContent.appendChild(btnGroup);
+
+    modalDialog.appendChild(modalHeader);
+    modalDialog.appendChild(modalContent);
+
+    confirmModal.appendChild(modalDialog);
 
     document.body.appendChild(confirmModal);
 
@@ -647,13 +724,11 @@ class WordPressAdminNotices {
       confirmModal.classList.add("show");
     }, 10);
 
-    const cancelBtn = confirmModal.querySelector("#confirm-cancel");
-    const confirmBtn = confirmModal.querySelector("#confirm-ok");
-
     const cleanup = () => {
       document.body.removeChild(confirmModal);
     };
 
+    // Button event listeners (using direct references from DOM creation above)
     cancelBtn.addEventListener("click", () => {
       cleanup();
       if (onCancel) onCancel();

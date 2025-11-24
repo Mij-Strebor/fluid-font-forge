@@ -184,6 +184,6 @@ GPL v2 or later. See [LICENSE](https://github.com/jimrweb/fluid-font-forge/blob/
 
 [⭐ Star this repository](https://github.com/jimrweb/fluid-font-forge) • [🐛 Report Issues](https://github.com/jimrweb/fluid-font-forge/issues) • [💬 Join Discussion](https://github.com/jimrweb/fluid-font-forge/discussions)
 
-**Professional WordPress Plugin Development** | **[JimRWeb.com](https://jimrweb.com)**
+**Professional WordPress Plugin Development** | **[JimRForge.com](https://jimrforge.com)**
 
 </div>

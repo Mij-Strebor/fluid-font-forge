@@ -5,7 +5,7 @@ Tags: typography, fonts, responsive, clamp, fluid
 Requires at least: 5.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 5.1.2
+Stable tag: 5.1.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -114,6 +114,12 @@ The plugin saves all your configurations in the WordPress database. For backup o
 * **Golden Ratio (1.618)**: Dramatic scaling for hero sections
 == Changelog ==
 
+= 5.1.3 =
+* Changed: PHP namespace from JimRWeb\FluidFontForge to JimRForge\FluidFontForge
+* Changed: CSS class prefix from fcc- to fff- for better plugin identification
+* Changed: Updated all branding references from JimRWeb to JimRForge
+* Note: No functional changes - all features work identically to 5.1.2
+
 = 5.1.1 =
 * Fixed: Tailwind tab persistence now works correctly across page refreshes
 * Fixed: Tab switching no longer causes JavaScript errors
@@ -124,7 +130,7 @@ The plugin saves all your configurations in the WordPress database. For backup o
 
 
 = 4.3.0 =
-* Architecture: Implemented PHP namespaces (JimRWeb\FluidFontForge) for professional code organization
+* Architecture: Implemented PHP namespaces (JimRForge\FluidFontForge) for professional code organization
 * Architecture: Renamed internal factory class for consistency with WordPress standards
 * Enhanced: Improved code documentation and PHPDoc blocks throughout
 * Technical: Modernized codebase to prevent naming conflicts with other plugins

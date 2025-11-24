@@ -194,6 +194,6 @@ This project is licensed under GPL v2 or later. See the [LICENSE](LICENSE) file 
 
 [⭐ Star this repository](https://github.com/Mij-Strebor/fluid-font-forge) • [🐛 Report Issues](https://github.com/Mij-Strebor/fluid-font-forge/issues) • [💬 Join Discussion](https://github.com/Mij-Strebor/fluid-font-forge/discussions)
 
-**Professional WordPress Plugin Development** | **[JimRWeb.com](https://jimrweb.com)**
+**Professional WordPress Plugin Development** | **[JimRForge.com](https://jimrforge.com)**
 
 </div>

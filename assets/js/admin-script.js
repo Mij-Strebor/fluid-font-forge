@@ -46,6 +46,21 @@ const FLUIFOFO_EVENTS = {
    ========================================================================== */
 
 /**
+ * Escape HTML to prevent XSS attacks
+ *
+ * Converts special HTML characters to their entity equivalents
+ *
+ * @param {string} str - String to escape
+ * @returns {string} Escaped string safe for HTML insertion
+ */
+function escapeHTML(str) {
+  if (typeof str !== 'string') return '';
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+/**
  * Font Forge Utility Functions
  *
  * Provides shared utility functions for data access across components.
@@ -219,12 +234,12 @@ class FontClampEnhancedCoreInterface {
   revealInterface() {
     if (this.isInterfaceRevealed()) return;
 
-    const loadingScreen = document.getElementById("fcc-loading-screen");
+    const loadingScreen = document.getElementById("fff-loading-screen");
     if (loadingScreen) {
       loadingScreen.classList.add("hidden");
     }
 
-    const mainContainer = document.getElementById("fcc-main-container");
+    const mainContainer = document.getElementById("fff-main-container");
     if (mainContainer) {
       mainContainer.classList.add("ready");
     }
@@ -237,7 +252,7 @@ class FontClampEnhancedCoreInterface {
     }
 
     const ariaRegion = document.createElement("div");
-    ariaRegion.id = "fcc-announcements";
+    ariaRegion.id = "fff-announcements";
     ariaRegion.setAttribute("aria-live", "polite");
     ariaRegion.setAttribute("aria-atomic", "false");
     ariaRegion.style.cssText =
@@ -252,7 +267,7 @@ class FontClampEnhancedCoreInterface {
    * @returns {boolean} True if interface is visible
    */
   isInterfaceRevealed() {
-    const mainContainer = document.getElementById("fcc-main-container");
+    const mainContainer = document.getElementById("fff-main-container");
     return mainContainer && mainContainer.classList.contains("ready");
   }
 
@@ -412,7 +427,7 @@ class FontClampEnhancedCoreInterface {
       button.classList.add("expanded");
     }
 
-    const icon = button.querySelector(".fcc-toggle-icon");
+    const icon = button.querySelector(".fff-toggle-icon");
     if (icon) {
       if (isExpanded) {
         icon.style.transform = "rotate(0deg)";
@@ -1045,9 +1060,9 @@ class FontClampAdvanced {
     if (!tableButtons) return;
 
     tableButtons.innerHTML = `
-        <button id="add-size" class="fcc-btn">add size</button>
-        <button id="reset-defaults" class="fcc-btn">reset</button>
-        <button id="clear-sizes" class="fcc-btn">clear all</button>
+        <button id="add-size" class="fff-btn">add size</button>
+        <button id="reset-defaults" class="fff-btn">reset</button>
+        <button id="clear-sizes" class="fff-btn">clear all</button>
     `;
 
     tableButtons.addEventListener("click", (e) => {
@@ -1749,8 +1764,8 @@ class FontClampAdvanced {
     this.populateTableRows(renderContext);
     this.finalizeTableRender();
 
-    const loadingScreen = document.getElementById("fcc-loading-screen");
-    const mainContainer = document.getElementById("fcc-main-container");
+    const loadingScreen = document.getElementById("fff-loading-screen");
+    const mainContainer = document.getElementById("fff-main-container");
   }
 
   /**
@@ -1831,11 +1846,13 @@ class FontClampAdvanced {
     row.dataset.index = index;
 
     const displayName = this.getSizeDisplayName(size, context.activeTab);
+    // Escape displayName to prevent XSS (user-provided data)
+    const escapedDisplayName = escapeHTML(displayName);
 
     row.innerHTML = `
-    <td class="drag-handle" style="text-align: center; color: #9ca3af; cursor: grab; user-select: none;" 
+    <td class="drag-handle" style="text-align: center; color: #9ca3af; cursor: grab; user-select: none;"
       data-tooltip="Drag to reorder" data-tooltip-position="right">⋮⋮</td>
-    <td style="font-weight: 500; overflow: hidden; text-overflow: ellipsis;" title="${displayName}"; font-size: 16px;">${displayName}</td>
+    <td style="font-weight: 500; overflow: hidden; text-overflow: ellipsis;" title="${escapedDisplayName}"; font-size: 16px;">${escapedDisplayName}</td>
     <td style="text-align: center; font-family: monospace; font-size: 16px;">${this.formatSize(
       size.min,
       context.unitType
@@ -2140,26 +2157,26 @@ class FontClampAdvanced {
 
     const modal = document.createElement("div");
     modal.id = "edit-modal";
-    modal.className = "fcc-modal";
+    modal.className = "fff-modal";
     modal.innerHTML = `
-                        <div class="fcc-modal-dialog">
-                            <div class="fcc-modal-header">
+                        <div class="fff-modal-dialog">
+                            <div class="fff-modal-header">
                                 Edit Size
-                                <button type="button" class="fcc-modal-close" aria-label="Close">&times;</button>
+                                <button type="button" class="fff-modal-close" aria-label="Close">&times;</button>
                             </div>
-                            <div class="fcc-modal-content">
-                                <div class="fcc-form-group" id="name-field">
-                                    <label class="fcc-label" for="edit-name">Name</label>
-                                    <input type="text" id="edit-name" class="fcc-input" required>
+                            <div class="fff-modal-content">
+                                <div class="fff-form-group" id="name-field">
+                                    <label class="fff-label" for="edit-name">Name</label>
+                                    <input type="text" id="edit-name" class="fff-input" required>
                                 </div>
-                                <div class="fcc-form-group">
-                                    <label class="fcc-label" for="edit-line-height">Line Height</label>
-                                    <input type="number" id="edit-line-height" class="fcc-input" 
+                                <div class="fff-form-group">
+                                    <label class="fff-label" for="edit-line-height">Line Height</label>
+                                    <input type="number" id="edit-line-height" class="fff-input" 
                                            step="0.1" min="0.8" max="3.0" required>
                                 </div>
-<div class="fcc-btn-group">
-    <button type="button" class="fcc-btn fcc-btn-ghost" id="modal-cancel">cancel</button>
-    <button type="button" class="fcc-btn" id="modal-save">save</button>
+<div class="fff-btn-group">
+    <button type="button" class="fff-btn fff-btn-ghost" id="modal-cancel">cancel</button>
+    <button type="button" class="fff-btn" id="modal-save">save</button>
 </div>
                             </div>
                         </div>
@@ -2176,7 +2193,7 @@ class FontClampAdvanced {
    * @param {HTMLElement} modal - Modal element
    */
   bindModalEvents(modal) {
-    const closeBtn = modal.querySelector(".fcc-modal-close");
+    const closeBtn = modal.querySelector(".fff-modal-close");
     const cancelBtn = modal.querySelector("#modal-cancel");
     const saveBtn = modal.querySelector("#modal-save");
 
@@ -2238,7 +2255,7 @@ class FontClampAdvanced {
       nameInput.style.cursor = "text";
     }
 
-    const header = modal.querySelector(".fcc-modal-header");
+    const header = modal.querySelector(".fff-modal-header");
     if (header) {
       header.firstChild.textContent = `Edit ${displayName}`;
     }
@@ -2409,11 +2426,12 @@ class FontClampAdvanced {
         border: 1px solid #c82333;
       `;
 
-      const modalContent = modal.querySelector(".fcc-modal-content");
+      const modalContent = modal.querySelector(".fff-modal-content");
       modalContent.insertBefore(errorDiv, modalContent.firstChild);
     }
 
-    errorDiv.innerHTML = `<strong>⚠️ Validation Error:</strong> ${message}`;
+    // Escape message to prevent XSS
+    errorDiv.innerHTML = `<strong>⚠️ Validation Error:</strong> ${escapeHTML(message)}`;
     errorDiv.style.display = "block";
 
     setTimeout(() => {
@@ -2527,7 +2545,7 @@ class FontClampAdvanced {
    */
   openAddModal(activeTab, newId, defaultName) {
     const modal = document.getElementById("edit-modal");
-    const header = modal.querySelector(".fcc-modal-header");
+    const header = modal.querySelector(".fff-modal-header");
     const nameInput = document.getElementById("edit-name");
     const nameField = document.getElementById("name-field");
     const lineHeightInput = document.getElementById("edit-line-height");
@@ -3213,7 +3231,7 @@ class FontClampAdvanced {
             <div style="font-weight: 600; margin-bottom: 4px;">Cleared ${backupData.length} ${tabName}</div>
             <div style="font-size: 12px; opacity: 0.9;">This action can be undone</div>
         </div>
-<button id="undo-clear-btn" class="fcc-btn">undo</button>
+<button id="undo-clear-btn" class="fff-btn">undo</button>
         <button id="dismiss-clear-btn" style="
             background: none;
             border: none;
@@ -3345,8 +3363,8 @@ class FontClampAdvanced {
             <div style="font-size: 48px; margin-bottom: 16px; opacity: 0.3;">📭</div>
             <h3 style="color: var(--jimr-gray-600); margin: 0 0 8px 0; font-size: 18px;">No ${tabDisplayName}</h3>
             <p style="color: var(--jimr-gray-500); margin: 0 0 20px 0; font-size: 14px;">Get started by adding your first size or reset to defaults.</p>
-<button id="add-size" class="fcc-btn" style="margin-right: 12px;">${addButtonText}</button>
-            <button id="reset-defaults" class="fcc-btn">reset to defaults</button>
+<button id="add-size" class="fff-btn" style="margin-right: 12px;">${addButtonText}</button>
+            <button id="reset-defaults" class="fff-btn">reset to defaults</button>
         </div>
     `;
   }

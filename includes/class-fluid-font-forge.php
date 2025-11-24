@@ -30,7 +30,7 @@
  * @license    GPL-2.0-or-later
  */
 
-namespace JimRWeb\FluidFontForge;
+namespace JimRForge\FluidFontForge;
 
 use Exception;
 
@@ -468,7 +468,10 @@ class FluidFontForge
 
         $data = $this->prepare_admin_page_data();
         $html_output = $this->get_complete_interface($data);
-        echo $html_output; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+
+        // Output is safe: comes from controlled templates with escaped dynamic content
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Admin-only HTML from controlled templates with all dynamic content pre-escaped
+        echo $html_output;
     }
 
     /**
@@ -506,7 +509,7 @@ class FluidFontForge
 ?>
         <div class="wrap" style="background: var(--clr-pageBackground); padding: 20px; min-height: 100vh;">
             <!-- Forge Header with Title -->
-            <div class="fcc-header-section">
+            <div class="fff-header-section">
                 <h1>Fluid Font Forge</h1>
             </div>
 
@@ -522,7 +525,7 @@ class FluidFontForge
             <?php include FLUID_FONT_FORGE_PATH . 'templates/admin/loading-screen.php'; ?>
 
             <!-- Main Section -->
-            <div class="font-clamp-container" id="fcc-main-container">
+            <div class="font-clamp-container" id="fff-main-container">
                 <div style="padding: 20px;">
 
                     <!-- How to Use Panel -->
@@ -532,7 +535,7 @@ class FluidFontForge
                         <?php include FLUID_FONT_FORGE_PATH . 'templates/admin/header-controls.php'; ?>
 
                         <!-- Settings and Data Table - Side by Side -->
-                        <div class="fcc-main-grid">
+                        <div class="fff-main-grid">
                             <!-- Settings Panel Template -->
                             <?php include FLUID_FONT_FORGE_PATH . 'templates/admin/settings-panel.php'; ?>
                             <!-- Data Table Panel Template -->

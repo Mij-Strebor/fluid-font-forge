@@ -15,10 +15,10 @@ if (!defined('ABSPATH')) {
 
 <!-- Column 1: Settings Panel -->
 <div>
-    <div class="fcc-panel" style="margin-bottom: 8px; padding: 24px !important;">
+    <div class="fff-panel" style="margin-bottom: 8px; padding: 24px !important;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
             <h2 class="settings-title" style="margin: 0;">Settings</h2>
-            <button id="reset-settings-btn" class="fcc-btn" data-tooltip="Reset all settings to default values">
+            <button id="reset-settings-btn" class="fff-btn" data-tooltip="Reset all settings to default values">
                 reset
             </button>
         </div>
@@ -42,10 +42,10 @@ if (!defined('ABSPATH')) {
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px;">
             <div class="grid-item">
                 <label class="component-label" for="min-root-size">Min Viewport Font Size (px)</label>
-                <input type="number" id="min-root-size" value="<?php echo esc_attr($settings['minRootSize'] ?? \JimRWeb\FluidFontForge\FluidFontForge::DEFAULT_MIN_ROOT_SIZE); ?>"
+                <input type="number" id="min-root-size" value="<?php echo esc_attr($settings['minRootSize'] ?? \JimRForge\FluidFontForge\FluidFontForge::DEFAULT_MIN_ROOT_SIZE); ?>"
                     class="component-input" style="width: 100%;"
-                    min="<?php echo esc_attr(\JimRWeb\FluidFontForge\FluidFontForge::MIN_ROOT_SIZE_RANGE[0]); ?>"
-                    max="<?php echo esc_attr(\JimRWeb\FluidFontForge\FluidFontForge::MIN_ROOT_SIZE_RANGE[1]); ?>"
+                    min="<?php echo esc_attr(\JimRForge\FluidFontForge\FluidFontForge::MIN_ROOT_SIZE_RANGE[0]); ?>"
+                    max="<?php echo esc_attr(\JimRForge\FluidFontForge\FluidFontForge::MIN_ROOT_SIZE_RANGE[1]); ?>"
                     step="1"
                     aria-label="Minimum root font size in pixels - base font size at minimum viewport width"
                     data-tooltip="Base font size at minimum viewport width">
@@ -54,8 +54,8 @@ if (!defined('ABSPATH')) {
                 <label class="component-label" for="min-viewport">Min Viewport Width (px)</label>
                 <input type="number" id="min-viewport" value="<?php echo esc_attr($settings['minViewport']); ?>"
                     class="component-input" style="width: 100%;"
-                    min="<?php echo esc_attr(\JimRWeb\FluidFontForge\FluidFontForge::VIEWPORT_RANGE[0]); ?>"
-                    max="<?php echo esc_attr(\JimRWeb\FluidFontForge\FluidFontForge::VIEWPORT_RANGE[1]); ?>"
+                    min="<?php echo esc_attr(\JimRForge\FluidFontForge\FluidFontForge::VIEWPORT_RANGE[0]); ?>"
+                    max="<?php echo esc_attr(\JimRForge\FluidFontForge\FluidFontForge::VIEWPORT_RANGE[1]); ?>"
                     step="1"
                     aria-label="Minimum viewport width in pixels - screen width where minimum font size applies"
                     data-tooltip="Screen width where minimum font size applies">
@@ -66,10 +66,10 @@ if (!defined('ABSPATH')) {
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px;">
             <div class="grid-item">
                 <label class="component-label" for="max-root-size">Max Viewport Font Size (px)</label>
-                <input type="number" id="max-root-size" value="<?php echo esc_attr($settings['maxRootSize'] ?? \JimRWeb\FluidFontForge\FluidFontForge::DEFAULT_MAX_ROOT_SIZE); ?>"
+                <input type="number" id="max-root-size" value="<?php echo esc_attr($settings['maxRootSize'] ?? \JimRForge\FluidFontForge\FluidFontForge::DEFAULT_MAX_ROOT_SIZE); ?>"
                     class="component-input" style="width: 100%;"
-                    min="<?php echo esc_attr(\JimRWeb\FluidFontForge\FluidFontForge::MIN_ROOT_SIZE_RANGE[0]); ?>"
-                    max="<?php echo esc_attr(\JimRWeb\FluidFontForge\FluidFontForge::MIN_ROOT_SIZE_RANGE[1]); ?>"
+                    min="<?php echo esc_attr(\JimRForge\FluidFontForge\FluidFontForge::MIN_ROOT_SIZE_RANGE[0]); ?>"
+                    max="<?php echo esc_attr(\JimRForge\FluidFontForge\FluidFontForge::MIN_ROOT_SIZE_RANGE[1]); ?>"
                     step="1"
                     aria-label="Maximum root font size in pixels - base font size at maximum viewport width"
                     data-tooltip="Base font size at maximum viewport width">
@@ -78,8 +78,8 @@ if (!defined('ABSPATH')) {
                 <label class="component-label" for="max-viewport">Max Viewport Width (px)</label>
                 <input type="number" id="max-viewport" value="<?php echo esc_attr($settings['maxViewport']); ?>"
                     class="component-input" style="width: 100%;"
-                    min="<?php echo esc_attr(\JimRWeb\FluidFontForge\FluidFontForge::VIEWPORT_RANGE[0]); ?>"
-                    max="<?php echo esc_attr(\JimRWeb\FluidFontForge\FluidFontForge::VIEWPORT_RANGE[1]); ?>"
+                    min="<?php echo esc_attr(\JimRForge\FluidFontForge\FluidFontForge::VIEWPORT_RANGE[0]); ?>"
+                    max="<?php echo esc_attr(\JimRForge\FluidFontForge\FluidFontForge::VIEWPORT_RANGE[1]); ?>"
                     step="1"
                     aria-label="Maximum viewport width in pixels - screen width where maximum font size applies"
                     data-tooltip="Screen width where maximum font size applies">

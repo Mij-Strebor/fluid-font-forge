@@ -15,11 +15,11 @@ if (!defined('ABSPATH')) {
 }
 ?>
 
-<div class="fcc-info-toggle-section" style="margin-top: 40px;">
-    <div class="fcc-info-header-static">
+<div class="fff-info-toggle-section" style="margin-top: 40px;">
+    <div class="fff-info-header-static">
         <span style="color: #FAF9F6;">Community & Tools</span>
     </div>
-    <div class="fcc-info-content-static">
+    <div class="fff-info-content-static">
         <p style="margin: 0 0 20px 0; font-size: 16px; line-height: 1.6; color: var(--clr-textPrimary);">
             Fluid Font Forge is part of the Jim R Forge ecosystem - a growing collection of professional WordPress tools for designers and developers.
         </p>

@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [5.1.3] - 2025-11-23
+
+### Changed
+- **Namespace update** - Changed PHP namespace from `JimRWeb\FluidFontForge` to `JimRForge\FluidFontForge`
+- **CSS class prefix change** - All CSS classes changed from `fcc-` prefix to `fff-` prefix for better plugin identification
+- **Branding update** - Updated all references from JimRWeb to JimRForge across documentation and source files
+
+### Technical Notes
+- Updated namespace in `class-fluid-font-forge.php` and `class-default-data-factory.php`
+- Updated ~40 fully qualified namespace references throughout the codebase
+- Changed CSS class prefixes in all CSS files, JavaScript files, and PHP templates
+- No functional changes - all features work identically to 5.1.2
+
+---
+
 ## [5.1.2] - 2025-11-12
 
 ### New Features
@@ -294,7 +309,7 @@ Complete modernization of CSS architecture implementing official Forge Design Sy
 
 #### Code Quality
 - Removed duplicate utility class section (Tailwind replacement utilities)
-- Consolidated utility classes under single section with fcc- prefix
+- Consolidated utility classes under single section with fff- prefix
 - Reduced file size from 2,883 to 2,826 lines (57 lines removed)
 - Zero legacy `--jimr-` references remaining
 - 330+ variable usages updated throughout file
@@ -350,7 +365,7 @@ All CSS variables now follow official 3-character prefix convention:
 
 ### Improved
 - UI polish with professional button styling
-- Enhanced color scheme with JimRWeb brand colors
+- Enhanced color scheme with JimRForge brand colors
 - Better mobile responsiveness
 - Improved table layouts and data display
 

@@ -542,7 +542,7 @@ label {
  *
  * Styleguide 3.4
  */
-.fcc-main-title {
+.fff-main-title {
     font-size: var(--fnt-2xLarge) !important;
     font-weight: 700 !important;
     font-family: var(--fff-font-heading) !important;
@@ -577,7 +577,7 @@ label {
  *
  * Styleguide 4.1
  */
-.fcc-header-section,
+.fff-header-section,
 .space-clamp-container {
     width: 1280px;
     margin: 0 auto;
@@ -623,7 +623,7 @@ label {
  *
  * Styleguide 4.3
  */
-.fcc-main-grid {
+.fff-main-grid {
     display: grid;
     grid-template-columns: 1fr 1.3fr;
     gap: var(--spc-xl);
@@ -638,7 +638,7 @@ label {
  *
  * Styleguide 4.4
  */
-.fcc-panel {
+.fff-panel {
     background: var(--clr-light);
     border: 2px solid var(--clr-secondary);
     border-radius: var(--rad-large);
@@ -685,7 +685,7 @@ label {
  *
  * Styleguide 5.1
  */
-.fcc-btn {
+.fff-btn {
     background: var(--clr-accent);
     color: var(--clr-primary);
     border: none;
@@ -714,7 +714,7 @@ label {
  *
  * Styleguide 5.1.1
  */
-.fcc-btn:hover {
+.fff-btn:hover {
     background: var(--clr-btn-hover);
     transform: translateY(-2px);
     box-shadow: var(--shd-large);
@@ -728,7 +728,7 @@ label {
  *
  * Styleguide 5.1.2
  */
-.fcc-btn-danger {
+.fff-btn-danger {
     background: var(--clr-danger);
     color: var(--clr-white) !important;
     border-color: var(--clr-dangerDark);
@@ -737,7 +737,7 @@ label {
     letter-spacing: normal;
 }
 
-.fcc-btn-danger:hover {
+.fff-btn-danger:hover {
     background: var(--clr-dangerDark);
     color: var(--clr-white) !important;
 }
@@ -750,7 +750,7 @@ label {
  *
  * Styleguide 5.1.3
  */
-.fcc-btn-ghost {
+.fff-btn-ghost {
     background: var(--clr-gray500);
     color: var(--clr-white);
     border-color: var(--clr-gray600);
@@ -759,7 +759,7 @@ label {
     letter-spacing: normal;
 }
 
-.fcc-btn-ghost:hover {
+.fff-btn-ghost:hover {
     background: var(--clr-gray600);
     color: var(--clr-white);
 }
@@ -772,7 +772,7 @@ label {
  *
  * Styleguide 5.2
  */
-.fcc-copy-btn {
+.fff-copy-btn {
     background: var(--clr-accent);
     color: var(--clr-primary);
     border: none;
@@ -803,7 +803,7 @@ label {
  *
  * Styleguide 5.2.1
  */
-.fcc-copy-btn::before {
+.fff-copy-btn::before {
     content: '';
     position: absolute;
     top: 50%;
@@ -816,7 +816,7 @@ label {
     transition: width 0.6s, height 0.6s;
 }
 
-.fcc-copy-btn:active::before {
+.fff-copy-btn:active::before {
     width: 300px;
     height: 300px;
 }
@@ -828,18 +828,18 @@ label {
  *
  * Styleguide 5.2.2
  */
-.fcc-copy-btn:hover {
+.fff-copy-btn:hover {
     background: var(--clr-btn-hover);
     transform: translateY(-2px);
     box-shadow: var(--shd-large);
 }
 
-.fcc-copy-btn:active {
+.fff-copy-btn:active {
     transform: translateY(0) scale(0.98);
     box-shadow: var(--shd-standard);
 }
 
-.fcc-copy-btn:focus {
+.fff-copy-btn:focus {
     outline: none;
     box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.2);
 }
@@ -851,20 +851,20 @@ label {
  *
  * Styleguide 5.3
  */
-.fcc-css-buttons {
+.fff-css-buttons {
     display: flex;
     gap: var(--spc-sm);
     align-items: center;
 }
 
-.fcc-table-buttons {
+.fff-table-buttons {
     display: flex;
     gap: var(--spc-sm);
     align-items: center;
     justify-content: flex-end;
 }
 
-.fcc-btn-group {
+.fff-btn-group {
     display: flex;
     gap: var(--spc-md);
     justify-content: flex-end;
@@ -913,7 +913,7 @@ label {
  *
  * Styleguide 5.4.2
  */
-.fcc-input:focus,
+.fff-input:focus,
 .component-input:focus,
 .component-select:focus {
     outline: none;
@@ -931,7 +931,7 @@ label {
  * Styleguide 5.4.3
  */
 .component-select,
-select.fcc-input {
+select.fff-input {
     cursor: pointer;
     appearance: none;
     background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235C3324' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
@@ -960,7 +960,7 @@ select.fcc-input {
     color: var(--clr-textPrimary);
 }
 
-.fcc-form-group {
+.fff-form-group {
     margin-bottom: var(--spc-base);
 }
 
@@ -971,13 +971,13 @@ select.fcc-input {
  *
  * Styleguide 5.4.5
  */
-.fcc-font-input {
+.fff-font-input {
     display: flex;
     align-items: center;
     gap: var(--spc-md);
 }
 
-.fcc-font-input label {
+.fff-font-input label {
     white-space: nowrap;
     margin-bottom: 0;
     font-size: var(--fnt-small);
@@ -985,12 +985,12 @@ select.fcc-input {
     color: var(--clr-textPrimary);
 }
 
-.fcc-font-input input {
+.fff-font-input input {
     width: 200px;
     margin-bottom: 0;
 }
 
-.fcc-font-input span {
+.fff-font-input span {
     font-size: var(--fnt-small);
     color: var(--clr-gray500);
     font-style: normal;
@@ -1015,7 +1015,7 @@ select.fcc-input {
  *
  * Styleguide 5.5.1
  */
-.fcc-modal {
+.fff-modal {
     position: fixed;
     top: 0;
     left: 0;
@@ -1028,7 +1028,7 @@ select.fcc-input {
     justify-content: center;
 }
 
-.fcc-modal.show {
+.fff-modal.show {
     display: flex;
 }
 
@@ -1039,7 +1039,7 @@ select.fcc-input {
  *
  * Styleguide 5.5.2
  */
-.fcc-modal-dialog {
+.fff-modal-dialog {
     width: 90%;
     max-width: 500px;
     max-height: 90vh;
@@ -1057,7 +1057,7 @@ select.fcc-input {
  *
  * Styleguide 5.5.3
  */
-.fcc-modal-header {
+.fff-modal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -1075,7 +1075,7 @@ select.fcc-input {
  *
  * Styleguide 5.5.4
  */
-.fcc-modal-close {
+.fff-modal-close {
     width: 30px;
     height: 30px;
     padding: 0;
@@ -1091,7 +1091,7 @@ select.fcc-input {
     transition: var(--trn-standard);
 }
 
-.fcc-modal-close:hover {
+.fff-modal-close:hover {
     background: rgba(255, 255, 255, 0.2);
 }
 
@@ -1102,7 +1102,7 @@ select.fcc-input {
  *
  * Styleguide 5.5.5
  */
-.fcc-modal-content {
+.fff-modal-content {
     padding: var(--spc-xl);
 }
 
@@ -1130,7 +1130,7 @@ select.fcc-input {
  *
  * Styleguide 6.1
  */
-.fcc-tabs {
+.fff-tabs {
     display: flex;
     gap: var(--spc-xs);
     background: var(--clr-primary);
@@ -1191,7 +1191,7 @@ select.fcc-input {
  *
  * Styleguide 6.2.1
  */
-.fcc-info-toggle-section {
+.fff-info-toggle-section {
     margin-bottom: var(--spc-xl);
     overflow: hidden;
     border: 2px solid var(--clr-secondary);
@@ -1207,7 +1207,7 @@ select.fcc-input {
  *
  * Styleguide 6.2.2
  */
-.fcc-info-toggle {
+.fff-info-toggle {
     width: 100%;
     border: none;
     padding: var(--spc-base) var(--spc-lg);
@@ -1223,7 +1223,7 @@ select.fcc-input {
     transition: var(--trn-slow);
 }
 
-.fcc-info-toggle:hover {
+.fff-info-toggle:hover {
     background: var(--clr-primary);
     color: var(--clr-textLight) !important;
     transform: translateY(-1px);
@@ -1236,13 +1236,13 @@ select.fcc-input {
  *
  * Styleguide 6.2.3
  */
-.fcc-toggle-icon {
+.fff-toggle-icon {
     transition: transform 0.3s ease;
     font-size: var(--fnt-base);
     color: var(--clr-textLight) !important;
 }
 
-.fcc-info-toggle.expanded .fcc-toggle-icon {
+.fff-info-toggle.expanded .fff-toggle-icon {
     transform: rotate(180deg);
 }
 
@@ -1253,7 +1253,7 @@ select.fcc-input {
  *
  * Styleguide 6.2.4
  */
-.fcc-info-content {
+.fff-info-content {
     max-height: 0;
     overflow: hidden;
     background: var(--clr-light);
@@ -1261,7 +1261,7 @@ select.fcc-input {
     transition: max-height 0.4s ease, padding 0.4s ease;
 }
 
-.fcc-info-content.expanded {
+.fff-info-content.expanded {
     max-height: 2000px;
     padding: var(--spc-xl);
 }
@@ -1274,7 +1274,7 @@ select.fcc-input {
  *
  * Styleguide 6.2.5
  */
-.fcc-info-header-static {
+.fff-info-header-static {
     width: 100%;
     padding: var(--spc-base) var(--spc-lg);
     display: flex;
@@ -1287,12 +1287,12 @@ select.fcc-input {
     border-radius: var(--rad-large) var(--rad-large) 0 0;
 }
 
-.fcc-info-header-static span {
+.fff-info-header-static span {
     font-size: 24px !important;
     font-weight: 600 !important;
 }
 
-.fcc-info-content-static {
+.fff-info-content-static {
     background: var(--clr-light);
     color: var(--clr-textPrimary);
     padding: var(--spc-xl);
@@ -1389,13 +1389,13 @@ select.fcc-input {
  *
  * Styleguide 6.4.1
  */
-.fcc-autosave-flex {
+.fff-autosave-flex {
     display: flex;
     align-items: center;
     gap: var(--spc-base);
 }
 
-.fcc-autosave-flex label {
+.fff-autosave-flex label {
     display: flex;
     align-items: center;
     gap: var(--spc-xs);
@@ -1686,7 +1686,7 @@ select.fcc-input {
  *
  * Styleguide 7.2.1
  */
-.fcc-preview-enhanced {
+.fff-preview-enhanced {
     background: var(--clr-light);
     border: 2px solid var(--clr-secondary);
     border-radius: var(--rad-large);
@@ -1705,14 +1705,14 @@ select.fcc-input {
  *
  * Styleguide 7.2.2
  */
-.fcc-preview-header-row {
+.fff-preview-header-row {
     text-align: left;
     margin-bottom: var(--spc-lg);
     border-bottom: 2px solid var(--clr-secondary);
     padding-bottom: var(--spc-md);
 }
 
-.fcc-preview-header-row h2 {
+.fff-preview-header-row h2 {
     color: var(--clr-primary) !important;
     font-family: var(--fff-font-heading) !important;
     font-size: var(--fnt-2xLarge) !important;
@@ -1729,7 +1729,7 @@ select.fcc-input {
  *
  * Styleguide 7.2.3
  */
-.fcc-preview-grid {
+.fff-preview-grid {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: var(--spc-xl);
@@ -1743,7 +1743,7 @@ select.fcc-input {
  *
  * Styleguide 7.2.4
  */
-.fcc-preview-column {
+.fff-preview-column {
     display: flex;
     flex-direction: column;
     gap: var(--spc-md);
@@ -1756,7 +1756,7 @@ select.fcc-input {
  *
  * Styleguide 7.2.5
  */
-.fcc-preview-column-header {
+.fff-preview-column-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -1767,7 +1767,7 @@ select.fcc-input {
     border-radius: var(--rad-standard);
 }
 
-.fcc-preview-column-header h3 {
+.fff-preview-column-header h3 {
     color: var(--clr-secondary) !important;
     font-size: var(--fnt-large) !important;
     font-weight: 600 !important;
@@ -1782,7 +1782,7 @@ select.fcc-input {
  *
  * Styleguide 7.2.6
  */
-.fcc-scale-indicator {
+.fff-scale-indicator {
     background: var(--clr-secondary);
     color: var(--clr-textLight);
     border: 1px solid var(--clr-primary);
@@ -1805,7 +1805,7 @@ select.fcc-input {
  *
  * Styleguide 7.3
  */
-.fcc-css-header {
+.fff-css-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -1831,7 +1831,7 @@ select.fcc-input {
  *
  * Styleguide 7.4.1
  */
-.fcc-sample-display {
+.fff-sample-display {
     background: var(--clr-white);
     border: 2px solid var(--clr-secondary);
     border-radius: var(--rad-large);
@@ -1870,7 +1870,7 @@ select.fcc-input {
  *
  * Styleguide 7.4.3
  */
-.fcc-viewport-slider-container {
+.fff-viewport-slider-container {
     margin-bottom: 16px;
 }
 
@@ -1956,7 +1956,7 @@ select.fcc-input {
  *
  * Styleguide 7.5.1
  */
-.fcc-sample-space-container {
+.fff-sample-space-container {
     padding: 20px;
     background: var(--clr-light);
     border-radius: var(--rad-large);
@@ -1969,7 +1969,7 @@ select.fcc-input {
  *
  * Styleguide 7.5.2
  */
-.fcc-sample-displays {
+.fff-sample-displays {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
@@ -1983,13 +1983,13 @@ select.fcc-input {
  *
  * Styleguide 7.5.3
  */
-.fcc-sample-group {
+.fff-sample-group {
     display: flex;
     flex-direction: column;
     gap: 8px;
 }
 
-.fcc-sample-label {
+.fff-sample-label {
     font-size: 13px;
     font-weight: 600;
     color: var(--clr-secondary);
@@ -2003,7 +2003,7 @@ select.fcc-input {
  *
  * Styleguide 7.5.4
  */
-.fcc-sample-box-wrapper {
+.fff-sample-box-wrapper {
     background: var(--clr-white);
     border: 2px solid var(--brd-dark);
     border-radius: var(--rad-standard);
@@ -2024,7 +2024,7 @@ select.fcc-input {
  *
  * Styleguide 7.5.5
  */
-.fcc-margin-sample {
+.fff-margin-sample {
     background: #ffcdd2;
     border: 2px dashed #f44336;
     border-radius: var(--rad-standard);
@@ -2032,7 +2032,7 @@ select.fcc-input {
     transition: margin 0.2s ease;
 }
 
-.fcc-margin-sample .fcc-sample-inner {
+.fff-margin-sample .fff-sample-inner {
     background: #90caf9;
     border: 2px solid #2196f3;
     color: #1565c0;
@@ -2049,7 +2049,7 @@ select.fcc-input {
  *
  * Styleguide 7.5.6
  */
-.fcc-padding-sample {
+.fff-padding-sample {
     background: #c8e6c9;
     border: 2px dashed #4caf50;
     border-radius: var(--rad-standard);
@@ -2057,7 +2057,7 @@ select.fcc-input {
     transition: padding 0.2s ease;
 }
 
-.fcc-padding-sample .fcc-sample-inner {
+.fff-padding-sample .fff-sample-inner {
     background: #90caf9;
     border: 2px solid #2196f3;
     color: #1565c0;
@@ -2074,7 +2074,7 @@ select.fcc-input {
  *
  * Styleguide 7.5.7
  */
-.fcc-gap-sample {
+.fff-gap-sample {
     display: flex;
     border: 2px dashed #9e9e9e;
     border-radius: var(--rad-standard);
@@ -2083,7 +2083,7 @@ select.fcc-input {
     transition: gap 0.2s ease;
 }
 
-.fcc-sample-item {
+.fff-sample-item {
     background: #90caf9;
     border: 2px solid #2196f3;
     color: #1565c0;
@@ -2100,7 +2100,7 @@ select.fcc-input {
  *
  * Styleguide 7.5.8
  */
-.fcc-sample-value {
+.fff-sample-value {
     font-size: 11px;
     color: var(--clr-textMuted);
     font-weight: 500;
@@ -2117,7 +2117,7 @@ select.fcc-input {
  *
  * Styleguide 7.5.9
  */
-.fcc-sample-controls {
+.fff-sample-controls {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -2126,13 +2126,13 @@ select.fcc-input {
     border-bottom: 1px solid var(--brd-standard);
 }
 
-.fcc-sample-selector {
+.fff-sample-selector {
     display: flex;
     align-items: center;
     gap: 12px;
 }
 
-.fcc-sample-selector .component-label {
+.fff-sample-selector .component-label {
     margin-bottom: 0;
     white-space: nowrap;
 }
@@ -2144,11 +2144,11 @@ select.fcc-input {
  *
  * Styleguide 7.5.10
  */
-.fcc-viewport-slider-section {
+.fff-viewport-slider-section {
     margin-bottom: 20px;
 }
 
-.fcc-viewport-info {
+.fff-viewport-info {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -2163,7 +2163,7 @@ select.fcc-input {
  *
  * Styleguide 7.5.11
  */
-.fcc-viewport-slider-container {
+.fff-viewport-slider-container {
     position: relative;
     margin-bottom: 8px;
 }
@@ -2223,7 +2223,7 @@ select.fcc-input {
  *
  * Styleguide 7.5.12
  */
-.fcc-slider-labels {
+.fff-slider-labels {
     display: flex;
     justify-content: space-between;
     font-size: 12px;
@@ -2266,7 +2266,7 @@ select.fcc-input {
  *
  * Styleguide 8.1.1
  */
-.fcc-loading-screen {
+.fff-loading-screen {
     position: fixed;
     top: 0;
     left: 0;
@@ -2281,7 +2281,7 @@ select.fcc-input {
     transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 
-.fcc-loading-screen.hidden {
+.fff-loading-screen.hidden {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -2294,7 +2294,7 @@ select.fcc-input {
  *
  * Styleguide 8.1.2
  */
-.fcc-loading-content {
+.fff-loading-content {
     text-align: center;
     max-width: 420px;
     padding: 50px;
@@ -2312,7 +2312,7 @@ select.fcc-input {
  *
  * Styleguide 8.1.3
  */
-.fcc-loading-spinner {
+.fff-loading-spinner {
     width: 60px;
     height: 60px;
     margin: 0 auto 25px;
@@ -2321,7 +2321,7 @@ select.fcc-input {
     border-top: 5px solid var(--clr-accent);
     border-right: 5px solid var(--clr-btn-hover);
     box-shadow: var(--shd-standard);
-    animation: fcc-spin 1.2s linear infinite;
+    animation: fff-spin 1.2s linear infinite;
 }
 
 /**
@@ -2331,7 +2331,7 @@ select.fcc-input {
  *
  * Styleguide 8.1.4
  */
-.fcc-loading-content h2 {
+.fff-loading-content h2 {
     color: var(--clr-primary);
     margin: 0 0 12px 0;
     font-size: 26px;
@@ -2340,7 +2340,7 @@ select.fcc-input {
     text-shadow: 1px 1px 2px var(--shd-baseColor);
 }
 
-.fcc-loading-content p {
+.fff-loading-content p {
     color: var(--clr-textPrimary);
     margin: 0 0 25px 0;
     font-size: 16px;
@@ -2354,7 +2354,7 @@ select.fcc-input {
  *
  * Styleguide 8.1.5
  */
-.fcc-loading-progress {
+.fff-loading-progress {
     width: 100%;
     height: 6px;
     background: var(--clr-light);
@@ -2363,13 +2363,13 @@ select.fcc-input {
     overflow: hidden;
 }
 
-.fcc-progress-bar {
+.fff-progress-bar {
     height: 100%;
     width: 0%;
     border-radius: 2px;
     background: linear-gradient(90deg, var(--clr-accent), var(--clr-btn-hover), var(--clr-accent));
     box-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
-    animation: fcc-progress 3s ease-in-out infinite;
+    animation: fff-progress 3s ease-in-out infinite;
 }
 
 /* ==========================================================================
@@ -2396,7 +2396,7 @@ select.fcc-input {
  *
  * Styleguide 9.1
  */
-@keyframes fcc-spin {
+@keyframes fff-spin {
     to {
         transform: rotate(360deg);
     }
@@ -2409,7 +2409,7 @@ select.fcc-input {
  *
  * Styleguide 9.2
  */
-@keyframes fcc-progress {
+@keyframes fff-progress {
     0% {
         width: 0%;
     }
@@ -2452,8 +2452,8 @@ select.fcc-input {
  * Comprehensive utility classes for layout, typography, spacing,
  * and common styling patterns using design system tokens.
  *
- * All utilities use 'fcc-' prefix to avoid conflicts with other frameworks.
- * For Tailwind-style shortcuts, use fcc- prefixed equivalents.
+ * All utilities use 'fff-' prefix to avoid conflicts with other frameworks.
+ * For Tailwind-style shortcuts, use fff- prefixed equivalents.
  *
  * Status: Stable
  * Updated: 5.0.0
@@ -2471,49 +2471,49 @@ select.fcc-input {
  */
 
 /* Flexbox Controls */
-.fcc-flex {
+.fff-flex {
     display: flex;
 }
 
-.fcc-flex-col {
+.fff-flex-col {
     flex-direction: column;
 }
 
-.fcc-items-center {
+.fff-items-center {
     align-items: center;
 }
 
-.fcc-justify-center {
+.fff-justify-center {
     justify-content: center;
 }
 
-.fcc-justify-between {
+.fff-justify-between {
     justify-content: space-between;
 }
 
 /* Grid Controls */
-.fcc-grid {
+.fff-grid {
     display: grid;
 }
 
-.fcc-grid-cols-2 {
+.fff-grid-cols-2 {
     grid-template-columns: 1fr 1fr;
 }
 
-.fcc-grid-cols-4 {
+.fff-grid-cols-4 {
     grid-template-columns: repeat(4, 1fr);
 }
 
 /* Gap Utilities */
-.fcc-gap-2 {
+.fff-gap-2 {
     gap: var(--spc-sm);
 }
 
-.fcc-gap-3 {
+.fff-gap-3 {
     gap: var(--spc-md);
 }
 
-.fcc-gap-4 {
+.fff-gap-4 {
     gap: var(--spc-base);
 }
 
@@ -2526,65 +2526,65 @@ select.fcc-input {
  */
 
 /* Margin Utilities */
-.fcc-mb-2 {
+.fff-mb-2 {
     margin-bottom: var(--spc-sm);
 }
 
-.fcc-mb-3 {
+.fff-mb-3 {
     margin-bottom: var(--spc-md);
 }
 
-.fcc-mb-4 {
+.fff-mb-4 {
     margin-bottom: var(--spc-base);
 }
 
-.fcc-mb-5 {
+.fff-mb-5 {
     margin-bottom: var(--spc-lg);
 }
 
-.fcc-mb-6 {
+.fff-mb-6 {
     margin-bottom: var(--spc-xl);
 }
 
-.fcc-mt-2 {
+.fff-mt-2 {
     margin-top: var(--spc-sm);
 }
 
-.fcc-mt-3 {
+.fff-mt-3 {
     margin-top: var(--spc-md);
 }
 
-.fcc-mt-4 {
+.fff-mt-4 {
     margin-top: var(--spc-base);
 }
 
-.fcc-mt-5 {
+.fff-mt-5 {
     margin-top: var(--spc-lg);
 }
 
 /* Padding Utilities */
-.fcc-p-2 {
+.fff-p-2 {
     padding: var(--spc-sm);
 }
 
-.fcc-p-3 {
+.fff-p-3 {
     padding: var(--spc-md);
 }
 
-.fcc-p-4 {
+.fff-p-4 {
     padding: var(--spc-base);
 }
 
-.fcc-p-5 {
+.fff-p-5 {
     padding: var(--spc-xl);
 }
 
-.fcc-px-3 {
+.fff-px-3 {
     padding-left: var(--spc-md);
     padding-right: var(--spc-md);
 }
 
-.fcc-py-2 {
+.fff-py-2 {
     padding-top: var(--spc-sm);
     padding-bottom: var(--spc-sm);
 }
@@ -2598,49 +2598,49 @@ select.fcc-input {
  */
 
 /* Text Alignment */
-.fcc-text-center {
+.fff-text-center {
     text-align: center;
 }
 
-.fcc-text-left {
+.fff-text-left {
     text-align: left;
 }
 
-.fcc-text-right {
+.fff-text-right {
     text-align: right;
 }
 
 /* Font Weight */
-.fcc-font-bold {
+.fff-font-bold {
     font-weight: 700;
 }
 
-.fcc-font-semibold {
+.fff-font-semibold {
     font-weight: 600;
 }
 
-.fcc-font-medium {
+.fff-font-medium {
     font-weight: 500;
 }
 
 /* Font Size */
-.fcc-text-sm {
+.fff-text-sm {
     font-size: var(--fnt-small);
 }
 
-.fcc-text-base {
+.fff-text-base {
     font-size: var(--fnt-base);
 }
 
-.fcc-text-lg {
+.fff-text-lg {
     font-size: var(--fnt-large);
 }
 
-.fcc-text-xl {
+.fff-text-xl {
     font-size: var(--fnt-extraLarge);
 }
 
-.fcc-text-2xl {
+.fff-text-2xl {
     font-size: var(--fnt-2xLarge);
 }
 
@@ -2653,58 +2653,58 @@ select.fcc-input {
  */
 
 /* Border Utilities */
-.fcc-border {
+.fff-border {
     border: 1px solid var(--clr-secondary);
 }
 
-.fcc-border-2 {
+.fff-border-2 {
     border: 2px solid var(--clr-secondary);
 }
 
-.fcc-rounded {
+.fff-rounded {
     border-radius: var(--rad-standard);
 }
 
-.fcc-rounded-lg {
+.fff-rounded-lg {
     border-radius: var(--rad-large);
 }
 
 /* Background Utilities */
-.fcc-bg-white {
+.fff-bg-white {
     background-color: var(--clr-white);
 }
 
-.fcc-bg-card {
+.fff-bg-card {
     background-color: var(--clr-cardBackground);
 }
 
-.fcc-bg-page {
+.fff-bg-page {
     background-color: var(--clr-pageBackground);
 }
 
 /* Shadow Utilities */
-.fcc-shadow {
+.fff-shadow {
     box-shadow: var(--shd-standard);
 }
 
-.fcc-shadow-lg {
+.fff-shadow-lg {
     box-shadow: var(--shd-large);
 }
 
-.fcc-shadow-xl {
+.fff-shadow-xl {
     box-shadow: var(--shd-extraLarge);
 }
 
 /* Color Utilities */
-.fcc-text-primary {
+.fff-text-primary {
     color: var(--clr-primary);
 }
 
-.fcc-text-secondary {
+.fff-text-secondary {
     color: var(--clr-secondary);
 }
 
-.fcc-text-muted {
+.fff-text-muted {
     color: var(--clr-gray500);
 }
 
@@ -2717,55 +2717,55 @@ select.fcc-input {
  */
 
 /* Position Utilities */
-.fcc-relative {
+.fff-relative {
     position: relative;
 }
 
-.fcc-absolute {
+.fff-absolute {
     position: absolute;
 }
 
-.fcc-fixed {
+.fff-fixed {
     position: fixed;
 }
 
 /* Width Utilities */
-.fcc-w-full {
+.fff-w-full {
     width: 100%;
 }
 
-.fcc-w-auto {
+.fff-w-auto {
     width: auto;
 }
 
 /* Overflow Utilities */
-.fcc-overflow-hidden {
+.fff-overflow-hidden {
     overflow: hidden;
 }
 
-.fcc-overflow-auto {
+.fff-overflow-auto {
     overflow: auto;
 }
 
 /* Cursor Utilities */
-.fcc-cursor-pointer {
+.fff-cursor-pointer {
     cursor: pointer;
 }
 
-.fcc-cursor-not-allowed {
+.fff-cursor-not-allowed {
     cursor: not-allowed;
 }
 
 /* Display Utilities */
-.fcc-block {
+.fff-block {
     display: block;
 }
 
-.fcc-inline-block {
+.fff-inline-block {
     display: inline-block;
 }
 
-.fcc-hidden {
+.fff-hidden {
     display: none;
 }
 
@@ -2825,8 +2825,8 @@ select.fcc-input {
  *
  * Styleguide 11.2
  */
-.fcc-btn:focus-visible,
-.fcc-input:focus-visible {
+.fff-btn:focus-visible,
+.fff-input:focus-visible {
     outline: 2px solid var(--clr-accent) !important;
     outline-offset: 2px !important;
 }
@@ -2856,7 +2856,7 @@ select.fcc-input {
  * Styleguide 12.1
  */
 @media (max-width: 1024px) {
-    .fcc-main-grid {
+    .fff-main-grid {
         grid-template-columns: 1fr;
         gap: var(--spc-base);
     }
@@ -2872,22 +2872,22 @@ select.fcc-input {
 @media (max-width: 768px) {
 
     /* Layout Adjustments */
-    .fcc-main-grid {
+    .fff-main-grid {
         grid-template-columns: 1fr;
         gap: var(--spc-base);
     }
 
-    .fcc-tabs {
+    .fff-tabs {
         justify-content: center;
     }
 
-    .fcc-preview-grid {
+    .fff-preview-grid {
         grid-template-columns: 1fr;
         gap: var(--spc-base);
     }
 
     /* Button Layout Adjustments */
-    .fcc-table-buttons {
+    .fff-table-buttons {
         flex-direction: column;
         gap: 8px;
         align-items: stretch;
@@ -2912,24 +2912,24 @@ select.fcc-input {
     }
 
     /* Grid System Responsive Adjustments */
-    .fcc-grid-cols-4 {
+    .fff-grid-cols-4 {
         grid-template-columns: 1fr 1fr;
         gap: var(--spc-sm);
     }
 
     /* Typography Scaling */
-    .fcc-main-title {
+    .fff-main-title {
         font-size: var(--fnt-extraLarge) !important;
     }
 
     /* Info Content Grid Override */
-    .fcc-info-content div[style*="grid-template-columns: 1fr 1fr"] {
+    .fff-info-content div[style*="grid-template-columns: 1fr 1fr"] {
         grid-template-columns: 1fr !important;
         gap: var(--spc-base) !important;
     }
 
     /* Sample Space Responsive */
-    .fcc-sample-displays {
+    .fff-sample-displays {
         grid-template-columns: 1fr;
         gap: 16px;
     }
@@ -2945,12 +2945,12 @@ select.fcc-input {
 @media (max-width: 480px) {
 
     /* Grid Simplification */
-    .fcc-grid-cols-2 {
+    .fff-grid-cols-2 {
         grid-template-columns: 1fr;
     }
 
     /* Typography Further Scaling */
-    .fcc-main-title {
+    .fff-main-title {
         font-size: var(--fnt-large) !important;
     }
 }
@@ -3005,7 +3005,7 @@ select.fcc-input {
  * Adds more space between the header (with copy buttons) and the code
  * container below, so buttons don't appear to be sitting on the divider.
  */
-.fcc-css-header {
+.fff-css-header {
     margin-bottom: 20px !important;
 }
 
@@ -3021,21 +3021,21 @@ select.fcc-input {
  */
 
 /* Panels and content areas */
-.fcc-info-content,
-.fcc-panel,
+.fff-info-content,
+.fff-panel,
 .font-clamp-container,
 label,
 input,
 select,
-.fcc-table,
-.fcc-table td,
-.fcc-table th {
+.fff-table,
+.fff-table td,
+.fff-table th {
     font-size: 16px !important;
 }
 
 /* Ensure specific elements also get 16px */
-.fcc-input,
-.fcc-select {
+.fff-input,
+.fff-select {
     font-size: 16px !important;
 }
 
@@ -3050,16 +3050,16 @@ select,
  * instead of Georgia Bold (700).
  */
 h2,
-.fcc-preview-header-row h2,
-.fcc-css-header h2,
-.fcc-panel h2 {
+.fff-preview-header-row h2,
+.fff-css-header h2,
+.fff-panel h2 {
     font-family: var(--fff-font-heading) !important;
     font-weight: 600 !important;
     font-size: 24px !important;
 }
 
 /* Brown toggle button headers - match h2 size */
-.fcc-info-toggle span {
+.fff-info-toggle span {
     font-size: 24px !important;
     font-weight: 600 !important;
 }
@@ -3070,5 +3070,5 @@ h2,
 }
 
 /* Ensure all labels and descriptive text are 16px */
-.fcc-font-input label,
-.fcc-font-input span,
+.fff-font-input label,
+.fff-font-input span,
