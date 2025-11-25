@@ -100,7 +100,9 @@ class FontForgeDataAccessor {
     const { clearCache = true, triggerUpdate = true } = options;
 
     if (!this.isValidTabType(tabType)) {
-      console.error(`Invalid tab type: ${tabType}`);
+      if (window.Logger) {
+        window.Logger.error(`Invalid tab type: ${tabType}`);
+      }
       return false;
     }
 

@@ -119,16 +119,16 @@ class CSSGeneratorController {
         classSizes: window.fluidfontforgeAjax?.data?.classSizes || [],
         variableSizes: window.fluidfontforgeAjax?.data?.variableSizes || [],
         tagSizes: window.fluidfontforgeAjax?.data?.tagSizes || [],
-        coreInterface: window.fluifofoCore,
+        coreInterface: window.fluidFontForgeCore,
       };
 
       window.dispatchEvent(
-        new CustomEvent("fluifofo_dataUpdated", {
+        new CustomEvent("fluidFontForge_dataUpdated", {
           detail: currentData,
         })
       );
     } catch (error) {
-      console.error("CSS update error:", error);
+      window.Logger?.error("CSS update error:", error);
     }
   }
 
@@ -160,7 +160,7 @@ class CSSGeneratorController {
         allCSS
       );
     } catch (error) {
-      console.error("CSS generation error:", error);
+      window.Logger?.error("CSS generation error:", error);
     }
   }
 
@@ -182,8 +182,8 @@ class CSSGeneratorController {
    */
   getGenerationContext() {
     const sizes = this.advanced.getCurrentSizes();
-    const activeTab = window.fluifofoCore?.activeTab || "class";
-    const unitType = window.fluifofoCore?.unitType || "rem";
+    const activeTab = window.fluidFontForgeCore?.activeTab || "class";
+    const unitType = window.fluidFontForgeCore?.unitType || "rem";
     const selectedId = this.getSelectedSizeId();
 
     const minViewport = parseFloat(
@@ -411,7 +411,7 @@ class CSSGeneratorController {
     const { selectedCopyContainer, generatedCopyContainer } = this.elements;
 
     if (selectedCopyContainer) {
-      const activeTab = window.fluifofoCore?.activeTab || "class";
+      const activeTab = window.fluidFontForgeCore?.activeTab || "class";
       const tooltipText = this.getSelectedCSSTooltip(activeTab);
 
       selectedCopyContainer.innerHTML = `
@@ -425,7 +425,7 @@ class CSSGeneratorController {
     }
 
     if (generatedCopyContainer) {
-      const activeTab = window.fluifofoCore?.activeTab || "class";
+      const activeTab = window.fluidFontForgeCore?.activeTab || "class";
       const tooltipText = this.getGeneratedCSSTooltip(activeTab);
 
       generatedCopyContainer.innerHTML = `
@@ -520,7 +520,7 @@ class CSSGeneratorController {
    */
   copyToClipboard(text, button) {
     if (!text || text.trim() === "") {
-      console.warn("No text to copy");
+      window.Logger?.warn("No text to copy");
       return;
     }
 
@@ -531,7 +531,7 @@ class CSSGeneratorController {
           this.showButtonSuccess(button);
         })
         .catch((err) => {
-          console.error("Copy failed:", err);
+          window.Logger?.error("Copy failed:", err);
           this.fallbackCopy(text);
           this.showButtonSuccess(button);
         });
@@ -564,7 +564,7 @@ class CSSGeneratorController {
     try {
       document.execCommand("copy");
     } catch (err) {
-      console.error("Fallback copy failed:", err);
+      window.Logger?.error("Fallback copy failed:", err);
     }
 
     document.body.removeChild(textarea);
@@ -681,7 +681,7 @@ class CSSGeneratorController {
       return this.advanced.selectedRowId;
     }
 
-    const activeTab = window.fluifofoCore?.activeTab || "class";
+    const activeTab = window.fluidFontForgeCore?.activeTab || "class";
     const baseValue = document.getElementById("base-value")?.value;
 
     if (!baseValue) return null;

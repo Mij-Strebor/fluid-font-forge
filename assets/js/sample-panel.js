@@ -111,7 +111,7 @@ class SamplePanelController {
       return;
     }
 
-    const activeTab = window.fluifofoCore?.activeTab || "class";
+    const activeTab = window.fluidFontForgeCore?.activeTab || "class";
     const propertyName = TabDataUtils.getPropertyName(activeTab);
 
     // Get current sizes (include all entries, even custom ones)
@@ -340,7 +340,7 @@ class SamplePanelController {
     }
 
     const sizes = FontForgeUtils.getCurrentSizes(
-      window.fluifofoCore?.activeTab,
+      window.fluidFontForgeCore?.activeTab,
       this.advanced
     );
 
@@ -367,7 +367,7 @@ class SamplePanelController {
     );
     const minRootSize = parseFloat(this.elements.minRootSizeInput?.value || 16);
     const maxRootSize = parseFloat(this.elements.maxRootSizeInput?.value || 20);
-    const unitType = window.fluifofoCore?.unitType || "rem";
+    const unitType = window.fluidFontForgeCore?.unitType || "rem";
 
     // Clamp viewport size to valid range
     const clampedViewport = Math.max(

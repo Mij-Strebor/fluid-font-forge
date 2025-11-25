@@ -173,8 +173,8 @@ class DragDropController {
       r.style.boxShadow = "";
     });
 
-    row.style.borderTop = "4px solid #3b82f6";
-    row.style.boxShadow = "0 -2px 8px rgba(59, 130, 246, 0.5)";
+    row.style.borderTop = "4px solid var(--clr-info)";
+    row.style.boxShadow = "0 -2px 8px var(--brd-dragActive)";
   }
 
   /**
@@ -267,7 +267,7 @@ class DragDropController {
    * @returns {void}
    */
   reorderSizes(draggedRow, targetRow) {
-    const activeTab = window.fluifofoCore?.activeTab || "class";
+    const activeTab = window.fluidFontForgeCore?.activeTab || "class";
     const sizes = this.advanced.getCurrentSizes();
     const draggedId = parseInt(draggedRow.dataset.id);
     const targetId = parseInt(targetRow.dataset.id);

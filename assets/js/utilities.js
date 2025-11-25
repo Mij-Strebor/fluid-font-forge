@@ -321,8 +321,8 @@ class SimpleTooltips {
     this.tooltip = document.createElement("div");
     this.tooltip.style.cssText = `
       position: absolute;
-      background: #8B4513;
-      color: white;
+      background: var(--clr-primary);
+      color: var(--clr-textLight);
       padding: 8px 12px;
       border-radius: 4px;
       font-size: 12px;
@@ -332,7 +332,7 @@ class SimpleTooltips {
       z-index: 99999;
       pointer-events: none;
       box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-      border: 1px solid #654321;
+      border: 1px solid var(--clr-secondary);
     `;
     // Sanitize HTML to prevent XSS while allowing safe formatting tags
     this.tooltip.innerHTML = this.sanitizeTooltipHTML(text);
@@ -479,7 +479,7 @@ class WordPressAdminNotices {
    */
   show(message, type = "info", dismissible = true, autoHide = true) {
     if (!this.container) {
-      console.error("Admin notices container not available");
+      // Silent fail - container not available
       return;
     }
 

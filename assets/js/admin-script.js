@@ -29,16 +29,16 @@
 /**
  * Custom event names for inter-component communication
  *
- * @constant {Object} FLUIFOFO_EVENTS
+ * @constant {Object} FLUID_FONT_FORGE_EVENTS
  */
-const FLUIFOFO_EVENTS = {
-  TAB_CHANGED: "fluifofo:tab:changed",
-  DATA_UPDATED: "fluifofo:data:updated",
-  SETTINGS_CHANGED: "fluifofo:settings:changed",
-  CORE_READY: "fluifofo:core:ready",
-  ADVANCED_READY: "fluifofo:advanced:ready",
-  SIZE_SELECTED: "fluifofo:size:selected",
-  CALCULATION_COMPLETE: "fluifofo:calculation:complete",
+const FLUID_FONT_FORGE_EVENTS = {
+  TAB_CHANGED: "fluidFontForge:tab:changed",
+  DATA_UPDATED: "fluidFontForge:data:updated",
+  SETTINGS_CHANGED: "fluidFontForge:settings:changed",
+  CORE_READY: "fluidFontForge:core:ready",
+  ADVANCED_READY: "fluidFontForge:advanced:ready",
+  SIZE_SELECTED: "fluidFontForge:size:selected",
+  CALCULATION_COMPLETE: "fluidFontForge:calculation:complete",
 };
 
 /* ==========================================================================
@@ -59,6 +59,36 @@ function escapeHTML(str) {
   div.textContent = str;
   return div.innerHTML;
 }
+
+/**
+ * Debug Logger
+ *
+ * Centralized logging utility that can be disabled in production
+ * Set DEBUG to false to disable all logging
+ *
+ * @namespace Logger
+ */
+window.Logger = window.Logger || {
+  DEBUG: true, // Set to false in production builds
+
+  error(...args) {
+    if (this.DEBUG) {
+      console.error('[Fluid Font Forge]', ...args);
+    }
+  },
+
+  warn(...args) {
+    if (this.DEBUG) {
+      console.warn('[Fluid Font Forge]', ...args);
+    }
+  },
+
+  info(...args) {
+    if (this.DEBUG) {
+      console.info('[Fluid Font Forge]', ...args);
+    }
+  }
+};
 
 /**
  * Font Forge Utility Functions
@@ -198,12 +228,12 @@ class FontClampEnhancedCoreInterface {
       contentPopulated: false,
     };
 
-    window.addEventListener("fluifofo:advanced:ready", () => {
+    window.addEventListener("fluidFontForge:advanced:ready", () => {
       this.loadingSteps.advancedReady = true;
       this.checkAndRevealInterface();
     });
 
-    window.addEventListener("fluifofo:data:updated", () => {
+    window.addEventListener("fluidFontForge:data:updated", () => {
       this.loadingSteps.contentPopulated = true;
       this.checkAndRevealInterface();
     });
@@ -457,8 +487,8 @@ class FontClampEnhancedCoreInterface {
     // Prepare control settings (panels + current tab/unit)
     const controlSettings = {
       ...panelStates,
-      activeTab: window.fluifofoCore?.activeTab,
-      unitType: window.fluifofoCore?.unitType,
+      activeTab: window.fluidFontForgeCore?.activeTab,
+      unitType: window.fluidFontForgeCore?.unitType,
       autosaveEnabled: this.elements.autosaveToggle?.checked,
     };
 
@@ -490,7 +520,7 @@ class FontClampEnhancedCoreInterface {
    * @private
    */
   triggerCalculation() {
-    window.dispatchEvent(new CustomEvent(FLUIFOFO_EVENTS.SETTINGS_CHANGED));
+    window.dispatchEvent(new CustomEvent(FLUID_FONT_FORGE_EVENTS.SETTINGS_CHANGED));
     if (window.fontClampAdvanced && window.fontClampAdvanced.calculateSizes) {
       window.fontClampAdvanced.calculateSizes();
     }
@@ -648,7 +678,7 @@ class FontClampEnhancedCoreInterface {
    */
   triggerSegmentHooks() {
     window.dispatchEvent(
-      new CustomEvent("fluifofo_coreReady", {
+      new CustomEvent("fluidFontForge_coreReady", {
         detail: {
           coreInterface: this,
           data: {
@@ -671,8 +701,8 @@ class FontClampEnhancedCoreInterface {
    */
   triggerHook(hookName, data) {
     const eventName = hookName.includes(":")
-      ? `fluifofo:${hookName}`
-      : `fluifofo_${hookName}`;
+      ? `fluidFontForge:${hookName}`
+      : `fluidFontForge_${hookName}`;
 
     window.dispatchEvent(
       new CustomEvent(eventName, {
@@ -790,7 +820,7 @@ class FontClampAdvanced {
       this.calculateSizes();
 
       window.dispatchEvent(
-        new CustomEvent("fluifofo:advanced:ready", {
+        new CustomEvent("fluidFontForge:advanced:ready", {
           detail: {
             advancedFeatures: this,
             version: this.version,
@@ -905,8 +935,8 @@ class FontClampAdvanced {
           maxViewport: this.elements.maxViewportInput?.value,
           minScale: this.elements.minScaleSelect?.value,
           maxScale: this.elements.maxScaleSelect?.value,
-          unitType: window.fluifofoCore?.unitType,
-          activeTab: window.fluifofoCore?.activeTab,
+          unitType: window.fluidFontForgeCore?.unitType,
+          activeTab: window.fluidFontForgeCore?.activeTab,
           previewFontUrl: this.elements.previewFontUrlInput?.value,
           autosaveEnabled: this.elements.autosaveToggle?.checked,
         };
@@ -954,7 +984,7 @@ class FontClampAdvanced {
             }
           })
           .catch((error) => {
-            console.error("Save error:", error);
+            window.Logger.error("Save error:", error);
 
             if (autosaveStatus && autosaveIcon && autosaveText) {
               autosaveStatus.className = "autosave-status error";
@@ -981,11 +1011,11 @@ class FontClampAdvanced {
       });
     }
 
-    window.addEventListener("fluifofo:tab:changed", (e) => {
+    window.addEventListener("fluidFontForge:tab:changed", (e) => {
       this.handleTabChange(e.detail);
     });
 
-    window.addEventListener("fluifofo_unitTypeChanged", (e) => {
+    window.addEventListener("fluidFontForge_unitTypeChanged", (e) => {
       this.calculateSizes();
       this.renderSizes();
       this.updatePreview();
@@ -1133,9 +1163,9 @@ class FontClampAdvanced {
     this.updatePreviewFont();
     this.updatePreview();
 
-    window.dispatchEvent(new CustomEvent("fluifofo:data:updated"));
+    window.dispatchEvent(new CustomEvent("fluidFontForge:data:updated"));
     window.dispatchEvent(
-      new CustomEvent("fluifofo:advanced:ready", {
+      new CustomEvent("fluidFontForge:advanced:ready", {
         detail: { advancedFeatures: this, version: this.version },
       })
     );
@@ -1213,7 +1243,7 @@ class FontClampAdvanced {
     const headerRow = this.elements.tableHeader;
     if (!headerRow) return;
 
-    const activeTab = window.fluifofoCore?.activeTab || "class";
+    const activeTab = window.fluidFontForgeCore?.activeTab || "class";
     const nameHeader = headerRow.children[1];
 
     if (nameHeader) {
@@ -1249,7 +1279,7 @@ class FontClampAdvanced {
       return;
     }
 
-    const activeTab = window.fluifofoCore?.activeTab || "class";
+    const activeTab = window.fluidFontForgeCore?.activeTab || "class";
     const sizes = this.getCurrentSizes();
 
     const currentSelection = select.value;
@@ -1336,7 +1366,7 @@ class FontClampAdvanced {
         const baseSize = window.FontForgeData
           ? window.FontForgeData.getSizeById(
               retryBaseValue,
-              window.fluifofoCore?.activeTab
+              window.fluidFontForgeCore?.activeTab
             )
           : sizes.find((size) => size.id == retryBaseValue);
         if (!baseSize) {
@@ -1347,7 +1377,7 @@ class FontClampAdvanced {
         const maxScale = parseFloat(this.elements.maxScaleSelect?.value);
         const minRootSize = parseFloat(this.elements.minRootSizeInput?.value);
         const maxRootSize = parseFloat(this.elements.maxRootSizeInput?.value);
-        const unitType = window.fluifofoCore?.unitType || "rem";
+        const unitType = window.fluidFontForgeCore?.unitType || "rem";
         if (
           isNaN(minScale) ||
           isNaN(maxScale) ||
@@ -1392,7 +1422,7 @@ class FontClampAdvanced {
       const baseSize = window.FontForgeData
         ? window.FontForgeData.getSizeById(
             baseValue,
-            window.fluifofoCore?.activeTab
+            window.fluidFontForgeCore?.activeTab
           )
         : sizes.find((size) => size.id == baseValue);
       if (!baseSize) {
@@ -1403,7 +1433,7 @@ class FontClampAdvanced {
       const maxScale = parseFloat(this.elements.maxScaleSelect?.value);
       const minRootSize = parseFloat(this.elements.minRootSizeInput?.value);
       const maxRootSize = parseFloat(this.elements.maxRootSizeInput?.value);
-      const unitType = window.fluifofoCore?.unitType || "rem";
+      const unitType = window.fluidFontForgeCore?.unitType || "rem";
       if (
         isNaN(minScale) ||
         isNaN(maxScale) ||
@@ -1446,7 +1476,7 @@ class FontClampAdvanced {
         this.samplePanel.updateSampleTextFromSettings();
       }, 100);
     } catch (error) {
-      console.error("Error in calculateSizes:", error);
+      window.Logger.error("Error in calculateSizes:", error);
       this.showError("Failed to calculate sizes: " + error.message);
     }
   }
@@ -1472,7 +1502,7 @@ class FontClampAdvanced {
 
       this.renderPreviewRows(previewContext);
     } catch (error) {
-      console.error("⚠ Preview update error:", error);
+      window.Logger.error("⚠ Preview update error:", error);
     }
   }
 
@@ -1483,7 +1513,7 @@ class FontClampAdvanced {
    * @returns {Object} Preview context object
    */
   createPreviewContext() {
-    const activeTab = window.fluifofoCore?.activeTab || "class";
+    const activeTab = window.fluidFontForgeCore?.activeTab || "class";
 
     return {
       sizes: window.FontForgeData
@@ -1493,7 +1523,7 @@ class FontClampAdvanced {
       previewMax: this.elements.previewMaxContainer,
       minRootSize: parseFloat(this.elements.minRootSizeInput?.value),
       maxRootSize: parseFloat(this.elements.maxRootSizeInput?.value),
-      unitType: window.fluifofoCore?.unitType || "rem",
+      unitType: window.fluidFontForgeCore?.unitType || "rem",
       activeTab: activeTab,
     };
   }
@@ -1511,7 +1541,7 @@ class FontClampAdvanced {
     }
 
     if (isNaN(context.minRootSize) || isNaN(context.maxRootSize)) {
-      console.error("⚠ Invalid root size values in updatePreview");
+      window.Logger.error("⚠ Invalid root size values in updatePreview");
       return false;
     }
 
@@ -1537,7 +1567,7 @@ class FontClampAdvanced {
    */
   renderEmptyPreview(context) {
     const emptyMessage =
-      '<div style="text-align: center; color: #6b7280; font-style: italic; padding: 60px 20px;">No sizes to preview</div>';
+      '<div style="text-align: center; color: var(--clr-textMuted); font-style: italic; padding: 60px 20px;">No sizes to preview</div>';
     context.previewMin.innerHTML = emptyMessage;
     context.previewMax.innerHTML = emptyMessage;
   }
@@ -1671,7 +1701,7 @@ class FontClampAdvanced {
             font-size: ${fontSizeValue};
             line-height: ${lineHeight};
             font-weight: 500;
-            color: #1f2937;
+            color: var(--clr-textPrimary);
             text-align: center;
             white-space: nowrap;
             overflow: visible;
@@ -1775,7 +1805,7 @@ class FontClampAdvanced {
    * @returns {Object} Render context
    */
   createRenderContext() {
-    const activeTab = window.fluifofoCore?.activeTab || "class";
+    const activeTab = window.fluidFontForgeCore?.activeTab || "class";
 
     const sizes = window.FontForgeData
       ? window.FontForgeData.getSizes(activeTab)
@@ -1784,7 +1814,7 @@ class FontClampAdvanced {
     return {
       sizes: sizes,
       activeTab: activeTab,
-      unitType: window.fluifofoCore?.unitType || "rem",
+      unitType: window.fluidFontForgeCore?.unitType || "rem",
       tbody: null,
     };
   }
@@ -1850,7 +1880,7 @@ class FontClampAdvanced {
     const escapedDisplayName = escapeHTML(displayName);
 
     row.innerHTML = `
-    <td class="drag-handle" style="text-align: center; color: #9ca3af; cursor: grab; user-select: none;"
+    <td class="drag-handle" style="text-align: center; color: var(--clr-textMuted); cursor: grab; user-select: none;"
       data-tooltip="Drag to reorder" data-tooltip-position="right">⋮⋮</td>
     <td style="font-weight: 500; overflow: hidden; text-overflow: ellipsis;" title="${escapedDisplayName}"; font-size: 16px;">${escapedDisplayName}</td>
     <td style="text-align: center; font-family: monospace; font-size: 16px;">${this.formatSize(
@@ -1863,8 +1893,8 @@ class FontClampAdvanced {
     )}</td>
     <td style="text-align: center; font-size: 16px;">${size.lineHeight}</td>
     <td style="text-align: center; padding: 2px;">
-      <button class="edit-btn" style="color: #3b82f6; background: none; border: none; cursor: pointer; margin-right: 6px; font-size: 16px; padding: 2px;" title="Edit">✎</button>
-      <button class="delete-btn" style="color: #ef4444; background: none; border: none; cursor: pointer; font-size: 16px; padding: 2px;" title="Delete">🗑</button>
+      <button class="edit-btn" style="color: var(--clr-info); background: none; border: none; cursor: pointer; margin-right: 6px; font-size: 16px; padding: 2px;" title="Edit">✎</button>
+      <button class="delete-btn" style="color: var(--clr-danger); background: none; border: none; cursor: pointer; font-size: 16px; padding: 2px;" title="Delete">🗑</button>
     </td>
   `;
 
@@ -1992,7 +2022,7 @@ class FontClampAdvanced {
       if (fontUrl.startsWith("file://") || fontUrl.includes(":\\")) {
         if (filenameSpan) {
           filenameSpan.textContent = "Local files not allowed";
-          filenameSpan.style.color = "#ef4444";
+          filenameSpan.style.color = "var(--clr-danger)";
         }
 
         if (!window.fluidFontNotices) {
@@ -2237,7 +2267,7 @@ class FontClampAdvanced {
 
     if (!modal || !nameInput || !lineHeightInput) return;
 
-    const activeTab = window.fluifofoCore?.activeTab || "class";
+    const activeTab = window.fluidFontForgeCore?.activeTab || "class";
     const displayName = this.getSizeDisplayName(size, activeTab);
 
     nameInput.value = displayName;
@@ -2278,7 +2308,7 @@ class FontClampAdvanced {
     if (!this.editingId) return;
 
     const sizes = this.getCurrentSizes();
-    const activeTab = window.fluifofoCore?.activeTab || "class";
+    const activeTab = window.fluidFontForgeCore?.activeTab || "class";
     let size;
 
     if (this.isAddingNew) {
@@ -2301,7 +2331,7 @@ class FontClampAdvanced {
     } else {
       size = sizes.find((s) => s.id == this.editingId);
       if (!size) {
-        console.error("Cannot find size to edit with ID:", this.editingId);
+        window.Logger.error("Cannot find size to edit with ID:", this.editingId);
         return;
       }
     }
@@ -2350,7 +2380,7 @@ class FontClampAdvanced {
     size.lineHeight = newLineHeight;
 
     if (this.isAddingNew) {
-      const activeTab = window.fluifofoCore?.activeTab || "class";
+      const activeTab = window.fluidFontForgeCore?.activeTab || "class";
 
       if (window.FontForgeData) {
         window.FontForgeData.addSize(activeTab, size);
@@ -2417,13 +2447,13 @@ class FontClampAdvanced {
       errorDiv = document.createElement("div");
       errorDiv.className = "modal-error";
       errorDiv.style.cssText = `
-        background: #dc3545;
-        color: white;
+        background: var(--clr-dangerDark);
+        color: var(--clr-textLight);
         padding: 12px;
         margin: 0 0 16px 0;
         border-radius: 4px;
         font-size: 14px;
-        border: 1px solid #c82333;
+        border: 1px solid var(--clr-dangerDark);
       `;
 
       const modalContent = modal.querySelector(".fff-modal-content");
@@ -2455,7 +2485,7 @@ class FontClampAdvanced {
     window.fluidFontNotices.confirm(
       "Delete this size?<br><br>This action cannot be undone.",
       () => {
-        const activeTab = window.fluifofoCore?.activeTab || "class";
+        const activeTab = window.fluidFontForgeCore?.activeTab || "class";
 
         if (window.FontForgeData) {
           const success = window.FontForgeData.removeSize(activeTab, id);
@@ -2486,7 +2516,7 @@ class FontClampAdvanced {
    * Open add new size modal with pre-filled data
    */
   addNewSize() {
-    const activeTab = window.fluifofoCore?.activeTab || "class";
+    const activeTab = window.fluidFontForgeCore?.activeTab || "class";
 
     const { nextId, customName } = this.generateNextCustomEntry(activeTab);
 
@@ -2593,7 +2623,7 @@ class FontClampAdvanced {
    * Reset sizes to default with confirmation
    */
   resetDefaults() {
-    const activeTab = window.fluifofoCore?.activeTab || "class";
+    const activeTab = window.fluidFontForgeCore?.activeTab || "class";
     const tabName =
       activeTab === "class"
         ? "Classes"
@@ -2654,27 +2684,27 @@ class FontClampAdvanced {
         this.markDataChanged();
 
         setTimeout(() => {
-          if (window.fluifofoCore) {
-            const activeTab = window.fluifofoCore.activeTab;
+          if (window.fluidFontForgeCore) {
+            const activeTab = window.fluidFontForgeCore.activeTab;
             switch (activeTab) {
               case "class":
-                window.fluifofoCore.classSizes =
+                window.fluidFontForgeCore.classSizes =
                   window.fluidfontforgeAjax.data.classSizes;
                 break;
               case "vars":
-                window.fluifofoCore.variableSizes =
+                window.fluidFontForgeCore.variableSizes =
                   window.fluidfontforgeAjax.data.variableSizes;
                 break;
               case "tailwind":
-                window.fluifofoCore.tailwindSizes =
+                window.fluidFontForgeCore.tailwindSizes =
                   window.fluidfontforgeAjax.data.tailwindSizes;
                 break;
               case "tag":
-                window.fluifofoCore.tagSizes =
+                window.fluidFontForgeCore.tagSizes =
                   window.fluidfontforgeAjax.data.tagSizes;
                 break;
             }
-            window.fluifofoCore.updateBaseValueDropdown(activeTab);
+            window.fluidFontForgeCore.updateBaseValueDropdown(activeTab);
           }
         }, 200);
 
@@ -2690,7 +2720,7 @@ class FontClampAdvanced {
         try {
           this.showResetNotification(tabName);
         } catch (error) {
-          console.error("Failed to create success notification:", error);
+          window.Logger.error("Failed to create success notification:", error);
           alert(`${tabName} have been reset to defaults successfully.`);
         }
       }
@@ -2969,7 +2999,7 @@ class FontClampAdvanced {
    * @returns {Object} Clear context object
    */
   createClearContext() {
-    const activeTab = window.fluifofoCore?.activeTab || "class";
+    const activeTab = window.fluidFontForgeCore?.activeTab || "class";
     const tabName = this.getTabDisplayName(activeTab);
     const { currentData, dataArrayRef } = this.getTabDataForClear(activeTab);
 
@@ -3034,7 +3064,7 @@ class FontClampAdvanced {
    */
   validateClearContext(context) {
     if (!context.currentData || !context.dataArrayRef) {
-      console.error(
+      window.Logger.error(
         "Unable to clear sizes - invalid tab or missing data:",
         context.activeTab
       );
@@ -3112,20 +3142,20 @@ class FontClampAdvanced {
    * @param {string} activeTab - Tab identifier
    */
   updateCoreInterfaceData(activeTab) {
-    if (!window.fluifofoCore) return;
+    if (!window.fluidFontForgeCore) return;
 
     switch (activeTab) {
       case "class":
-        window.fluifofoCore.classSizes = [];
+        window.fluidFontForgeCore.classSizes = [];
         break;
       case "vars":
-        window.fluifofoCore.variableSizes = [];
+        window.fluidFontForgeCore.variableSizes = [];
         break;
       case "tag":
-        window.fluifofoCore.tagSizes = [];
+        window.fluidFontForgeCore.tagSizes = [];
         break;
       case "tailwind":
-        window.fluifofoCore.tailwindSizes = [];
+        window.fluidFontForgeCore.tailwindSizes = [];
         break;
     }
   }
@@ -3213,7 +3243,7 @@ class FontClampAdvanced {
         bottom: 20px;
         right: 20px;
         background: var(--clr-secondary);
-        color: #FAF9F6;
+        color: var(--clr-textLight);
         padding: 16px 20px;
         border-radius: var(--jimr-border-radius-lg);
         box-shadow: var(--clr-shadow-xl);
@@ -3235,7 +3265,7 @@ class FontClampAdvanced {
         <button id="dismiss-clear-btn" style="
             background: none;
             border: none;
-            color: #FAF9F6;
+            color: var(--clr-textLight);
             font-size: 18px;
             cursor: pointer;
             padding: 4px;
@@ -3344,7 +3374,7 @@ class FontClampAdvanced {
     const wrapper = this.elements.sizesTableWrapper;
     if (!wrapper) return;
 
-    const activeTab = window.fluifofoCore?.activeTab || "class";
+    const activeTab = window.fluidFontForgeCore?.activeTab || "class";
     const tabDisplayName =
       activeTab === "class"
         ? "Font Size Classes"
@@ -3396,7 +3426,7 @@ class FontClampAdvanced {
    * @returns {Array} Array of size objects
    */
   getCurrentSizes() {
-    const activeTab = window.fluifofoCore?.activeTab || "class";
+    const activeTab = window.fluidFontForgeCore?.activeTab || "class";
     const sizes = FontForgeUtils.getCurrentSizes(activeTab, this);
     return sizes;
   }
@@ -3467,7 +3497,7 @@ class FontClampAdvanced {
    * @param {string} message - Error message
    */
   showError(message) {
-    console.error(message);
+    window.Logger.error(message);
   }
 }
 
@@ -3480,6 +3510,6 @@ new SimpleTooltips();
 window.fontClampAdvanced = new FontClampAdvanced();
 
 document.addEventListener("DOMContentLoaded", () => {
-  window.fluifofoCore = new FontClampEnhancedCoreInterface();
+  window.fluidFontForgeCore = new FontClampEnhancedCoreInterface();
 });
 

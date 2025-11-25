@@ -195,8 +195,8 @@
       top: ${rect.bottom + scrollTop + 8}px;
       left: ${rect.left + scrollLeft}px;
       width: ${rect.width}px;
-      background: #dc2626;
-      color: white;
+      background: var(--clr-dangerDark);
+      color: var(--clr-textLight);
       padding: 12px 16px;
       border-radius: 6px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
