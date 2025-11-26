@@ -197,6 +197,7 @@
     margin: 0 auto 40px !important;  /* Pull up into bottom fade area */
     position: relative !important;  /* Create stacking context */
     z-index: 3 !important;  /* Above forge background (z-index: 0) */
+    width: 1280px !important;  /* Fixed width to match header and container */
     max-width: 1280px !important;  /* Match header and container width */
 }
 

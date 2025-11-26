@@ -88,12 +88,11 @@ div.fff-panel.fff-panel,
 /**
  * Base Rules - All panels using .fff-info-toggle-section (brown headers)
  *
- * DEFAULT: All panels constrained by max-width with horizontal margins
+ * DEFAULT: All panels constrained by max-width
  * This allows proper alignment without forcing fixed widths.
  */
 .fff-info-toggle-section {
     max-width: 1280px !important;
-    margin: 20px !important;
     box-sizing: border-box !important;
 }
 

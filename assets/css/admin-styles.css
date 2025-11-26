@@ -146,6 +146,8 @@
     /* Gold hover state */
     --clr-link: #ce6565;
     /* Burnt Orange for links */
+    --clr-link-hover: #b54545;
+    /* Darker red for link hover state */
     /* Gold for highlights and call-to-action elements */
 
     /**
@@ -575,6 +577,26 @@ label {
 .space-clamp-container {
     width: 1280px;
     margin: 0 auto;
+}
+
+/* ==========================================================================
+   LINK STYLING
+   ========================================================================== */
+
+/**
+ * Link Hover State
+ *
+ * Applies hover color to all links within the plugin interface.
+ * Uses !important to override inline styles in templates.
+ * Multiple selectors ensure coverage across all panel types.
+ *
+ * Styleguide 4.1.5
+ */
+.fff-info-content-static a[href]:hover,
+.fff-info-content a[href]:hover,
+.wrap a[href]:hover {
+    color: var(--clr-link-hover) !important;
+    transition: color 0.2s ease !important;
 }
 
 /**
@@ -1358,10 +1380,20 @@ select.fff-input {
     transition: var(--trn-slow);
 }
 
+.unit-button:hover {
+    background: var(--clr-accentHover);
+    color: var(--clr-primary);
+}
+
 .unit-button.active {
     background: var(--clr-secondary);
     color: var(--clr-textLight);
     font-weight: 700;
+}
+
+.unit-button.active:hover {
+    background: var(--clr-secondary);
+    color: var(--clr-textLight);
 }
 
 /**
@@ -1395,6 +1427,18 @@ select.fff-input {
     gap: var(--spc-xs);
     margin-bottom: 0;
     cursor: pointer;
+}
+
+/**
+ * Autosave Status Text
+ *
+ * Text indicator showing autosave status (Ready, Saving, Saved, Error).
+ * Set to 16px to match JIMRFORGE standard body text size.
+ *
+ * Styleguide 6.4.1.1
+ */
+#autosave-text {
+    font-size: 16px;
 }
 
 /**
