@@ -41,6 +41,7 @@ The data table comes pre-populated with sample sizes. Let's create a simple 3-si
 - Name: Descriptive identifier (e.g., "heading-1", "body-text")
 - Min/Max Size: Set equal values (e.g., 1rem = 1rem) for static sizing
 - Line Height: 1.2-1.3 for headings, 1.5-1.6 for body text
+- Skip Toggle: Click the checkbox (☑/☐) to exclude sizes from CSS output while maintaining scale progression
 
 ### Step 3: Preview Your Fonts (1 minute)
 
@@ -192,6 +193,7 @@ font-size: clamp(1.500rem, 1.219rem + 1.41vw, 2.000rem);
 - ✓ Use REM units for accessibility
 - ✓ Set min = max for sizes that shouldn't scale (body text)
 - ✓ Preview at multiple viewport sizes
+- ✓ Use skip toggle to create larger gaps in your scale while maintaining progression
 - ✓ Save your settings before generating new scales
 
 **Don't:**
@@ -236,5 +238,5 @@ font-size: clamp(1.500rem, 1.219rem + 1.41vw, 2.000rem);
 **You're ready!** Generate your first fluid font scale and experience responsive typography that "just works" across all devices.
 
 
-*Generated for Fluid Font Forge v5.1.2*  
+*Generated for Fluid Font Forge v5.2.0*
 *© 2025 Jim R Forge, JimRForge.com - All rights reserved*

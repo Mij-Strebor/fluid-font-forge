@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Fluid Font Forge
  * Description: Advanced fluid typography calculator with CSS clamp() generation for responsive font scaling.
- * Version: 5.1.3
+ * Version: 5.2.0
  * Author: Jim R (JimRForge)
  * Author URI: https://jimrforge.com
  * License: GPL v2 or later
@@ -12,8 +12,8 @@
  * Requires at least: 5.0
  * Tested up to: 6.8
  * Requires PHP: 7.4
- * 
- * Copyright (c) 2020-2024 Jim R (JimRForge)
+ *
+ * Copyright (c) 2020-2025 Jim R (JimRForge)
  */
 
 /**
@@ -94,7 +94,7 @@ if (!defined('ABSPATH')) {
  *
  * @var string FLUID_FONT_FORGE_VERSION Current plugin version
  */
-define('FLUID_FONT_FORGE_VERSION', '5.1.3');
+define('FLUID_FONT_FORGE_VERSION', '5.2.0');
 
 /**
  * Plugin Directory Path Constant

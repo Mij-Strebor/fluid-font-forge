@@ -17,6 +17,17 @@
  */
 
 /* ==========================================================================
+   FONT IMPORTS
+   ========================================================================== */
+
+/**
+ * Cinzel Font - Header Title Typography
+ *
+ * Google Fonts import for Cinzel 700 weight used in main heading.
+ */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap');
+
+/* ==========================================================================
    INTEGRATED FORGE BACKGROUND HEADER
    ========================================================================== */
 
@@ -161,6 +172,7 @@
             drop-shadow(0 3px 6px rgba(0, 0, 0, 0.95))       /* Strong black shadow */
             drop-shadow(0 6px 15px rgba(0, 0, 0, 0.8)) !important; /* Deep shadow */
 
+    font-family: 'Cinzel', serif !important;
     font-size: 32px !important;
     font-weight: 700 !important;
     margin-bottom: var(--spc-lg) !important;

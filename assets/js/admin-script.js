@@ -1090,9 +1090,9 @@ class FontClampAdvanced {
     if (!tableButtons) return;
 
     tableButtons.innerHTML = `
-        <button id="add-size" class="fff-btn">add size</button>
-        <button id="reset-defaults" class="fff-btn">reset</button>
-        <button id="clear-sizes" class="fff-btn">clear all</button>
+        <button id="add-size" class="fff-btn" data-tooltip="Add a new font size to the current tab" data-tooltip-position="top">add size</button>
+        <button id="reset-defaults" class="fff-btn" data-tooltip="Reset all font sizes to default values for this tab" data-tooltip-position="top">reset</button>
+        <button id="clear-sizes" class="fff-btn" data-tooltip="Remove all font sizes from the current tab" data-tooltip-position="top">clear all</button>
     `;
 
     tableButtons.addEventListener("click", (e) => {
@@ -1589,7 +1589,8 @@ class FontClampAdvanced {
         rowData.unifiedRowHeight,
         size.id,
         index,
-        rowData.minPadding
+        rowData.minPadding,
+        size.skipped
       );
       const maxRow = this.createPreviewRow(
         rowData.displayName,
@@ -1599,7 +1600,8 @@ class FontClampAdvanced {
         rowData.unifiedRowHeight,
         size.id,
         index,
-        rowData.maxPadding
+        rowData.maxPadding,
+        size.skipped
       );
 
       this.addSynchronizedHover(minRow, maxRow);
@@ -1660,6 +1662,7 @@ class FontClampAdvanced {
    * @param {number} sizeId - Size ID
    * @param {number} index - Row index
    * @param {number} topPadding - Top padding value
+   * @param {boolean} isSkipped - Whether this entry is marked as skipped
    * @returns {HTMLElement} Preview row element
    */
   createPreviewRow(
@@ -1670,7 +1673,8 @@ class FontClampAdvanced {
     rowHeight,
     sizeId,
     index,
-    topPadding = 0
+    topPadding = 0,
+    isSkipped = false
   ) {
     const row = document.createElement("div");
     row.className = "preview-row";
@@ -1689,10 +1693,17 @@ class FontClampAdvanced {
             padding: 8px 8px 12px 8px;
             cursor: pointer;
             transition: background-color 0.2s ease;
+            ${isSkipped ? 'opacity: 0.5;' : ''}
             `;
 
     const text = document.createElement("div");
-    text.textContent = displayName;
+
+    // Add [SKIP] badge if entry is skipped
+    if (isSkipped) {
+      text.innerHTML = `<span style="text-decoration: line-through;">${displayName}</span> <span style="color: var(--clr-warning); font-weight: 600; font-size: 0.8em;">[SKIP]</span>`;
+    } else {
+      text.textContent = displayName;
+    }
 
     const fontSizeValue = `${fontSize}px`;
 
@@ -1870,7 +1881,7 @@ class FontClampAdvanced {
    */
   createTableRow(size, index, context) {
     const row = document.createElement("tr");
-    row.className = "size-row";
+    row.className = size.skipped ? "size-row skipped" : "size-row";
     row.draggable = true;
     row.dataset.id = size.id;
     row.dataset.index = index;
@@ -1878,11 +1889,14 @@ class FontClampAdvanced {
     const displayName = this.getSizeDisplayName(size, context.activeTab);
     // Escape displayName to prevent XSS (user-provided data)
     const escapedDisplayName = escapeHTML(displayName);
+    const displayText = size.skipped
+      ? `<span style="text-decoration: line-through; opacity: 0.6;">${escapedDisplayName}</span> <span style="color: var(--clr-warning); font-weight: 600;">[SKIP]</span>`
+      : escapedDisplayName;
 
     row.innerHTML = `
     <td class="drag-handle" style="text-align: center; color: var(--clr-textMuted); cursor: grab; user-select: none;"
       data-tooltip="Drag to reorder" data-tooltip-position="right">⋮⋮</td>
-    <td style="font-weight: 500; overflow: hidden; text-overflow: ellipsis;" title="${escapedDisplayName}"; font-size: 16px;">${escapedDisplayName}</td>
+    <td style="font-weight: 500; overflow: hidden; text-overflow: ellipsis;" title="${escapedDisplayName}"; font-size: 16px;">${displayText}</td>
     <td style="text-align: center; font-family: monospace; font-size: 16px;">${this.formatSize(
       size.min,
       context.unitType
@@ -1893,8 +1907,9 @@ class FontClampAdvanced {
     )}</td>
     <td style="text-align: center; font-size: 16px;">${size.lineHeight}</td>
     <td style="text-align: center; padding: 2px;">
-      <button class="edit-btn" style="color: var(--clr-info); background: none; border: none; cursor: pointer; margin-right: 6px; font-size: 16px; padding: 2px;" title="Edit">✎</button>
-      <button class="delete-btn" style="color: var(--clr-danger); background: none; border: none; cursor: pointer; font-size: 16px; padding: 2px;" title="Delete">🗑</button>
+      <button class="edit-btn" style="color: var(--clr-info); background: none; border: none; cursor: pointer; margin-right: 6px; font-size: 16px; padding: 2px;" data-tooltip="Edit this font size" data-tooltip-position="top">✎</button>
+      <button class="skip-btn" style="color: ${size.skipped ? 'var(--clr-warning)' : 'var(--clr-success)'}; background: none; border: none; cursor: pointer; margin-right: 6px; font-size: 16px; padding: 2px;" data-tooltip="${size.skipped ? 'Click to include in CSS output' : 'Click to skip in CSS output'}" data-tooltip-position="top" data-skipped="${size.skipped ? 'true' : 'false'}">${size.skipped ? '☐' : '☑'}</button>
+      <button class="delete-btn" style="color: var(--clr-danger); background: none; border: none; cursor: pointer; font-size: 16px; padding: 2px;" data-tooltip="Delete this font size" data-tooltip-position="top">🗑</button>
     </td>
   `;
 
@@ -1935,6 +1950,14 @@ class FontClampAdvanced {
       editBtn.addEventListener("click", (e) => {
         e.stopPropagation();
         this.editSize(parseInt(row.dataset.id));
+      });
+    }
+
+    const skipBtn = row.querySelector(".skip-btn");
+    if (skipBtn) {
+      skipBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        this.toggleSkipSize(parseInt(row.dataset.id));
       });
     }
 
@@ -2470,6 +2493,43 @@ class FontClampAdvanced {
       }
       field.classList.remove("error");
     }, 5000);
+  }
+
+  /**
+   * Toggle skip status for a size entry
+   *
+   * Skipped entries remain in the data table and maintain their position in
+   * the type scale progression, but are excluded from CSS output generation.
+   *
+   * @param {number} id - Size ID to toggle
+   */
+  toggleSkipSize(id) {
+    const activeTab = window.fluidFontForgeCore?.activeTab || "class";
+
+    if (window.FontForgeData) {
+      const size = window.FontForgeData.getSizeById(id, activeTab);
+      if (size) {
+        const updatedSize = {
+          ...size,
+          skipped: !size.skipped
+        };
+        window.FontForgeData.updateSize(activeTab, id, updatedSize);
+        this.renderSizes();
+        this.updatePreview();
+        this.cssGenerator.updateCSS();
+        this.markDataChanged();
+      }
+    } else {
+      const sizes = this.getCurrentSizes();
+      const sizeIndex = sizes.findIndex((s) => s.id == id);
+      if (sizeIndex !== -1) {
+        sizes[sizeIndex].skipped = !sizes[sizeIndex].skipped;
+        this.renderSizes();
+        this.updatePreview();
+        this.cssGenerator.updateCSS();
+        this.markDataChanged();
+      }
+    }
   }
 
   /**

@@ -1,6 +1,6 @@
 # Fluid Font Forge User Manual
 
-**Version 5.1.2**  
+**Version 5.2.0**
 Professional Responsive Typography for WordPress
 
 ---
@@ -81,6 +81,7 @@ Generate CSS in four formats:
 
 ### Professional Workflow Tools
 - **Drag & Drop Management**: Reorder font sizes intuitively
+- **Skip Entries Feature**: Exclude font sizes from CSS output while maintaining scale progression for custom spacing control
 - **Copy-to-Clipboard**: One-click CSS copying
 - **Autosave System**: Automatic saving with visual feedback
 - **Enhanced Data Table**: Add, edit, delete sizes with validation
@@ -2206,12 +2207,38 @@ Convert your scale to Figma design tokens:
 }
 ```
 
+### Using the Skip Feature for Custom Spacing
+
+Create larger gaps in your typographic scale while maintaining mathematical progression:
+
+**The Challenge**: Sometimes you want more space between certain font sizes without regenerating your entire scale.
+
+**The Solution**: Use the skip toggle (☑/☐) in the Actions column:
+
+1. Generate your complete typographic scale with your desired ratio
+2. Click the checkbox next to intermediate sizes you want to exclude
+3. Skipped entries maintain their position in the scale's progression
+4. CSS output only includes non-skipped entries
+5. Result: Larger gaps between visible sizes while preserving mathematical harmony
+
+**Example Use Case**:
+- Generate 9 heading sizes with Major Third (1.250) ratio
+- Skip every other size (keep h1, h3, h5, h7, h9)
+- Result: 5 headings with Perfect Fourth-like spacing (1.250²)
+- Mathematical progression maintained, output simplified
+
+**Benefits**:
+- Control spacing without regenerating scales
+- Maintain consistent mathematical relationships
+- Reduce CSS output size while preserving flexibility
+- Fine-tune hierarchy without starting over
+
 ### Performance Optimization
 
 Minimize CSS output:
 
 1. Only include sizes you actually use
-2. Delete unused entries from Data Table
+2. Use the skip feature instead of deleting entries (preserves scale)
 3. Combine similar sizes
 4. Use CSS variables for repeated values
 

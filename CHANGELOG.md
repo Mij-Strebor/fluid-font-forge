@@ -7,6 +7,55 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [5.2.0] - 2025-11-26
+
+### New Features
+
+#### Skip Entries Feature
+- **Skip toggle for font size entries** - New checkbox-style toggle (☑/☐) in the Actions column allows excluding font sizes from CSS output while maintaining their position in the typographic scale progression
+- **Visual feedback** - Skipped entries show:
+  - Strikethrough text with `[SKIP]` badge in data table
+  - Diagonal stripe pattern background with reduced opacity
+  - Grayed out appearance (50% opacity) in preview panels
+- **Smart CSS generation** - Skipped entries are excluded from all CSS output formats (Classes, Variables, Tags, Tailwind) while maintaining mathematical progression for adjacent entries
+- **Flexible spacing control** - Create larger gaps between font sizes without regenerating entire scales or losing mathematical relationships
+
+**Use Cases:**
+- Generate a complete scale and skip intermediate sizes for wider spacing
+- Maintain scale integrity while reducing CSS output size
+- Fine-tune typographic hierarchy without recalculating ratios
+- Create custom spacing patterns (e.g., skip every other size for double gaps)
+
+#### Enhanced Tooltips
+- **Action button tooltips** - Added helpful tooltips to all table action buttons:
+  - Edit: "Edit this font size"
+  - Skip: "Click to skip in CSS output" / "Click to include in CSS output"
+  - Delete: "Delete this font size"
+  - Add Size: "Add a new font size to the current tab"
+  - Reset: "Reset all font sizes to default values for this tab"
+  - Clear All: "Remove all font sizes from the current tab"
+
+#### Documentation Updates
+- **New Feature callout** - Added "New Feature" section to How to Use panel explaining skip functionality
+- **Updated all documentation** - README, Quick Start, and User Manual include skip feature examples and best practices
+
+### Technical Details
+
+**New Files:** None
+
+**Files Modified:**
+- `assets/css/admin-styles.css` (lines 1561-1590) - Added `.size-row.skipped` styling with stripe pattern
+- `assets/js/admin-script.js` - Skip button UI, `toggleSkipSize()` method, preview row updates, action button tooltips
+- `assets/js/css-generator.js` (line 371) - Skip logic in CSS generation loop
+- `templates/admin/how-to-use-panel.php` (lines 52-55) - New Feature callout box
+- Documentation files - Version updates and skip feature documentation
+
+**Breaking Changes:** None - Fully backward compatible. Existing font size data loads correctly, and the `skipped` property defaults to `false` for all existing entries.
+
+**Browser Compatibility:** Modern browsers (Chrome 79+, Firefox 75+, Safari 13.1+, Edge 79+)
+
+---
+
 ## [5.1.3] - 2025-11-23
 
 ### Changed

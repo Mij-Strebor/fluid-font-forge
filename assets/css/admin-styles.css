@@ -1559,11 +1559,42 @@ select.fff-input {
 }
 
 /**
+ * Skipped Row State
+ *
+ * Visual treatment for rows marked as skipped (excluded from CSS output).
+ * Uses diagonal stripe pattern and reduced opacity to indicate inactive state.
+ * Rows remain draggable to allow reordering.
+ *
+ * Styleguide 6.5.4
+ */
+.size-row.skipped {
+    opacity: 0.6 !important;
+    background: repeating-linear-gradient(
+        45deg,
+        var(--clr-bg),
+        var(--clr-bg) 10px,
+        rgba(60, 32, 23, 0.03) 10px,
+        rgba(60, 32, 23, 0.03) 20px
+    ) !important;
+}
+
+.size-row.skipped:hover {
+    opacity: 0.7 !important;
+    background: repeating-linear-gradient(
+        45deg,
+        var(--clr-dragHoverBackground),
+        var(--clr-dragHoverBackground) 10px,
+        rgba(60, 32, 23, 0.05) 10px,
+        rgba(60, 32, 23, 0.05) 20px
+    ) !important;
+}
+
+/**
  * Drag Operation States
  *
  * Visual feedback during active drag operations.
  *
- * Styleguide 6.5.4
+ * Styleguide 6.5.5
  */
 .size-row.dragging {
     opacity: 0.5 !important;

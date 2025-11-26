@@ -6,7 +6,7 @@
 
 A WordPress plugin for creating responsive typography with CSS clamp() functions. Generate fluid font scaling that adapts smoothly across all viewport sizes.
 
-[![Version](https://img.shields.io/badge/version-5.1.2-blue.svg)](https://github.com/Mij-Strebor/fluid-font-forge)
+[![Version](https://img.shields.io/badge/version-5.2.0-blue.svg)](https://github.com/Mij-Strebor/fluid-font-forge)
 [![WordPress](https://img.shields.io/badge/WordPress-5.0%2B-blue.svg)](https://wordpress.org/)
 [![License](https://img.shields.io/badge/license-GPL%20v2%2B-green.svg)](LICENSE)
 [![PHP](https://img.shields.io/badge/PHP-7.4%2B-purple.svg)](https://php.net/)
@@ -18,6 +18,7 @@ Fluid Font Forge simplifies responsive typography by generating CSS clamp() func
 ### Key Features
 
 - **Mathematical Typography Scaling** - Uses musical harmony ratios (Minor Second to Golden Ratio) for natural size progression
+- **Skip Entries for Custom Spacing** - Exclude font sizes from CSS output while maintaining scale progression for greater control over typographic spacing
 - **Multiple Output Formats** - CSS classes, custom properties, HTML tags, and Tailwind configuration
 - **Real-time Preview** - See how fonts appear at different screen sizes instantly
 - **Preview Font Loading** - Test with Google Fonts or custom web fonts

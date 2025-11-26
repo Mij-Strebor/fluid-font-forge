@@ -367,6 +367,9 @@ class CSSGeneratorController {
     let content = "";
 
     sizes.forEach((size, index) => {
+      // Skip entries marked as skipped - they maintain position in scale but don't generate CSS
+      if (size.skipped) return;
+
       if (size.min && size.max) {
         const clampValue = this.generateClampCSS(size.min, size.max, context);
         content += generator.rule(size, clampValue, index, sizes.length);

@@ -5,7 +5,7 @@ Tags: typography, fonts, responsive, clamp, fluid
 Requires at least: 5.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 5.1.3
+Stable tag: 5.2.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -18,6 +18,7 @@ Fluid Font Forge is a comprehensive WordPress plugin that simplifies responsive 
 **Key Features:**
 
 * **Real-time CSS clamp() generation** - See your responsive font sizes calculated instantly
+* **Skip entries for custom spacing** - Exclude font sizes from CSS output while maintaining scale progression
 * **Multiple output formats** - CSS classes, custom properties, HTML tags, and Tailwind config
 * **Interactive preview system** - Visual comparison of font sizes at different viewport widths
 * **Mathematical scaling ratios** - Based on musical harmony principles (Major Second, Perfect Fourth, Golden Ratio, etc.)
@@ -113,6 +114,16 @@ The plugin saves all your configurations in the WordPress database. For backup o
 * **Perfect Fourth (1.333)**: Strong contrast for headlines
 * **Golden Ratio (1.618)**: Dramatic scaling for hero sections
 == Changelog ==
+
+= 5.2.0 =
+* New: Skip entries feature - Toggle checkbox (☑/☐) to exclude font sizes from CSS output while maintaining scale progression
+* New: Enhanced tooltips on all action buttons (Edit, Skip, Delete, Add Size, Reset, Clear All)
+* Enhanced: Visual feedback for skipped entries with strikethrough text and [SKIP] badge
+* Enhanced: Skipped rows display diagonal stripe pattern with reduced opacity
+* Enhanced: Preview panels show skipped entries as grayed out with clear indicators
+* Enhanced: Documentation updated with skip feature usage and examples
+* Technical: Backward compatible - existing data loads correctly with skip property defaulting to false
+* Note: Smart spacing control for typographic scales without regenerating ratios
 
 = 5.1.3 =
 * Changed: PHP namespace from JimRWeb\FluidFontForge to JimRForge\FluidFontForge
