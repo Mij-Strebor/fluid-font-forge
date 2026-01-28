@@ -7,9 +7,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [5.2.0] - 2025-11-26
+## [5.3.0] - 2026-01-26
 
 ### New Features
+
+#### Button Standardization with Dashicons
+- **Consistent button styling** - All buttons now follow unified design with Dashicons integration
+- **Icon implementation** - Added WordPress Dashicons to all action buttons with proper vertical alignment:
+  - Reset buttons: `dashicons-undo` (↶ undo arrow)
+  - Save button: `dashicons-yes` (✓ checkmark)
+  - Add Size: `dashicons-plus-alt` (➕ plus sign)
+  - Clear All: `dashicons-trash` (🗑 trash icon)
+  - Copy/Copy All: `dashicons-clipboard` (📋 clipboard)
+  - Export/Import: `dashicons-download`/`dashicons-upload`
+- **Sentence case text** - Updated all button text from lowercase to sentence case for better accessibility and professionalism
+  - "reset" → "Reset", "save" → "Save", "add size" → "Add Size", etc.
+- **Standardized padding** - Removed inline style overrides, using consistent 8px 16px padding across all buttons
+- **Improved UX** - 8px gap between icons and text via flexbox, margin-top: 3px for perfect icon alignment with Inter font
+
+**Buttons Updated:**
+- Header Controls: Reset Font, Save
+- Settings Panel: Reset Settings
+- Table Actions: Add Size, Reset, Clear All
+- Modal Dialogs: Cancel, Save (no icons for clean modal design)
+- CSS Output: Copy, Copy All
 
 #### Skip Entries Feature
 - **Skip toggle for font size entries** - New checkbox-style toggle (☑/☐) in the Actions column allows excluding font sizes from CSS output while maintaining their position in the typographic scale progression
@@ -44,9 +65,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 **New Files:** None
 
 **Files Modified:**
+- `templates/admin/header-controls.php` (lines 23-26, 41-44) - Added icons to Reset and Save buttons, sentence case text
+- `templates/admin/settings-panel.php` (lines 21-24) - Added icon to Reset Settings button, sentence case text
+- `assets/js/admin-script.js` (lines 1093-1107, 2240-2241) - Added icons to table action buttons, sentence case for modal buttons
+- `assets/js/css-generator.js` (lines 420-441) - Changed Copy buttons from `.fff-copy-btn` to `.fff-btn`, added clipboard icons
+- `assets/css/admin-styles.css` (lines 791-861) - Deprecated `.fff-copy-btn` class (backward compatible)
 - `assets/css/admin-styles.css` (lines 1561-1590) - Added `.size-row.skipped` styling with stripe pattern
-- `assets/js/admin-script.js` - Skip button UI, `toggleSkipSize()` method, preview row updates, action button tooltips
-- `assets/js/css-generator.js` (line 371) - Skip logic in CSS generation loop
 - `templates/admin/how-to-use-panel.php` (lines 52-55) - New Feature callout box
 - Documentation files - Version updates and skip feature documentation
 

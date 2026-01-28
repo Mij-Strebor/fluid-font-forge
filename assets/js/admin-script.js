@@ -1090,9 +1090,18 @@ class FontClampAdvanced {
     if (!tableButtons) return;
 
     tableButtons.innerHTML = `
-        <button id="add-size" class="fff-btn" data-tooltip="Add a new font size to the current tab" data-tooltip-position="top">add size</button>
-        <button id="reset-defaults" class="fff-btn" data-tooltip="Reset all font sizes to default values for this tab" data-tooltip-position="top">reset</button>
-        <button id="clear-sizes" class="fff-btn" data-tooltip="Remove all font sizes from the current tab" data-tooltip-position="top">clear all</button>
+        <button id="add-size" class="fff-btn" data-tooltip="Add a new font size to the current tab" data-tooltip-position="top">
+            <span class="dashicons dashicons-plus-alt" style="margin-top: 3px;"></span>
+            Add Size
+        </button>
+        <button id="reset-defaults" class="fff-btn" data-tooltip="Reset all font sizes to default values for this tab" data-tooltip-position="top">
+            <span class="dashicons dashicons-undo" style="margin-top: 3px;"></span>
+            Reset
+        </button>
+        <button id="clear-sizes" class="fff-btn" data-tooltip="Remove all font sizes from the current tab" data-tooltip-position="top">
+            <span class="dashicons dashicons-trash" style="margin-top: 3px;"></span>
+            Clear All
+        </button>
     `;
 
     tableButtons.addEventListener("click", (e) => {
@@ -2228,8 +2237,8 @@ class FontClampAdvanced {
                                            step="0.1" min="0.8" max="3.0" required>
                                 </div>
 <div class="fff-btn-group">
-    <button type="button" class="fff-btn fff-btn-ghost" id="modal-cancel">cancel</button>
-    <button type="button" class="fff-btn" id="modal-save">save</button>
+    <button type="button" class="fff-btn fff-btn-ghost" id="modal-cancel">Cancel</button>
+    <button type="button" class="fff-btn" id="modal-save">Save</button>
 </div>
                             </div>
                         </div>

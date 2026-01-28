@@ -418,11 +418,12 @@ class CSSGeneratorController {
       const tooltipText = this.getSelectedCSSTooltip(activeTab);
 
       selectedCopyContainer.innerHTML = `
-                <button id="copy-selected-btn" class="fff-copy-btn" 
-                        data-tooltip="${tooltipText}" 
+                <button id="copy-selected-btn" class="fff-btn"
+                        data-tooltip="${tooltipText}"
                         aria-label="Copy selected CSS to clipboard"
                         title="Copy CSS">
-                    copy
+                    <span class="dashicons dashicons-clipboard" style="margin-top: 3px;"></span>
+                    Copy
                 </button>
             `;
     }
@@ -432,11 +433,12 @@ class CSSGeneratorController {
       const tooltipText = this.getGeneratedCSSTooltip(activeTab);
 
       generatedCopyContainer.innerHTML = `
-                <button id="copy-all-btn" class="fff-copy-btn" 
+                <button id="copy-all-btn" class="fff-btn"
                         data-tooltip="${tooltipText}"
                         aria-label="Copy all generated CSS to clipboard"
                         title="Copy All CSS">
-                    copy all
+                    <span class="dashicons dashicons-clipboard" style="margin-top: 3px;"></span>
+                    Copy All
                 </button>
             `;
     }

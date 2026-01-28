@@ -19,7 +19,8 @@ if (!defined('ABSPATH')) {
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
             <h2 class="settings-title" style="margin: 0;">Settings</h2>
             <button id="reset-settings-btn" class="fff-btn" data-tooltip="Reset all settings to default values">
-                reset
+                <span class="dashicons dashicons-undo" style="margin-top: 3px;"></span>
+                Reset
             </button>
         </div>
 
