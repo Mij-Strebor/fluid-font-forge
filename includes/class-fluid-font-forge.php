@@ -44,6 +44,7 @@ if (!defined('ABSPATH')) {
  */
 class FluidFontForge
 {
+    use DataFoundationTrait;
     // ========================================================================
     // CORE CONSTANTS SYSTEM
     // ========================================================================
@@ -506,33 +507,33 @@ class FluidFontForge
                     <!-- How to Use Panel -->
                     <?php include FLUID_FONT_FORGE_PATH . 'templates/admin/how-to-use-panel.php'; ?>
 
-                        <!-- Controls -->
-                        <?php include FLUID_FONT_FORGE_PATH . 'templates/admin/header-controls.php'; ?>
+                    <!-- Controls -->
+                    <?php include FLUID_FONT_FORGE_PATH . 'templates/admin/header-controls.php'; ?>
 
-                        <!-- Settings and Data Table - Side by Side -->
-                        <div class="fff-main-grid">
-                            <!-- Settings Panel Template -->
-                            <?php include FLUID_FONT_FORGE_PATH . 'templates/admin/settings-panel.php'; ?>
-                            <!-- Data Table Panel Template -->
-                            <?php include FLUID_FONT_FORGE_PATH . 'templates/admin/data-table-panel.php'; ?>
-                        </div>
+                    <!-- Settings and Data Table - Side by Side -->
+                    <div class="fff-main-grid">
+                        <!-- Settings Panel Template -->
+                        <?php include FLUID_FONT_FORGE_PATH . 'templates/admin/settings-panel.php'; ?>
+                        <!-- Data Table Panel Template -->
+                        <?php include FLUID_FONT_FORGE_PATH . 'templates/admin/data-table-panel.php'; ?>
                     </div>
                 </div>
+            </div>
 
-                <!-- Sample Panel Template -->
-                <?php include FLUID_FONT_FORGE_PATH . 'templates/admin/sample-panel.php'; ?>
+            <!-- Sample Panel Template -->
+            <?php include FLUID_FONT_FORGE_PATH . 'templates/admin/sample-panel.php'; ?>
 
-                <!-- Preview Section Template -->
-                <?php include FLUID_FONT_FORGE_PATH . 'templates/admin/preview-section.php'; ?>
+            <!-- Preview Section Template -->
+            <?php include FLUID_FONT_FORGE_PATH . 'templates/admin/preview-section.php'; ?>
 
-                <!-- Selected CSS Template -->
-                <?php include FLUID_FONT_FORGE_PATH . 'templates/admin/selected-css-panel.php'; ?>
+            <!-- Selected CSS Template -->
+            <?php include FLUID_FONT_FORGE_PATH . 'templates/admin/selected-css-panel.php'; ?>
 
-                <!-- Generated CSS Template -->
-                <?php include FLUID_FONT_FORGE_PATH . 'templates/admin/generated-css-panel.php'; ?>
+            <!-- Generated CSS Template -->
+            <?php include FLUID_FONT_FORGE_PATH . 'templates/admin/generated-css-panel.php'; ?>
 
-                <!-- Jim R Forge Community & Tools Panel -->
-                <?php include FLUID_FONT_FORGE_PATH . 'templates/admin/community-panel.php'; ?>
+            <!-- Jim R Forge Community & Tools Panel -->
+            <?php include FLUID_FONT_FORGE_PATH . 'templates/admin/community-panel.php'; ?>
         </div>
 <?php
         return ob_get_clean();

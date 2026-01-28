@@ -781,12 +781,14 @@ label {
 }
 
 /**
- * Copy Button Component
+ * Copy Button Component (DEPRECATED)
  *
- * Specialized button for copy-to-clipboard functionality with
- * ripple animation and consistent sizing.
+ * This class is deprecated as of v5.4.0. Use .fff-btn instead.
+ * Retained for backward compatibility only. Will be removed in v6.0.0.
  *
- * Styleguide 5.2
+ * Migration: Replace all .fff-copy-btn with .fff-btn
+ *
+ * Styleguide 5.2 (Deprecated)
  */
 .fff-copy-btn {
     background: var(--clr-accent);
@@ -795,10 +797,8 @@ label {
     border-radius: var(--rad-standard);
     box-shadow: var(--shd-standard);
     padding: var(--spc-sm) var(--spc-base);
-    min-width: 80px;
     display: inline-flex;
     align-items: center;
-    justify-content: center;
     gap: var(--spc-sm);
     font-size: var(--fnt-small);
     font-weight: 600;
@@ -809,40 +809,14 @@ label {
     transition: var(--trn-slow);
     cursor: pointer;
     position: relative;
-    overflow: hidden;
 }
 
 /**
- * Ripple Effect Animation
+ * Copy Button Interactive States (DEPRECATED)
  *
- * Pseudo-element animation for satisfying click feedback on copy buttons.
+ * Now uses standard .fff-btn hover behavior.
  *
- * Styleguide 5.2.1
- */
-.fff-copy-btn::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition: width 0.6s, height 0.6s;
-}
-
-.fff-copy-btn:active::before {
-    width: 300px;
-    height: 300px;
-}
-
-/**
- * Copy Button Interactive States
- *
- * Hover, active, and focus states for comprehensive interaction feedback.
- *
- * Styleguide 5.2.2
+ * Styleguide 5.2.2 (Deprecated)
  */
 .fff-copy-btn:hover {
     background: var(--clr-btn-hover);

@@ -69,8 +69,10 @@ The data table comes pre-populated with sample sizes. Let's create a simple 3-si
 
 2. **Copy the Generated CSS**
    - Scroll to "Generated CSS (All Classes)"
-   - Click the **Copy CSS** button
+   - Click the **Copy** button (with clipboard icon)
    - Paste into your stylesheet
+
+   *Note: All buttons now feature intuitive icons (Reset ↶, Save ✓, Copy 📋) for better usability*
 
 3. **Save Your Settings** (optional)
    - Click **save** button or enable **Autosave**
@@ -238,5 +240,5 @@ font-size: clamp(1.500rem, 1.219rem + 1.41vw, 2.000rem);
 **You're ready!** Generate your first fluid font scale and experience responsive typography that "just works" across all devices.
 
 
-*Generated for Fluid Font Forge v5.2.0*
+*Generated for Fluid Font Forge v5.3.0*
 *© 2025 Jim R Forge, JimRForge.com - All rights reserved*
