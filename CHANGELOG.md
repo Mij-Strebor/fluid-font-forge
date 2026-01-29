@@ -11,6 +11,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### New Features
 
+#### Import/Export Settings
+- **Complete settings backup and migration** - Export all Fluid Font Forge configurations as JSON files for backup, version control, or site migration
+- **One-click export** - Download button with `dashicons-download` icon generates timestamped JSON file containing:
+  - Global settings (viewport sizes, root font sizes, scaling ratios, unit type)
+  - All font size definitions across CSS Classes, Variables, HTML Tags, and Tailwind tabs
+  - Active tab selection and UI state
+- **Safe import with validation** - Upload button with `dashicons-upload` icon accepts JSON files with comprehensive validation:
+  - File type verification (JSON only)
+  - Data structure validation
+  - Range checking for all numeric values
+  - Error handling with user-friendly messages
+- **Migration and collaboration** - Transfer complete typography systems between WordPress installations or share configurations with team members
+- **Version control integration** - JSON format works seamlessly with Git for tracking typography changes alongside codebase
+
+**Use Cases:**
+- Backup before making experimental changes to typography
+- Migrate typography systems from staging to production
+- Share standardized typography configurations across client sites
+- Track typography evolution through version control
+- Create library of reusable typography presets
+
+**Technical Implementation:**
+- New `class-fff-import-export.php` - Import/Export controller with file handling and validation
+- New `fff-import-export-init.php` - WordPress action hooks and initialization
+- New `class-fff-data-foundation.php` - Data validation foundation for safe imports
+- JSON format with human-readable structure for manual editing if needed
+- WordPress admin AJAX handlers for file upload/download
+- Nonce verification and capability checks for security
+
 #### Button Standardization with Dashicons
 - **Consistent button styling** - All buttons now follow unified design with Dashicons integration
 - **Icon implementation** - Added WordPress Dashicons to all action buttons with proper vertical alignment:
@@ -62,10 +91,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Technical Details
 
-**New Files:** None
+**New Files:**
+- `includes/class-fff-import-export.php` - Import/Export controller with file handling and validation logic
+- `includes/fff-import-export-init.php` - WordPress action hooks and AJAX handler initialization
+- `includes/class-fff-data-foundation.php` - Data validation foundation for safe imports
 
 **Files Modified:**
-- `templates/admin/header-controls.php` (lines 23-26, 41-44) - Added icons to Reset and Save buttons, sentence case text
+- `templates/admin/header-controls.php` (lines 23-44) - Added Import/Export buttons with file handling, updated Reset and Save buttons with icons and sentence case text
 - `templates/admin/settings-panel.php` (lines 21-24) - Added icon to Reset Settings button, sentence case text
 - `assets/js/admin-script.js` (lines 1093-1107, 2240-2241) - Added icons to table action buttons, sentence case for modal buttons
 - `assets/js/css-generator.js` (lines 420-441) - Changed Copy buttons from `.fff-copy-btn` to `.fff-btn`, added clipboard icons

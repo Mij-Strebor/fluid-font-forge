@@ -81,6 +81,7 @@ Generate CSS in four formats:
 - Custom font loading for accurate client previews
 
 ### Professional Workflow Tools
+- **Import/Export Settings**: Backup configurations as JSON files, migrate between sites, or share with team members
 - **Drag & Drop Management**: Reorder font sizes intuitively
 - **Skip Entries Feature**: Exclude font sizes from CSS output while maintaining scale progression for custom spacing control
 - **Copy-to-Clipboard**: One-click CSS copying
@@ -2169,9 +2170,11 @@ This creates a maintainable, editor-friendly content system where typography "ju
 
 ### The Enhanced Interface
 
-Version 5.2.0 introduces **icon-enhanced buttons** that provide instant visual recognition:
+Version 5.3.0 introduces **icon-enhanced buttons** that provide instant visual recognition:
 
 **Action Buttons with Icons**:
+- **⬇ Export Settings**: Download complete configuration as JSON backup
+- **⬆ Import Settings**: Restore configuration from JSON file
 - **↶ Reset**: Quickly restore default settings or clear custom fonts
 - **✓ Save**: Confirm settings are preserved between sessions
 - **➕ Add Size**: Instantly add new font entries to your scale
@@ -2223,8 +2226,9 @@ Version 5.2.0 introduces **icon-enhanced buttons** that provide instant visual r
 6. **Wrap-Up** (Minute 25-30)
    - Client approves final typography system
    - Developer clicks **✓ Save** to preserve configuration
-   - Sends CSS file to client for review
-   - **Result**: 2 complete typography scales generated in under 30 minutes
+   - Clicks **Export Settings** to download JSON backup
+   - Sends CSS file and configuration to client for review
+   - **Result**: 2 complete typography scales generated in under 30 minutes, backed up for future use
 
 ### Efficiency Gains
 
@@ -2288,6 +2292,34 @@ This enhanced UI transforms Fluid Font Forge from a functional tool into a **pro
 ---
 
 ## Advanced Tips
+
+### Backup and Migration with Import/Export
+
+Save and restore your complete Fluid Font Forge configuration using the Export and Import buttons in the header.
+
+**Export Settings** - Downloads a timestamped JSON file containing:
+- All global settings (viewport sizes, font sizes, scaling ratios)
+- Font size definitions across all tabs (Classes, Variables, Tags, Tailwind)
+- Current UI state and preferences
+
+**Import Settings** - Uploads a JSON file with validation to restore a previous configuration.
+
+**Common Use Cases**:
+- **Backup before experiments**: Export before testing new scales or ratios
+- **Migrate staging to production**: Export from development site, import to live site
+- **Share with team**: Distribute standardized typography configurations
+- **Version control**: Track typography changes alongside code in Git
+- **Client handoff**: Provide configuration file with final deliverables
+
+**Workflow Example**:
+```
+1. Export current settings → fluid-font-forge-settings-2026-01-26.json
+2. Make experimental changes
+3. If unsuccessful, import saved JSON to restore
+4. If successful, export new version → fluid-font-forge-settings-2026-01-26-v2.json
+```
+
+The JSON format is human-readable, allowing manual edits if needed for bulk updates.
 
 ### Combining Font Forge with CSS Layers
 
