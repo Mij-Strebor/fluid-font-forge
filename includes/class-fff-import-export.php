@@ -161,8 +161,12 @@ class FFF_ImportExport
             return;
         }
 
-        $file_name = sanitize_file_name(wp_unslash($_FILES['fff_import_file']['name']));
-        $file_tmp  = $_FILES['fff_import_file']['tmp_name'];
+        $file_name = isset($_FILES['fff_import_file']['name'])
+            ? sanitize_file_name(wp_unslash($_FILES['fff_import_file']['name']))
+            : '';
+        $file_tmp  = isset($_FILES['fff_import_file']['tmp_name'])
+            ? sanitize_text_field(wp_unslash($_FILES['fff_import_file']['tmp_name']))
+            : '';
 
         // Validate extension
         $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
