@@ -10,11 +10,15 @@
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: fluid-font-forge
  * Requires at least: 5.0
- * Tested up to: 6.8
- * Requires PHP: 7.4
+ * Tested up to: 6.9
+ * Requires PHP: 8.2
  *
  * Copyright (c) 2020-2025 Jim R (JimRForge)
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 
 /**
  * 

@@ -152,8 +152,8 @@ class FFF_ImportExport
         }
 
         // Validate upload
-        if (!isset($_FILES['fff_import_file']) ||
-            $_FILES['fff_import_file']['error'] !== UPLOAD_ERR_OK) {
+        if (!isset($_FILES['fff_import_file']['error']) ||
+            (int) $_FILES['fff_import_file']['error'] !== UPLOAD_ERR_OK) {
             set_transient('fff_import_result', [
                 'success' => false,
                 'message' => __('File upload failed', 'fluid-font-forge')
@@ -161,10 +161,11 @@ class FFF_ImportExport
             return;
         }
 
-        $file = $_FILES['fff_import_file'];
+        $file_name = sanitize_file_name(wp_unslash($_FILES['fff_import_file']['name']));
+        $file_tmp  = $_FILES['fff_import_file']['tmp_name'];
 
         // Validate extension
-        $file_ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+        $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
         if ($file_ext !== 'json') {
             set_transient('fff_import_result', [
                 'success' => false,
@@ -175,7 +176,7 @@ class FFF_ImportExport
 
         // Read and parse file
         // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
-        $json_content = file_get_contents($file['tmp_name']);
+        $json_content = file_get_contents($file_tmp);
         if ($json_content === false) {
             set_transient('fff_import_result', [
                 'success' => false,
@@ -189,6 +190,7 @@ class FFF_ImportExport
             set_transient('fff_import_result', [
                 'success' => false,
                 'message' => sprintf(
+                    /* translators: %s: JSON error message */
                     __('Invalid JSON: %s', 'fluid-font-forge'),
                     json_last_error_msg()
                 )

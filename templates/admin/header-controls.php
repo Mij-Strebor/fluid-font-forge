@@ -29,11 +29,11 @@ if (!defined('ABSPATH')) {
         <div style="display: flex; align-items: center; gap: 20px;">
             <?php
             // Import/Export Controls 
-            global $fff_import_export;
-            if (isset($fff_import_export)) {
+            global $fluid_font_forge_import_export;
+            if (isset($fluid_font_forge_import_export)) {
                 echo '<div style="display: flex; gap: 8px;">';
-                $fff_import_export->render_export_button();
-                $fff_import_export->render_import_form();
+                $fluid_font_forge_import_export->render_export_button();
+                $fluid_font_forge_import_export->render_import_form();
                 echo '</div>';
             }
             ?>

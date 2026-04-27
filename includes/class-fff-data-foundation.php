@@ -100,7 +100,8 @@ trait DataFoundationTrait
 
         if ($min_root < self::MIN_ROOT_MIN || $min_root > self::MIN_ROOT_MAX) {
             return new \WP_Error('invalid_min_root', sprintf(
-                __('Min root size must be %d-%dpx', 'fluid-font-forge'),
+                /* translators: 1: minimum allowed root size in px, 2: maximum allowed root size in px */
+                __('Min root size must be %1$d-%2$dpx', 'fluid-font-forge'),
                 self::MIN_ROOT_MIN,
                 self::MIN_ROOT_MAX
             ));
@@ -108,7 +109,8 @@ trait DataFoundationTrait
 
         if ($max_root < $min_root || $max_root > self::MAX_ROOT_MAX) {
             return new \WP_Error('invalid_max_root', sprintf(
-                __('Max root size must be between min (%dpx) and %dpx', 'fluid-font-forge'),
+                /* translators: 1: minimum root size in px, 2: maximum allowed root size in px */
+                __('Max root size must be between min (%1$dpx) and %2$dpx', 'fluid-font-forge'),
                 $min_root,
                 self::MAX_ROOT_MAX
             ));
@@ -123,7 +125,8 @@ trait DataFoundationTrait
 
         if ($min_vp < self::MIN_VIEWPORT_MIN || $min_vp > self::MIN_VIEWPORT_MAX) {
             return new \WP_Error('invalid_min_viewport', sprintf(
-                __('Min viewport must be %d-%dpx', 'fluid-font-forge'),
+                /* translators: 1: minimum allowed viewport in px, 2: maximum allowed viewport in px */
+                __('Min viewport must be %1$d-%2$dpx', 'fluid-font-forge'),
                 self::MIN_VIEWPORT_MIN,
                 self::MIN_VIEWPORT_MAX
             ));
@@ -131,7 +134,8 @@ trait DataFoundationTrait
 
         if ($max_vp <= $min_vp || $max_vp > self::MAX_VIEWPORT_MAX) {
             return new \WP_Error('invalid_max_viewport', sprintf(
-                __('Max viewport must be greater than min (%dpx) and max %dpx', 'fluid-font-forge'),
+                /* translators: 1: minimum viewport in px, 2: maximum allowed viewport in px */
+                __('Max viewport must be greater than min (%1$dpx) and max %2$dpx', 'fluid-font-forge'),
                 $min_vp,
                 self::MAX_VIEWPORT_MAX
             ));
@@ -146,7 +150,8 @@ trait DataFoundationTrait
 
         if ($min_scale < self::SCALE_RANGE[0] || $min_scale > self::SCALE_RANGE[1]) {
             return new \WP_Error('invalid_min_scale', sprintf(
-                __('Min scale must be %.1f-%.1f', 'fluid-font-forge'),
+                /* translators: 1: minimum allowed scale value, 2: maximum allowed scale value */
+                __('Min scale must be %1$.1f-%2$.1f', 'fluid-font-forge'),
                 self::SCALE_RANGE[0],
                 self::SCALE_RANGE[1]
             ));
@@ -154,7 +159,8 @@ trait DataFoundationTrait
 
         if ($max_scale < self::SCALE_RANGE[0] || $max_scale > self::SCALE_RANGE[1]) {
             return new \WP_Error('invalid_max_scale', sprintf(
-                __('Max scale must be %.1f-%.1f', 'fluid-font-forge'),
+                /* translators: 1: minimum allowed scale value, 2: maximum allowed scale value */
+                __('Max scale must be %1$.1f-%2$.1f', 'fluid-font-forge'),
                 self::SCALE_RANGE[0],
                 self::SCALE_RANGE[1]
             ));

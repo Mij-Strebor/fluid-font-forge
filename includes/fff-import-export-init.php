@@ -26,11 +26,11 @@ require_once FLUID_FONT_FORGE_PATH . 'includes/class-fff-import-export.php';
 // Initialize Import/Export Handler (only in admin)
 if (is_admin()) {
     add_action('plugins_loaded', function() {
-        global $fluid_font_forge, $fff_import_export;
+        global $fluid_font_forge, $fluid_font_forge_import_export;
 
         // Wait for main plugin to initialize
         if (isset($fluid_font_forge) && $fluid_font_forge instanceof \JimRForge\FluidFontForge\FluidFontForge) {
-            $fff_import_export = new \JimRForge\FluidFontForge\FFF_ImportExport($fluid_font_forge);
+            $fluid_font_forge_import_export = new \JimRForge\FluidFontForge\FFF_ImportExport($fluid_font_forge);
         }
     }, 20); // Priority 20 to ensure main plugin loads first
 }
