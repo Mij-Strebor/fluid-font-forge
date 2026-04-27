@@ -3,9 +3,9 @@ Contributors: mijstrebor
 Donate link: https://buymeacoffee.com/jimrweb
 Tags: typography, fonts, responsive, clamp, fluid
 Requires at least: 5.0
-Tested up to: 6.8
-Requires PHP: 7.4
-Stable tag: 5.3.0
+Tested up to: 6.9
+Requires PHP: 8.2
+Stable tag: 5.3.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -114,6 +114,12 @@ The plugin saves all your configurations in the WordPress database. For backup o
 * **Perfect Fourth (1.333)**: Strong contrast for headlines
 * **Golden Ratio (1.618)**: Dramatic scaling for hero sections
 == Changelog ==
+
+= 5.3.1 =
+* Changed: CSS variable consolidation - replaced hardcoded rgba(), hex colors, and pixel values in admin templates with CSS custom properties
+* Changed: Tested up to WordPress 6.9
+* Changed: Updated minimum PHP requirement to 8.2
+* Fixed: Version string consistency
 
 = 5.2.0 =
 * New: Skip entries feature - Toggle checkbox (☑/☐) to exclude font sizes from CSS output while maintaining scale progression

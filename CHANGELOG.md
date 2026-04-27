@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [5.3.1] — 2026-04-27
+
+### Changed
+- **CSS variable consolidation** — Replaced hardcoded `rgba()`, hex colors, and pixel values in admin templates with CSS custom properties; added `--clr-info-box-bg`, `--clr-accent-box-bg`, `--clr-sample-box-bg`, `--clr-code-border`, and `--clr-code-text` to the design token system.
+- **WordPress compatibility** — Tested up to WordPress 6.9.
+- **PHP requirement** — Updated minimum PHP requirement to 8.2.
+- **Version** — Bumped to 5.3.1.
+
+### Fixed
+- **Version string** — Corrected version string consistency.
+
+---
+
 ## [5.3.0] - 2026-01-26
 
 ### New Features
