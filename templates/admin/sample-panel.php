@@ -24,13 +24,13 @@ $fluid_font_forge_expanded_class = $fluid_font_forge_is_expanded ? 'expanded' : 
 <div class="fff-info-toggle-section" style="clear: both; margin: 20px 0;">
 
     <button class="fff-info-toggle <?php echo esc_attr($fluid_font_forge_expanded_class); ?>" data-toggle-target="sample-text-content">
-        <span style="color: #FAF9F6 !important;">Sample Text</span>
-        <span class="fff-toggle-icon" style="color: #FAF9F6 !important;">▼</span>
+        <span style="color: var(--clr-textLight) !important;">Sample Text</span>
+        <span class="fff-toggle-icon" style="color: var(--clr-textLight) !important;">▼</span>
     </button>
 
     <div class="fff-info-content <?php echo esc_attr($fluid_font_forge_expanded_class); ?>" id="sample-text-content">
 
-        <div class="fff-sample-display" style="display: block; background: white; border-radius: 8px; padding: 20px; border: 2px solid var(--clr-secondary); margin-bottom: 20px; box-shadow: inset 0 2px 4px var(--clr-shadow); min-height: 220px; max-height: 400px; overflow-y: auto;">
+        <div class="fff-sample-display" style="display: block; background: var(--clr-white); border-radius: var(--rad-large); padding: 20px; border: 2px solid var(--clr-secondary); margin-bottom: 20px; box-shadow: inset 0 2px 4px var(--clr-shadow); min-height: 220px; max-height: 400px; overflow-y: auto;">
             <!-- Row 1: Labels above display boxes -->
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 16px;">
                 <!-- Titles Header -->
@@ -49,7 +49,7 @@ $fluid_font_forge_expanded_class = $fluid_font_forge_is_expanded ? 'expanded' : 
             <!-- Row 2: Sample Displays -->
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: start;">
                 <!-- Left Column: Titles Sample -->
-                <div style="overflow: hidden; background: rgba(59, 130, 246, 0.03); padding: 16px; border-radius: 6px;">
+                <div style="overflow: hidden; background: var(--clr-sample-box-bg); padding: var(--spc-base); border-radius: var(--rad-standard);">
                     <div id="sample-header" style="font-family: var(--preview-font, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif); transition: font-size 0.2s ease; color: var(--clr-txt); font-weight: 700; overflow: hidden; text-align: left; margin: 0; padding: 0;">
                         A wizard's job is to vex chumps quickly in fog.<br>
                         ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
@@ -58,7 +58,7 @@ $fluid_font_forge_expanded_class = $fluid_font_forge_is_expanded ? 'expanded' : 
                 </div>
 
                 <!-- Right Column: Text Sample -->
-                <div style="overflow: hidden; background: rgba(59, 130, 246, 0.03); padding: 16px; border-radius: 6px;">
+                <div style="overflow: hidden; background: var(--clr-sample-box-bg); padding: var(--spc-base); border-radius: var(--rad-standard);">
                     <div id="sample-text" style="font-family: var(--preview-font, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif); transition: font-size 0.2s ease; color: var(--clr-txt); font-weight: 400; overflow: hidden; text-align: left; margin: 0; padding: 0;">
                         A wizard's job is to vex chumps quickly in fog.<br>
                         ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
@@ -116,7 +116,7 @@ $fluid_font_forge_expanded_class = $fluid_font_forge_is_expanded ? 'expanded' : 
 
         <!-- Instructions -->
         <div style="display: flex; justify-content: center;">
-            <div style="background: rgba(60, 32, 23, 0.1); padding: 12px 16px; border-radius: 6px; border-left: 4px solid var(--clr-accent); text-align: center; width: 70%;">
+            <div style="background: var(--clr-info-box-bg); padding: 12px 16px; border-radius: var(--rad-standard); border-left: 4px solid var(--clr-accent); text-align: center; width: 70%;">
                 <p style="margin: 0; font-size: 16px; color: var(--clr-txt); line-height: 1.4;">
                     <strong>Interactive Preview:</strong> The <strong>Titles base</strong> and <strong>Text base</strong> dropdowns let you select which size from your data table controls each preview. Choose larger sizes for titles, smaller for body text. The viewport slider shows real-time interpolation between your minimum and maximum settings as you drag across different screen sizes.
                 </p>

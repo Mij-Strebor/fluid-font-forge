@@ -20,8 +20,8 @@ if (!defined('ABSPATH')) {
 <!-- Sample Space Preview Section -->
 <div class="fff-info-toggle-section" style="margin-top: 20px;">
     <button class="fff-info-toggle expanded" data-toggle-target="sample-space-content">
-        <span style="color: #FAF9F6 !important;">Sample Space Preview</span>
-        <span class="fff-toggle-icon" style="color: #FAF9F6 !important;">▼</span>
+        <span style="color: var(--clr-textLight) !important;">Sample Space Preview</span>
+        <span class="fff-toggle-icon" style="color: var(--clr-textLight) !important;">▼</span>
     </button>
 
     <div class="fff-info-content expanded" id="sample-space-content">
@@ -98,7 +98,7 @@ if (!defined('ABSPATH')) {
             </div>
 
             <!-- Info Box -->
-            <div style="background: rgba(255, 215, 0, 0.15); padding: 12px 16px; border-radius: 6px; border-left: 4px solid var(--clr-accent); margin-top: 20px; max-width: 900px; margin-left: auto; margin-right: auto;">
+            <div style="background: var(--clr-accent-box-bg); padding: 12px 16px; border-radius: var(--rad-standard); border-left: 4px solid var(--clr-accent); margin-top: 20px; max-width: 900px; margin-left: auto; margin-right: auto;">
                 <p style="margin: 0; font-size: 13px; color: var(--clr-txt); line-height: 1.5;">
                     <strong>Interactive Preview:</strong> The <strong>Space Size</strong> dropdown lets you select which size from your data table controls the preview.
                     The viewport slider shows real-time interpolation between your minimum and maximum settings as you drag across different screen sizes.

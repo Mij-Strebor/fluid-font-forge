@@ -397,6 +397,33 @@
     /* Medium large spacing - section breaks */
     --spc-xl: 24px;
     /* Large spacing - major sections */
+
+    /**
+     * Contextual Background Colors
+     *
+     * Semi-transparent backgrounds for info boxes, tip boxes, and sample areas.
+     * These replace hardcoded rgba() values in template inline styles.
+     *
+     * Styleguide 1.14
+     */
+    --clr-info-box-bg: rgba(60, 32, 23, 0.1);
+    /* Tinted brown - used for pro tip / info boxes */
+    --clr-accent-box-bg: rgba(244, 197, 66, 0.15);
+    /* Tinted gold - used for feature / highlight boxes */
+    --clr-sample-box-bg: rgba(59, 130, 246, 0.03);
+    /* Very light blue - used for sample text display areas */
+
+    /**
+     * Code Block Colors
+     *
+     * Colors for the generated CSS output panels (pre/code areas).
+     *
+     * Styleguide 1.15
+     */
+    --clr-code-border: #d1d5db;
+    /* Code block border - light gray */
+    --clr-code-text: #111827;
+    /* Code block text - near black for readability */
 }
 
 /* ==========================================================================

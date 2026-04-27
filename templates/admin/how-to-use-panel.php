@@ -20,8 +20,8 @@ $fluid_font_forge_expanded_class = $fluid_font_forge_is_expanded ? 'expanded' : 
 ?>
 <div class="fff-info-toggle-section">
     <button class="fff-info-toggle <?php echo esc_attr($fluid_font_forge_expanded_class); ?>" data-toggle-target="info-content">
-        <span style="color: #FAF9F6 !important;">How to Use Fluid Font Forge</span>
-        <span class="fff-toggle-icon" style="color: #FAF9F6 !important;">▼</span>
+        <span style="color: var(--clr-textLight) !important;">How to Use Fluid Font Forge</span>
+        <span class="fff-toggle-icon" style="color: var(--clr-textLight) !important;">▼</span>
     </button>
     <div class="fff-info-content <?php echo esc_attr($fluid_font_forge_expanded_class); ?>" id="info-content">
         <div style="color: var(--clr-txt); font-size: 16px; line-height: 1.6;">
@@ -44,12 +44,12 @@ $fluid_font_forge_expanded_class = $fluid_font_forge_is_expanded ? 'expanded' : 
                 </div>
             </div>
 
-            <div style="background: rgba(60, 32, 23, 0.1); padding: 12px 16px; border-radius: 6px; border-left: 4px solid var(--clr-accent); margin: 16px 0 0 0; max-width: 78%; margin-left: auto; margin-right: auto;">
+            <div style="background: var(--clr-info-box-bg); padding: 12px 16px; border-radius: var(--rad-standard); border-left: 4px solid var(--clr-accent); margin: 16px 0 0 0; max-width: 78%; margin-left: auto; margin-right: auto;">
                 <h4 style="color: var(--clr-txt); font-size: 16px; font-weight: 600; margin: 0 0 6px 0; text-align: center;">💡 Pro Tip</h4>
                 <p style="margin: 0; font-size: 16px; color: var(--clr-txt); text-align: left; padding: 0 20px;">Use Preview Font to test with your actual web fonts and enjoy the enhanced interactive experience with smooth animations and professional styling.</p>
             </div>
 
-            <div style="background: rgba(244, 197, 66, 0.15); padding: 12px 16px; border-radius: 6px; border-left: 4px solid var(--clr-accent); margin: 16px 0 0 0; max-width: 78%; margin-left: auto; margin-right: auto;">
+            <div style="background: var(--clr-accent-box-bg); padding: 12px 16px; border-radius: var(--rad-standard); border-left: 4px solid var(--clr-accent); margin: 16px 0 0 0; max-width: 78%; margin-left: auto; margin-right: auto;">
                 <h4 style="color: var(--clr-txt); font-size: 16px; font-weight: 600; margin: 0 0 6px 0; text-align: center;">✨ New Feature</h4>
                 <p style="margin: 0; font-size: 16px; color: var(--clr-txt); text-align: left; padding: 0 20px;">Use the skip toggle (☑/☐) in the Actions column to exclude entries from CSS output while maintaining scale progression. This allows you to create larger gaps in your typographic scale by skipping intermediate sizes—the skipped entries still influence the mathematical progression but won't appear in your generated CSS, giving you more control over spacing between font sizes.</p>
             </div>

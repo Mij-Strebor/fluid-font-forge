@@ -17,7 +17,7 @@ if (!defined('ABSPATH')) {
 
 <div class="fff-info-toggle-section" style="margin-top: 40px;">
     <div class="fff-info-header-static">
-        <span style="color: #FAF9F6;">Community & Tools</span>
+        <span style="color: var(--clr-textLight);">Community & Tools</span>
     </div>
     <div class="fff-info-content-static">
         <p style="margin: 0 0 20px 0; font-size: 16px; line-height: 1.6; color: var(--clr-textPrimary);">
