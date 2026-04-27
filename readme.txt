@@ -5,7 +5,7 @@ Tags: typography, fonts, responsive, clamp, fluid
 Requires at least: 5.0
 Tested up to: 6.9
 Requires PHP: 8.2
-Stable tag: 5.3.1
+Stable tag: 5.3.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -114,6 +114,12 @@ The plugin saves all your configurations in the WordPress database. For backup o
 * **Perfect Fourth (1.333)**: Strong contrast for headlines
 * **Golden Ratio (1.618)**: Dramatic scaling for hero sections
 == Changelog ==
+
+= 5.3.2 =
+* Fixed: WordPress Plugin Check compliance - ABSPATH guard added to plugin bootstrap
+* Fixed: I18n ordered placeholders (%1$d/%2$d, %1$.1f/%2$.1f) with translators comments
+* Fixed: $_FILES sanitization with explicit isset() checks on individual array keys
+* Fixed: Global variable renamed to properly prefixed $fluid_font_forge_import_export
 
 = 5.3.1 =
 * Changed: CSS variable consolidation - replaced hardcoded rgba(), hex colors, and pixel values in admin templates with CSS custom properties

@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [5.3.2] — 2026-04-27
+
+### Fixed
+- **WordPress Plugin Check compliance** — Resolved all WP.org Plugin Check errors: added ABSPATH guard to plugin bootstrap, corrected I18n ordered placeholders (`%1$d/%2$d`, `%1$.1f/%2$.1f`) with `/* translators: */` comments in data validation, improved `$_FILES` sanitization with explicit `isset()` checks on individual array keys, and renamed global variable to properly prefixed `$fluid_font_forge_import_export`.
+
+### Changed
+- **Version** — Bumped to 5.3.2.
+
+---
+
 ## [5.3.1] — 2026-04-27
 
 ### Changed
