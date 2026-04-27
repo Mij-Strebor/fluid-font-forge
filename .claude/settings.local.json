@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git *)",
+      "PowerShell(cd E:\\\\projects\\\\plugins\\\\fff; $tag = git describe --tags --abbrev=0 2>$null; if \\($tag\\) { git log --oneline \"$tag..HEAD\" } else { git log --oneline })",
+      "Bash(del *)",
+      "Skill(bump-version)"
+    ]
+  }
+}
