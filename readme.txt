@@ -5,7 +5,7 @@ Tags: typography, fonts, responsive, clamp, fluid
 Requires at least: 5.0
 Tested up to: 6.9
 Requires PHP: 8.2
-Stable tag: 5.3.3
+Stable tag: 5.3.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -114,6 +114,16 @@ The plugin saves all your configurations in the WordPress database. For backup o
 * **Perfect Fourth (1.333)**: Strong contrast for headlines
 * **Golden Ratio (1.618)**: Dramatic scaling for hero sections
 == Changelog ==
+
+= 5.3.4 =
+* Fixed: Button text wrapping — white-space: nowrap added to .fff-btn prevents multi-word labels from wrapping to two lines
+* Fixed: Stray closing div in header-controls.php caused Settings and Font Size Classes panels to render wider than panels above
+* Fixed: Version text used -15vh margin — replaced with -80px to prevent layout shifts on production sites
+* Changed: Controls row restructured — Preview Font/Reset/Export/Import on left, Autosave/Save/Ready pinned to right
+* Changed: Autosave/Save/Ready now bottom-aligned with Export/Import buttons via align-items: flex-end
+* Changed: Settings/Font Size Classes panels widened by removing extra padding from .fff-main-grid
+* Changed: Base dropdown and action buttons now use consistent gap: 8px spacing
+* Changed: Tab row has 16px margin below before the Settings panels
 
 = 5.3.3 =
 * Fixed: Forge header banner uses fixed 420px height instead of vh units — prevents layout corruption on production sites

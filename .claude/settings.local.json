@@ -4,7 +4,15 @@
       "Bash(git *)",
       "PowerShell(cd E:\\\\projects\\\\plugins\\\\fff; $tag = git describe --tags --abbrev=0 2>$null; if \\($tag\\) { git log --oneline \"$tag..HEAD\" } else { git log --oneline })",
       "Bash(del *)",
-      "Skill(bump-version)"
+      "Skill(bump-version)",
+      "PowerShell(svn info *)",
+      "Skill(push-to-wordpress)",
+      "PowerShell(Get-Command *)",
+      "PowerShell(git *)",
+      "Skill(write-to-github)",
+      "PowerShell(gh release *)",
+      "PowerShell(svn *)",
+      "PowerShell(svn status *)"
     ]
   }
 }

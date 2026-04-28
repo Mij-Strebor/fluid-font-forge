@@ -675,7 +675,7 @@ label {
     grid-template-columns: 1fr 1.3fr;
     gap: var(--spc-xl);
     margin-bottom: var(--spc-xl);
-    padding: 0 var(--spc-xl);
+    padding: 0;
 }
 
 /**
@@ -752,6 +752,7 @@ label {
     cursor: pointer;
     position: relative;
     overflow: hidden;
+    white-space: nowrap;
 }
 
 /**

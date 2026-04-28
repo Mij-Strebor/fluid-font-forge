@@ -25,7 +25,7 @@ extract($template_data);
     </div>
 
     <!-- Version Info (between header and About) -->
-    <p style="font-family: 'Inter', sans-serif; font-weight: 400; font-size: 14px; font-style: italic; color: rgb(60, 67, 74); text-align: center; margin: -15vh auto 20px; max-width: 1280px; position: relative; z-index: 2;">
+    <p style="font-family: 'Inter', sans-serif; font-weight: 400; font-size: 14px; font-style: italic; color: rgb(60, 67, 74); text-align: center; margin: -80px auto 20px; max-width: 1280px; position: relative; z-index: 2;">
         Version <?php echo esc_html($version); ?>
     </p>
 

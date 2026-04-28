@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [5.3.4] — 2026-04-28
+
+### Fixed
+- **Button text wrapping** — Added `white-space: nowrap` to `.fff-btn` so multi-word button labels (Export Settings, Import Settings, Add Size, Clear All) no longer wrap to two lines on narrower viewports.
+- **Stray closing div** — Removed extra `</div>` from `header-controls.php` that was prematurely closing the parent wrapper, causing Settings and Font Size Classes panels to render wider than the panels above.
+- **Version text `vh` unit** — Replaced `-15vh` margin with `-80px` on the version text paragraph, preventing layout shifts on production sites with shorter viewports.
+
+### Changed
+- **Controls row restructure** — Preview Font, Reset, Export Settings, and Import Settings grouped on the left; Autosave, Save, and Ready indicator pinned to the right via `space-between`.
+- **Autosave/Save/Ready vertical alignment** — Changed to `align-items: flex-end` so the group lines up with the Export/Import buttons rather than centering across the full row height.
+- **Settings/Font Size Classes panel width** — Removed extra `padding: 0 24px` from `.fff-main-grid`, aligning these panels with the How-to-Use panel above.
+- **Base dropdown spacing** — Replaced `justify-content: space-between` with `gap: 8px` on the Base+buttons row for consistent spacing throughout.
+- **Tab row spacing** — Added `margin-bottom: 16px` gap below the Class/Variables/Tailwind/Tags tabs.
+- **Version** — Bumped to 5.3.4.
+
+---
+
 ## [5.3.3] — 2026-04-28
 
 ### Fixed

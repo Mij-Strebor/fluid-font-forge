@@ -18,7 +18,7 @@ if (!defined('ABSPATH')) {
         <h2 style="margin-bottom: 12px;" id="table-title">Font Size Classes</h2>
 
         <!-- Base Value and Action Buttons Row -->
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 16px;">
             <!-- Left: Base Value Combo Box -->
             <div style="display: flex; align-items: center; gap: 8px;">
                 <label class="component-label" for="base-value" style="margin-bottom: 0; white-space: nowrap;">Base</label>
