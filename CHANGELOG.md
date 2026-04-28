@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [5.3.3] — 2026-04-28
+
+### Fixed
+- **Forge header banner height** — Replaced viewport-relative `vh` units with fixed 420px height, preventing layout corruption on production sites with wider sidebars or shorter browser viewports.
+- **About panel width overflow** — Fixed About panel stretching beyond the content area on sites with narrower content widths; now uses `width: 100%` with `max-width: 1280px`.
+- **Modal max-height** — Replaced `90vh` with fixed `800px` on `.fff-modal-dialog` (admin-only tool targets desktop browsers).
+- **Missing CSS variables** — Added `--clr-txt` and `--clr-shadow` custom properties that were referenced throughout templates but never defined, preventing color and shadow degradation.
+
+### Changed
+- **Quick Start** — Updated quick start documentation.
+- **Version** — Bumped to 5.3.3.
+
+---
+
 ## [5.3.2] — 2026-04-27
 
 ### Fixed

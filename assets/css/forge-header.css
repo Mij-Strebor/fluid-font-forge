@@ -60,8 +60,7 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 50vh;   /* 50% viewport height */
-    min-height: 500px;  /* Ensure enough space for About panel */
+    height: 420px;
     z-index: 0;     /* Behind all content */
 
     /* Multi-layer gradient stack for soft, natural fade */
@@ -117,12 +116,12 @@
 .fff-header-section {
     position: relative !important;
     z-index: 1 !important;           /* Above ::before background */
-    padding-top: 16vh !important;    /* Position H1 at top third (~33% of 50vh header) */
+    padding-top: 120px !important;   /* Position H1 at top third of 420px header */
     padding-left: 0 !important;      /* Remove left padding to fix alignment */
     padding-right: 0 !important;     /* Remove right padding to fix alignment */
     margin: 0 auto !important;       /* Center the container */
     margin-bottom: 0 !important;  /* No bottom margin - About panel now outside header */  /* Push About panel way down */
-    min-height: 520px !important;    /* Ensures consistent spacing on small screens */
+    min-height: 420px !important;    /* Fixed height to match background layer */
     width: 1280px !important;        /* Fixed width to match body panels */
     max-width: 100% !important;      /* Responsive on small screens */
     box-sizing: border-box !important;
@@ -135,8 +134,7 @@
  * Targets About section inside header using descendant selector to prevent affecting inventory category panels.
  */
 .fff-header-section .fff-info-toggle-section {
-    margin-top: 36vh !important;  /* Move up closer to header fade */
-    margin-top: max(280px, 36vh) !important;  /* Minimum 280px for small screens */
+    margin-top: 280px !important;
 }
 
 /**
@@ -209,8 +207,8 @@
     margin: 0 auto 40px !important;  /* Pull up into bottom fade area */
     position: relative !important;  /* Create stacking context */
     z-index: 3 !important;  /* Above forge background (z-index: 0) */
-    width: 1280px !important;  /* Fixed width to match header and container */
-    max-width: 1280px !important;  /* Match header and container width */
+    width: 100% !important;
+    max-width: 1280px !important;
 }
 
 /* About panel centering - More specific to override panel-layout.css */

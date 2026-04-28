@@ -71,6 +71,7 @@ All CSS classes, AJAX action names, and option keys use the `fff-` / `fff_` pref
 - **Nonce constant:** `NONCE_ACTION` — defined once in the main class; never duplicated as an inline string.
 - **Data persistence:** WP Options table only — no custom database tables.
 - **No build process:** Pure PHP/JS/CSS. Hard-refresh (Ctrl+Shift+R) after JS/CSS edits.
+- **Never use `vh` or `vw` units in CSS.** Viewport-relative units render unpredictably across different screen sizes, admin sidebar widths, and browser zoom levels. Use `px` for fixed layouts and `%` for fluid ones. Root cause: `50vh` in forge-header.css broke layout on production sites with shorter viewports (fixed in v5.3.3).
 
 ---
 
