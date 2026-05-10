@@ -119,5 +119,20 @@ if (!defined('ABSPATH')) {
                 </select>
             </div>
         </div>
+
+        <!-- Row 5: Project / Customer -->
+        <div style="display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 16px;">
+            <div class="grid-item">
+                <label class="component-label" for="project-customer">Project / Customer</label>
+                <input type="text" id="project-customer"
+                    value="<?php echo esc_attr($settings['projectCustomer'] ?? ''); ?>"
+                    class="component-input" style="width: 100%;"
+                    maxlength="16"
+                    pattern="[a-zA-Z0-9 \-]*"
+                    placeholder="Up to 16 characters"
+                    aria-label="Project or customer identifier - up to 16 alphanumeric characters, spaces, dashes"
+                    data-tooltip="Project or customer code shown in generated CSS headers">
+            </div>
+        </div>
     </div>
 </div>

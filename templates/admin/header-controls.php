@@ -41,7 +41,7 @@ if (!defined('ABSPATH')) {
             <label data-tooltip="Automatically save changes as you make them">
                 <input type="checkbox" id="autosave-toggle" <?php echo $settings['autosaveEnabled'] ? 'checked="checked"' : ''; ?> data-tooltip="Toggle automatic saving of your font settings">
                 <span>Autosave</span>
-            </label><button id="save-btn" class="fff-btn" data-tooltip="Save all current settings and sizes to database">
+            </label><button id="save-btn" class="fff-btn" data-tooltip="Saves settings so they reload next session. Use Export/Import for named backups.">
                 <span class="dashicons dashicons-yes" style="margin-top: 3px;"></span>
                 Save
             </button>

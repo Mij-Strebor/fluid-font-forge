@@ -476,7 +476,6 @@ class FontClampEnhancedCoreInterface {
    * @private
    */
   savePanelStates() {
-    // Collect panel states
     const panelStates = {
       aboutExpanded: document.getElementById("about-content")?.classList.contains("expanded") ?? true,
       howToUseExpanded: document.getElementById("info-content")?.classList.contains("expanded") ?? true,
@@ -484,15 +483,22 @@ class FontClampEnhancedCoreInterface {
       fontScaleExpanded: document.getElementById("font-preview-content")?.classList.contains("expanded") ?? true,
     };
 
-    // Prepare control settings (panels + current tab/unit)
+    // Include all font size settings so we never overwrite them with defaults
     const controlSettings = {
+      minRootSize: document.getElementById("min-root-size")?.value,
+      maxRootSize: document.getElementById("max-root-size")?.value,
+      minViewport: document.getElementById("min-viewport")?.value,
+      maxViewport: document.getElementById("max-viewport")?.value,
+      minScale: document.getElementById("min-scale")?.value,
+      maxScale: document.getElementById("max-scale")?.value,
+      previewFontUrl: document.getElementById("preview-font-url")?.value,
+      projectCustomer: document.getElementById("project-customer")?.value || "",
       ...panelStates,
       activeTab: window.fluidFontForgeCore?.activeTab,
       unitType: window.fluidFontForgeCore?.unitType,
       autosaveEnabled: this.elements.autosaveToggle?.checked,
     };
 
-    // Save silently without UI feedback
     const data = {
       action: "fluidfontforge_save_font_clamp_settings",
       nonce: window.fluidfontforgeAjax.nonce,
@@ -507,9 +513,7 @@ class FontClampEnhancedCoreInterface {
 
     fetch(window.fluidfontforgeAjax.ajaxurl, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams(data),
     });
   }
@@ -846,6 +850,7 @@ class FontClampAdvanced {
       maxViewportInput: document.getElementById("max-viewport"),
       minScaleSelect: document.getElementById("min-scale"),
       maxScaleSelect: document.getElementById("max-scale"),
+      projectCustomerInput: document.getElementById("project-customer"),
       previewFontUrlInput: document.getElementById("preview-font-url"),
       fontFilenameSpan: document.getElementById("font-filename"),
       autosaveStatus: document.getElementById("autosave-status"),
@@ -895,6 +900,12 @@ class FontClampAdvanced {
       }
     });
 
+    if (this.elements.projectCustomerInput) {
+      this.elements.projectCustomerInput.addEventListener("input", () => {
+        this.cssGenerator.updateCSS();
+      });
+    }
+
     if (this.elements.previewFontUrlInput) {
       this.elements.previewFontUrlInput.addEventListener(
         "input",
@@ -928,79 +939,36 @@ class FontClampAdvanced {
         saveBtn.disabled = true;
         saveBtn.textContent = "Saving...";
 
-        const settings = {
-          minRootSize: this.elements.minRootSizeInput?.value,
-          maxRootSize: this.elements.maxRootSizeInput?.value,
-          minViewport: this.elements.minViewportInput?.value,
-          maxViewport: this.elements.maxViewportInput?.value,
-          minScale: this.elements.minScaleSelect?.value,
-          maxScale: this.elements.maxScaleSelect?.value,
-          unitType: window.fluidFontForgeCore?.unitType,
-          activeTab: window.fluidFontForgeCore?.activeTab,
-          previewFontUrl: this.elements.previewFontUrlInput?.value,
-          autosaveEnabled: this.elements.autosaveToggle?.checked,
-        };
-
-        const allSizes = {
-          classSizes: window.fluidfontforgeAjax?.data?.classSizes || [],
-          variableSizes: window.fluidfontforgeAjax?.data?.variableSizes || [],
-          tagSizes: window.fluidfontforgeAjax?.data?.tagSizes || [],
-        };
-
-        const data = {
-          action: "fluidfontforge_save_font_clamp_settings",
-          nonce: window.fluidfontforgeAjax.nonce,
-          settings: JSON.stringify(settings),
-          sizes: JSON.stringify(allSizes),
-        };
-
-        fetch(window.fluidfontforgeAjax.ajaxurl, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-          body: new URLSearchParams(data),
-        })
-          .then((response) => response.json())
-
-          .then((result) => {
-            if (result.success) {
-              if (autosaveStatus && autosaveIcon && autosaveText) {
-                autosaveStatus.className = "autosave-status saved";
-                autosaveIcon.textContent = "✅";
-                autosaveText.textContent = "Saved!";
-
-                setTimeout(() => {
-                  autosaveStatus.className = "autosave-status idle";
-                  autosaveIcon.textContent = "💾";
-                  autosaveText.textContent = "Ready";
-                }, 2000);
-              }
-
-              saveBtn.disabled = false;
-              saveBtn.textContent = "Save";
-            } else {
-              throw new Error(result.data?.message || "Save failed");
+        this.performSave()
+          .then(() => {
+            if (autosaveStatus && autosaveIcon && autosaveText) {
+              autosaveStatus.className = "autosave-status saved";
+              autosaveIcon.textContent = "✅";
+              autosaveText.textContent = "Saved!";
+              setTimeout(() => {
+                autosaveStatus.className = "autosave-status idle";
+                autosaveIcon.textContent = "💾";
+                autosaveText.textContent = "Ready";
+              }, 2000);
             }
+            saveBtn.disabled = false;
+            saveBtn.textContent = "Save";
+            this.dataChanged = false;
           })
           .catch((error) => {
             window.Logger.error("Save error:", error);
-
             if (autosaveStatus && autosaveIcon && autosaveText) {
               autosaveStatus.className = "autosave-status error";
               autosaveIcon.textContent = "❌";
               autosaveText.textContent = "Error";
-
               setTimeout(() => {
                 autosaveStatus.className = "autosave-status idle";
                 autosaveIcon.textContent = "💾";
                 autosaveText.textContent = "Ready";
               }, 3000);
             }
-
             saveBtn.disabled = false;
             saveBtn.textContent = "Save";
-
             if (!window.fluidFontNotices) {
               window.fluidFontNotices = new WordPressAdminNotices();
             }
@@ -1023,6 +991,16 @@ class FontClampAdvanced {
 
     this.bindResetFontButton();
     this.bindResetSettingsButton();
+    this.bindExportButton();
+
+    this.suppressUnloadWarning = false;
+
+    window.addEventListener("beforeunload", (e) => {
+      if (this.dataChanged && !this.suppressUnloadWarning) {
+        e.preventDefault();
+        e.returnValue = "";
+      }
+    });
   }
 
   /**
@@ -2160,7 +2138,7 @@ class FontClampAdvanced {
         }
 
         window.fluidFontNotices.confirm(
-          `Reset all settings to default values?<br><br>This will reset:<br>- Min Font Size to 16px<br>- Max Font Size to 20px<br>- Min Viewport Width to 375px<br>- Max Viewport Width to 1620px<br>- Min Scale to 1.125 (Major Second)<br>- Max Scale to 1.333 (Perfect Fourth)<br><br>Your font size entries will not be affected, but their calculated values could change.`,
+          `Reset all settings to default values?<br><br>This will reset:<br>- Min Font Size to 16px<br>- Max Font Size to 20px<br>- Min Viewport Width to 375px<br>- Max Viewport Width to 1620px<br>- Min Scale to 1.125 (Major Second)<br>- Max Scale to 1.333 (Perfect Fourth)<br>- Project / Customer to blank<br><br>Your font size entries will not be affected, but their calculated values could change.`,
           () => {
             // Reset Min/Max Root Size
             if (this.elements.minRootSizeInput) {
@@ -2186,10 +2164,17 @@ class FontClampAdvanced {
               this.elements.maxScaleSelect.value = "1.333"; // Perfect Fourth
             }
 
+            // Reset Project/Customer
+            if (this.elements.projectCustomerInput) {
+              this.elements.projectCustomerInput.value = "";
+            }
+
             // Trigger recalculation
             this.calculateSizes();
             this.renderSizes();
             this.updatePreview();
+
+            setTimeout(() => window.scrollTo(0, 0), 0);
 
             // Show success message
             if (!window.fluidFontNotices) {
@@ -2202,6 +2187,106 @@ class FontClampAdvanced {
         );
       });
     }
+  }
+
+  /**
+   * Collect current UI settings and sizes, POST to save endpoint.
+   * Returns a Promise that resolves on success and rejects on failure.
+   */
+  performSave() {
+    const settings = {
+      minRootSize: this.elements.minRootSizeInput?.value,
+      maxRootSize: this.elements.maxRootSizeInput?.value,
+      minViewport: this.elements.minViewportInput?.value,
+      maxViewport: this.elements.maxViewportInput?.value,
+      minScale: this.elements.minScaleSelect?.value,
+      maxScale: this.elements.maxScaleSelect?.value,
+      unitType: window.fluidFontForgeCore?.unitType,
+      activeTab: window.fluidFontForgeCore?.activeTab,
+      previewFontUrl: this.elements.previewFontUrlInput?.value,
+      autosaveEnabled: this.elements.autosaveToggle?.checked,
+      projectCustomer: this.elements.projectCustomerInput?.value || "",
+    };
+
+    const allSizes = {
+      classSizes: window.fluidfontforgeAjax?.data?.classSizes || [],
+      variableSizes: window.fluidfontforgeAjax?.data?.variableSizes || [],
+      tagSizes: window.fluidfontforgeAjax?.data?.tagSizes || [],
+    };
+
+    const data = {
+      action: "fluidfontforge_save_font_clamp_settings",
+      nonce: window.fluidfontforgeAjax.nonce,
+      settings: JSON.stringify(settings),
+      sizes: JSON.stringify(allSizes),
+    };
+
+    return fetch(window.fluidfontforgeAjax.ajaxurl, {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(data),
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        if (!result.success) {
+          throw new Error(result.data?.message || "Save failed");
+        }
+      });
+  }
+
+  /**
+   * Intercept the export form submit, save current settings first, then proceed.
+   * Ensures the exported JSON always reflects the current UI state.
+   */
+  bindExportButton() {
+    const exportForm = document.getElementById("fff-export-form");
+    if (!exportForm) return;
+
+    exportForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const exportBtn = exportForm.querySelector('button[type="submit"]');
+      const originalHTML = exportBtn ? exportBtn.innerHTML : null;
+
+      if (exportBtn) {
+        exportBtn.disabled = true;
+        exportBtn.innerHTML =
+          '<span class="dashicons dashicons-update-alt" style="margin-top: 3px;"></span> Exporting...';
+      }
+
+      const resetBtn = () => {
+        if (exportBtn && originalHTML !== null) {
+          exportBtn.disabled = false;
+          exportBtn.innerHTML = originalHTML;
+        }
+      };
+
+      // Save current settings silently so the exported JSON reflects the screen,
+      // then let the form POST proceed (the hidden input carries fff_export_settings).
+      // PHP sets a cookie when the download response is sent; poll for it to reset the spinner.
+      this.performSave()
+        .catch((error) => {
+          window.Logger?.error("Auto-save before export failed:", error);
+        })
+        .finally(() => {
+          this.suppressUnloadWarning = true;
+          // Clear any stale cookie from a previous export before submitting
+          document.cookie = "fff_export_done=; Max-Age=0; path=/";
+          exportForm.submit();
+          const pollStart = Date.now();
+          const poll = setInterval(() => {
+            const detected = document.cookie
+              .split(";")
+              .some((c) => c.trim().startsWith("fff_export_done="));
+            if (detected || Date.now() - pollStart > 10000) {
+              clearInterval(poll);
+              document.cookie = "fff_export_done=; Max-Age=0; path=/";
+              this.suppressUnloadWarning = false;
+              resetBtn();
+            }
+          }, 100);
+        });
+    });
   }
 
   /* ========================================================================

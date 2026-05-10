@@ -59,8 +59,11 @@ class FFF_ImportExport
         // Handle export action
         add_action('admin_init', [$this, 'handle_export']);
 
-        // Handle import action
+        // Handle import action (form POST fallback)
         add_action('admin_init', [$this, 'handle_import']);
+
+        // Handle import via AJAX (used by JS fetch)
+        add_action('wp_ajax_fff_import_settings', [$this, 'handle_import_ajax']);
 
         // Display admin notices
         add_action('admin_notices', [$this, 'display_import_notices']);
@@ -94,6 +97,7 @@ class FFF_ImportExport
         $settings = $this->plugin->get_current_settings_export();
 
         // Add export metadata
+        $settings['fff_format'] = 'fluid-font-forge';
         $settings['export_info'] = [
             'exported_at' => current_time('mysql'),
             'exported_by' => wp_get_current_user()->user_login,
@@ -101,11 +105,20 @@ class FFF_ImportExport
             'plugin_version' => FLUID_FONT_FORGE_VERSION
         ];
 
-        // Generate filename
+        // Build filename — include project/customer slug when set
+        $project_customer = trim($settings['settings']['projectCustomer'] ?? '');
+        $customer_slug = '';
+        if ($project_customer !== '') {
+            $customer_slug = strtolower(str_replace(' ', '-', $project_customer)) . '-';
+        }
         $filename = sprintf(
-            'fluid-font-forge-settings-%s.json',
-            gmdate('Y-m-d-His')
+            'fluid-font-forge-settings-%s%s.json',
+            $customer_slug,
+            current_time('Y-m-d-His')
         );
+
+        // Signal to JS that the download response has arrived so it can reset the spinner
+        setcookie('fff_export_done', '1', time() + 60, '/');
 
         // Send headers
         header('Content-Type: application/json; charset=utf-8');
@@ -161,11 +174,19 @@ class FFF_ImportExport
             return;
         }
 
+        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+        $file_tmp = $_FILES['fff_import_file']['tmp_name'] ?? '';
+
+        if (!is_uploaded_file($file_tmp)) {
+            set_transient('fff_import_result', [
+                'success' => false,
+                'message' => __('File upload failed', 'fluid-font-forge')
+            ], 30);
+            return;
+        }
+
         $file_name = isset($_FILES['fff_import_file']['name'])
             ? sanitize_file_name(wp_unslash($_FILES['fff_import_file']['name']))
-            : '';
-        $file_tmp  = isset($_FILES['fff_import_file']['tmp_name'])
-            ? sanitize_text_field(wp_unslash($_FILES['fff_import_file']['tmp_name']))
             : '';
 
         // Validate extension
@@ -239,6 +260,82 @@ class FFF_ImportExport
     }
 
     /**
+     * Handle settings import via AJAX fetch (called by JS)
+     *
+     * @since 5.3.0
+     */
+    public function handle_import_ajax()
+    {
+        if (!isset($_POST['nonce']) ||
+            !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['nonce'])), 'fluid_font_nonce')) {
+            wp_send_json_error(['message' => __('Security check failed', 'fluid-font-forge')]);
+            return;
+        }
+
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error(['message' => __('Insufficient permissions', 'fluid-font-forge')]);
+            return;
+        }
+
+        if (!isset($_FILES['fff_import_file']['error']) ||
+            (int) $_FILES['fff_import_file']['error'] !== UPLOAD_ERR_OK) {
+            wp_send_json_error(['message' => __('File upload failed', 'fluid-font-forge')]);
+            return;
+        }
+
+        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+        $file_tmp = $_FILES['fff_import_file']['tmp_name'] ?? '';
+
+        if (!is_uploaded_file($file_tmp)) {
+            wp_send_json_error(['message' => __('File upload failed', 'fluid-font-forge')]);
+            return;
+        }
+
+        $file_name = isset($_FILES['fff_import_file']['name'])
+            ? sanitize_file_name(wp_unslash($_FILES['fff_import_file']['name']))
+            : '';
+
+        if (strtolower(pathinfo($file_name, PATHINFO_EXTENSION)) !== 'json') {
+            wp_send_json_error(['message' => __('File must be JSON format', 'fluid-font-forge')]);
+            return;
+        }
+
+        // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
+        $json_content = file_get_contents($file_tmp);
+        if ($json_content === false) {
+            wp_send_json_error(['message' => __('Could not read file', 'fluid-font-forge')]);
+            return;
+        }
+
+        $settings = json_decode($json_content, true);
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            wp_send_json_error(['message' => sprintf(
+                /* translators: %s: JSON error message */
+                __('Invalid JSON: %s', 'fluid-font-forge'),
+                json_last_error_msg()
+            )]);
+            return;
+        }
+
+        $validated = $this->plugin->validate_settings_import($settings);
+        if (is_wp_error($validated)) {
+            wp_send_json_error(['message' => $validated->get_error_message()]);
+            return;
+        }
+
+        if (!$this->plugin->apply_imported_settings($validated)) {
+            wp_send_json_error(['message' => __('Failed to apply settings', 'fluid-font-forge')]);
+            return;
+        }
+
+        $response = ['message' => __('Settings imported successfully', 'fluid-font-forge')];
+        if (!empty($validated['validation_notes'])) {
+            $response['warnings'] = $validated['validation_notes'];
+        }
+        wp_send_json_success($response);
+    }
+
+    /**
      * Display import result notices
      *
      * @since 5.3.0
@@ -281,9 +378,10 @@ class FFF_ImportExport
     public function render_export_button()
     {
         ?>
-        <form method="post" style="display: inline-block; margin-right: 8px;">
+        <form id="fff-export-form" method="post" style="display: inline-block; margin-right: 8px;">
             <?php wp_nonce_field('fff_export_settings', 'fff_export_nonce'); ?>
-            <button type="submit" name="fff_export_settings"
+            <input type="hidden" name="fff_export_settings" value="1">
+            <button type="submit"
                     class="fff-btn fff-btn-secondary"
                     title="<?php esc_attr_e('Export current settings to JSON file', 'fluid-font-forge'); ?>">
                 <span class="dashicons dashicons-download" style="margin-top: 3px;"></span>
@@ -301,56 +399,93 @@ class FFF_ImportExport
     public function render_import_form()
     {
         ?>
-        <form method="post" enctype="multipart/form-data"
-              id="fff-import-form" style="display: inline-block;">
-            <?php wp_nonce_field('fff_import_settings', 'fff_import_nonce'); ?>
+        <div style="display: inline-block;">
             <input type="file" name="fff_import_file"
-                   accept=".json" id="fff-import-file" style="display: none;">
+                   accept=".json" id="fff-import-file"
+                   style="position:fixed;left:-9999px;top:-9999px;width:0;height:0;opacity:0;"
+                   tabindex="-1" aria-hidden="true">
             <button type="button" class="fff-btn fff-btn-secondary"
                     id="fff-import-trigger"
                     title="<?php esc_attr_e('Import settings from JSON file', 'fluid-font-forge'); ?>">
                 <span class="dashicons dashicons-upload" style="margin-top: 3px;"></span>
                 <?php esc_html_e('Import Settings', 'fluid-font-forge'); ?>
             </button>
-        </form>
+        </div>
         <script>
         (function() {
             var trigger = document.getElementById('fff-import-trigger');
             var fileInput = document.getElementById('fff-import-file');
-            var form = document.getElementById('fff-import-form');
 
-            if (trigger && fileInput && form) {
-                trigger.addEventListener('click', function() {
-                    fileInput.click();
-                });
+            if (!trigger || !fileInput) return;
 
-                fileInput.addEventListener('change', function(e) {
-                    if (e.target.files.length > 0) {
-                        var fileName = e.target.files[0].name;
-                        var message = '<?php esc_html_e('Import settings from', 'fluid-font-forge'); ?> "' +
-                                    fileName + '"?\n\n' +
-                                    '<?php esc_html_e('Current settings will be replaced. This cannot be undone.', 'fluid-font-forge'); ?>';
+            trigger.addEventListener('click', function() {
+                fileInput.click();
+            });
 
-                        if (confirm(message)) {
-                            // Show loading state
-                            trigger.disabled = true;
-                            trigger.innerHTML = '<span class="dashicons dashicons-update-alt" style="margin-top: 3px; animation: spin 1s linear infinite;"></span> <?php esc_html_e('Importing...', 'fluid-font-forge'); ?>';
-                            form.submit();
+            fileInput.addEventListener('change', function(e) {
+                if (!e.target.files.length) return;
+
+                var file = e.target.files[0];
+                var fileName = file.name;
+
+                // Reset immediately so the same file can retrigger change if cancelled
+                fileInput.value = '';
+
+                if (!window.fluidFontNotices) {
+                    window.fluidFontNotices = new WordPressAdminNotices();
+                }
+
+                var fileExt = fileName.split('.').pop().toLowerCase();
+                if (fileExt !== 'json') {
+                    window.fluidFontNotices.alert('<strong><?php esc_html_e('Invalid File Type', 'fluid-font-forge'); ?>:</strong> <?php esc_html_e('Please select a .json file exported from Fluid Font Forge.', 'fluid-font-forge'); ?>');
+                    return;
+                }
+
+                var message = '<?php esc_html_e('Import settings from', 'fluid-font-forge'); ?> <strong>"' +
+                            fileName + '"</strong><br><br>' +
+                            '<?php esc_html_e('Current settings will be replaced. This cannot be undone.', 'fluid-font-forge'); ?>';
+
+                window.fluidFontNotices.confirm(message, function() {
+                    trigger.disabled = true;
+                    trigger.innerHTML = '<span class="dashicons dashicons-update-alt" style="margin-top: 3px;"></span> <?php esc_html_e('Importing...', 'fluid-font-forge'); ?>';
+
+                    // Double rAF ensures the browser paints the spinner state before the fetch starts
+                    requestAnimationFrame(function() { requestAnimationFrame(function() {
+
+                    var formData = new FormData();
+                    formData.append('action', 'fff_import_settings');
+                    formData.append('nonce', window.fluidfontforgeAjax.nonce);
+                    formData.append('fff_import_file', file, fileName);
+
+                    fetch(window.fluidfontforgeAjax.ajaxurl, {
+                        method: 'POST',
+                        body: formData,
+                    })
+                    .then(function(r) { return r.json(); })
+                    .then(function(result) {
+                        if (result.success) {
+                            if (window.fontClampAdvanced) {
+                                window.fontClampAdvanced.suppressUnloadWarning = true;
+                            }
+                            window.location.reload();
                         } else {
-                            // Reset file input
-                            fileInput.value = '';
+                            throw new Error(result.data ? result.data.message : '<?php esc_html_e('Import failed', 'fluid-font-forge'); ?>');
                         }
-                    }
+                    })
+                    .catch(function(error) {
+                        trigger.disabled = false;
+                        trigger.innerHTML = '<span class="dashicons dashicons-upload" style="margin-top: 3px;"></span> <?php esc_html_e('Import Settings', 'fluid-font-forge'); ?>';
+                        if (!window.fluidFontNotices) {
+                            window.fluidFontNotices = new WordPressAdminNotices();
+                        }
+                        window.fluidFontNotices.alert('<strong><?php esc_html_e('Import Failed', 'fluid-font-forge'); ?>:</strong> ' + error.message);
+                    });
+
+                    }); }); // end double rAF
                 });
-            }
+            });
         })();
         </script>
-        <style>
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        </style>
         <?php
     }
 }

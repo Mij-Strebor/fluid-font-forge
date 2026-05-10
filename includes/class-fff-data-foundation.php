@@ -75,8 +75,15 @@ trait DataFoundationTrait
      */
     public function validate_settings_import($settings)
     {
+        // Format check — must be a file exported by this plugin
+        if (!is_array($settings) ||
+            (($settings['fff_format'] ?? '') !== 'fluid-font-forge' &&
+             !isset($settings['export_info']['plugin_version']))) {
+            return new \WP_Error('invalid_format', __('This does not appear to be a Fluid Font Forge settings file.', 'fluid-font-forge'));
+        }
+
         // Structure check
-        if (!is_array($settings) || !isset($settings['settings'])) {
+        if (!isset($settings['settings'])) {
             return new \WP_Error('invalid_structure', __('Settings must contain a settings array', 'fluid-font-forge'));
         }
 
@@ -196,6 +203,11 @@ trait DataFoundationTrait
         // Autosave setting
         $validated['settings']['autosaveEnabled'] = isset($s['autosaveEnabled']) ? (bool) $s['autosaveEnabled'] : false;
 
+        // Project/Customer identifier (max 8 alphanumeric characters)
+        $validated['settings']['projectCustomer'] = isset($s['projectCustomer'])
+            ? preg_replace('/[^a-zA-Z0-9 \-]/', '', substr($s['projectCustomer'], 0, 16))
+            : '';
+
         // Sizes validation (if provided)
         if (isset($settings['sizes'])) {
             foreach (['class', 'variables', 'tags', 'tailwind'] as $type) {
@@ -223,25 +235,49 @@ trait DataFoundationTrait
             return [];
         }
 
+        // Type-specific name fields used by each size category
+        $name_fields = ['className', 'variableName', 'tagName', 'tailwindName', 'name'];
+
         $validated = [];
         foreach ($sizes as $size) {
             if (!is_array($size)) {
                 continue;
             }
 
-            // Validate required fields
-            if (!isset($size['name']) || !isset($size['minSize']) || !isset($size['maxSize'])) {
+            $entry = [];
+
+            // id
+            if (isset($size['id'])) {
+                $entry['id'] = intval($size['id']);
+            }
+
+            // Preserve whichever type-specific name field is present
+            $has_name = false;
+            foreach ($name_fields as $field) {
+                if (isset($size[$field])) {
+                    $entry[$field] = sanitize_text_field($size[$field]);
+                    $has_name = true;
+                }
+            }
+
+            // Every entry must have at least one name field
+            if (!$has_name) {
                 continue;
             }
 
-            $validated[] = [
-                'name' => sanitize_text_field($size['name']),
-                'minSize' => floatval($size['minSize']),
-                'maxSize' => floatval($size['maxSize']),
-                'baseValue' => isset($size['baseValue']) ? intval($size['baseValue']) : 0,
-                'clampValue' => isset($size['clampValue']) ? sanitize_text_field($size['clampValue']) : '',
-                'skipped' => isset($size['skipped']) ? (bool) $size['skipped'] : false
-            ];
+            // Numeric fields
+            foreach (['min', 'max', 'lineHeight'] as $field) {
+                if (isset($size[$field])) {
+                    $entry[$field] = floatval($size[$field]);
+                }
+            }
+
+            // Boolean
+            if (isset($size['skipped'])) {
+                $entry['skipped'] = (bool) $size['skipped'];
+            }
+
+            $validated[] = $entry;
         }
 
         return $validated;
@@ -262,8 +298,11 @@ trait DataFoundationTrait
             return false;
         }
 
-        // Update main settings
-        update_option(self::OPTION_SETTINGS, $validated['settings']);
+        // Merge imported font settings over the current settings, preserving any
+        // UI-state keys (panel collapsed states etc.) that are not part of the import schema.
+        $current_settings = get_option(self::OPTION_SETTINGS, []);
+        $merged_settings   = array_merge($current_settings, $validated['settings']);
+        update_option(self::OPTION_SETTINGS, $merged_settings);
 
         // Update sizes if provided
         if (isset($validated['sizes'])) {

@@ -86,6 +86,7 @@ class DefaultDataFactory
             'minScale' => \JimRForge\FluidFontForge\FluidFontForge::DEFAULT_MIN_SCALE,
             'maxScale' => \JimRForge\FluidFontForge\FluidFontForge::DEFAULT_MAX_SCALE,
             'autosaveEnabled' => false,
+            'projectCustomer' => '',
             'classBaseValue' => 'medium',
             'varsBaseValue' => '--fs-md',
             'tagBaseValue' => 'p',

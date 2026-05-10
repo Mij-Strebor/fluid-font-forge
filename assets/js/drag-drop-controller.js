@@ -287,6 +287,7 @@ class DragDropController {
         sizes.splice(targetIndex, 0, originalDraggedItem);
       }
 
+      this.advanced.calculateSizes();
       this.advanced.renderSizes();
       this.advanced.updatePreview();
       this.advanced.updateBaseValueOptions();

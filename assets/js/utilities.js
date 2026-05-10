@@ -750,6 +750,66 @@ class WordPressAdminNotices {
 
     setTimeout(() => confirmBtn.focus(), 100);
   }
+
+  alert(message) {
+    const existing = document.getElementById("alert-dialog-modal");
+    if (existing) existing.remove();
+
+    const alertModal = document.createElement("div");
+    alertModal.id = "alert-dialog-modal";
+    alertModal.className = "fff-modal";
+
+    const modalDialog = document.createElement("div");
+    modalDialog.className = "fff-modal-dialog";
+    modalDialog.style.maxWidth = "500px";
+
+    const modalHeader = document.createElement("div");
+    modalHeader.className = "fff-modal-header";
+    modalHeader.style.cssText = "background: var(--clr-danger, #d63638); color: var(--clr-textLight);";
+    const headerSpan = document.createElement("span");
+    headerSpan.textContent = "Error";
+    modalHeader.appendChild(headerSpan);
+
+    const modalContent = document.createElement("div");
+    modalContent.className = "fff-modal-content";
+
+    const messagePara = document.createElement("p");
+    messagePara.style.cssText = "margin: 0 0 20px 0; line-height: 1.5; color: var(--clr-textPrimary);";
+    messagePara.innerHTML = this.sanitizeConfirmHTML(message);
+
+    const btnGroup = document.createElement("div");
+    btnGroup.className = "fff-btn-group";
+
+    const okBtn = document.createElement("button");
+    okBtn.type = "button";
+    okBtn.className = "fff-btn";
+    okBtn.textContent = "OK";
+
+    btnGroup.appendChild(okBtn);
+    modalContent.appendChild(messagePara);
+    modalContent.appendChild(btnGroup);
+    modalDialog.appendChild(modalHeader);
+    modalDialog.appendChild(modalContent);
+    alertModal.appendChild(modalDialog);
+    document.body.appendChild(alertModal);
+
+    setTimeout(() => {
+      alertModal.classList.add("show");
+      okBtn.focus();
+    }, 10);
+
+    const cleanup = () => document.body.removeChild(alertModal);
+
+    okBtn.addEventListener("click", cleanup);
+
+    const handleKeydown = (e) => {
+      if (e.key === "Escape" || e.key === "Enter") {
+        cleanup();
+        document.removeEventListener("keydown", handleKeydown);
+      }
+    };
+    document.addEventListener("keydown", handleKeydown);
+  }
 }
 
 /* ==========================================================================

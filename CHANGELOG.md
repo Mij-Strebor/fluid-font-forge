@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [5.4.0] — 2026-05-10
+
+### Added
+- **Non-FFF JSON rejection** — Export files now include an `fff_format: fluid-font-forge` identifier. The import validator rejects any JSON file missing both that marker and `export_info.plugin_version`, preventing accidental import of unrelated JSON files.
+
+### Fixed
+- **Import error display** — Import failure messages (including non-FFF file rejection) now appear as a blocking modal instead of an inline admin notice banner.
+- **Import spinner paint delay** — Double `requestAnimationFrame` before the fetch call ensures the "Importing…" button state paints before the AJAX request fires on fast local servers.
+- **Export spinner reset timing** — Replaced the 2-second timer with cookie-based polling: PHP sets an `fff_export_done` cookie when the download response is sent; JS detects it within 100ms and resets the spinner, with a 10-second fallback.
+
+### Changed
+- **Save button tooltip** — Updated to clarify that Save persists settings for the next session; Export/Import should be used for named backups.
+- **Version** — Bumped to 5.4.0.
+
+---
+
 ## [5.3.4] — 2026-04-28
 
 ### Fixed

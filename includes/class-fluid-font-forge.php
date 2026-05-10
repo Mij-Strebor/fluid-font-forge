@@ -700,6 +700,7 @@ class FluidFontForge
                 }
                 $settings['previewFontUrl'] = $preview_url;
                 $settings['autosaveEnabled'] = (bool) ($settings['autosaveEnabled'] ?? false);
+                $settings['projectCustomer'] = preg_replace('/[^a-zA-Z0-9 \-]/', '', substr($settings['projectCustomer'] ?? '', 0, 16));
             }
             if (json_last_error() !== JSON_ERROR_NONE) {
                 wp_send_json_error(['message' => 'Invalid JSON data provided']);

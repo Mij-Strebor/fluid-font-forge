@@ -5,7 +5,7 @@ Tags: typography, fonts, responsive, clamp, fluid
 Requires at least: 5.0
 Tested up to: 6.9
 Requires PHP: 8.2
-Stable tag: 5.3.4
+Stable tag: 5.4.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -114,6 +114,13 @@ The plugin saves all your configurations in the WordPress database. For backup o
 * **Perfect Fourth (1.333)**: Strong contrast for headlines
 * **Golden Ratio (1.618)**: Dramatic scaling for hero sections
 == Changelog ==
+
+= 5.4.0 =
+* Added: Non-FFF JSON rejection — export files now carry an fff_format identifier; import rejects any JSON missing this marker and export_info.plugin_version
+* Fixed: Import failure messages (including non-FFF file rejection) now appear as a blocking modal instead of an inline admin notice banner
+* Fixed: Double requestAnimationFrame before the fetch call ensures the Importing button state paints before the AJAX request fires on fast local servers
+* Fixed: Export button spinner now resets via cookie polling instead of a fixed 2-second timer — PHP sets fff_export_done cookie when the download response is sent; JS resets the button within 100ms
+* Changed: Save button tooltip updated to clarify that Save persists settings for the next session; Export/Import should be used for named backups
 
 = 5.3.4 =
 * Fixed: Button text wrapping — white-space: nowrap added to .fff-btn prevents multi-word labels from wrapping to two lines
