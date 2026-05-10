@@ -25,6 +25,7 @@ Fluid Font Forge simplifies responsive typography by generating CSS clamp() func
 - **Drag & Drop Management** - Reorder font sizes with intuitive interface
 - **Copy-to-Clipboard** - One-click CSS copying for immediate implementation
 - **Autosave System** - Automatic saving with visual status indicators
+- **Project / Customer Labeling** - Tag configurations with a client or project name; the label appears in exported JSON filenames and generated CSS headers, enabling a named library of settings across projects
 
 ## How It Works
 

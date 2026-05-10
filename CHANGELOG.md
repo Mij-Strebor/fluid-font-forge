@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [5.4.0] — 2026-05-10
 
+### New Features
+- **Project / Customer identification** — A new text field in the Settings panel lets you tag any configuration with a project or customer name (up to 16 characters: letters, numbers, spaces, and dashes). The identifier flows through to two places: it is embedded in the exported JSON filename (`fluid-font-forge-settings-acme-corp-2026-05-10.json`) so a folder of exports is immediately identifiable; and it appears in the header comment block of every generated CSS output, labeling which project the settings belong to. Combined, this makes it practical to build a named library of settings files — one per client or project — and instantly know which JSON to import or which CSS came from where. Thanks to @hughes888 for suggesting this feature.
+
 ### Added
 - **Non-FFF JSON rejection** — Export files now include an `fff_format: fluid-font-forge` identifier. The import validator rejects any JSON file missing both that marker and `export_info.plugin_version`, preventing accidental import of unrelated JSON files.
 

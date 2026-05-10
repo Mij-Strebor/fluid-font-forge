@@ -116,6 +116,7 @@ The plugin saves all your configurations in the WordPress database. For backup o
 == Changelog ==
 
 = 5.4.0 =
+* New: Project / Customer identification field in Settings — tag any configuration with a project or customer name (up to 16 characters). The identifier is embedded in the exported JSON filename (e.g. fluid-font-forge-settings-acme-corp-2026-05-10.json) and in the header comment of every generated CSS block, making it practical to build a named library of settings files — one per client or project. Thanks to @hughes888 for suggesting this feature.
 * Added: Non-FFF JSON rejection — export files now carry an fff_format identifier; import rejects any JSON missing this marker and export_info.plugin_version
 * Fixed: Import failure messages (including non-FFF file rejection) now appear as a blocking modal instead of an inline admin notice banner
 * Fixed: Double requestAnimationFrame before the fetch call ensures the Importing button state paints before the AJAX request fires on fast local servers
